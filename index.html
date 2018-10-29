@@ -2,33 +2,50 @@
 	<head>
 		<title>Frupal</title>
 	</head>
+    <script>
+            function Hero(x, y, whiffles, energy, jems)
+            {
+                this.x = x;
+                this.y = y;
+                this.whiffles = whiffles;
+                this.energy = energy;
+                this.jems = jems;
+                this.move_north = function() {this.y = this.y + 1;};
+                this.move_south = function() {this.y = this.y - 1;};
+                this.move_east = function() {this.x = this.x + 1;};
+                this.move_west = function() {this.x = this.x - 1;};
+            }
+    </script>
   <body>
+        <script>
+            var player = new Hero(0,0,1000,10,0);
+        </script>
     <h1>FRUPAL - the game ...</h1>
     <table>
       <tr>
         <th></th>
-        <th><button type="north">NORTH</button></th>
+        <th><button type="button" onclick="player.move_north()">NORTH</button></th>
         <th></th>
       </tr>
       <tr>
-        <th><button type="west">WEST</button></th>
+        <th><button type="button" onclick="player.move_west()">WEST</button></th>
         <th></th>
-        <th><button type="east">EAST</button></th>
+        <th><button type="button" onclick="player.move_east()">EAST</button></th>
       </tr>
       <tr>
         <th></th>
-        <th><button type="south">SOUTH</button></th>
+        <th><button type="button" onclick="player.move_south()">SOUTH</button></th>
         <th></th>
       </tr>
     </table>
     <br>
     <br>
-    Current Location: <input type="text" name="location">
+    Current Location: <input type="text" name="location"></input>
     <br>
-    Energy: <input type="text" name="energy">
+    Energy: <input type="text" name="energy"></input>
     <br>
-    Whiffles: <input type="text" name="whiffles">
+    Whiffles: <input type="text" name="whiffles"></input>
     <br>
-    Message: <input type="text" name="message">
+    Message: <input type="text" name="message"></input>
   </body>
 </html>
