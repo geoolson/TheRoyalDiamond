@@ -1,6 +1,7 @@
 # cs300 Team B
 
 [Trello](https://trello.com/b/CwbQSw9w/frupal)
+[Discord Chat Server](https://discord.gg/kvqNDBd)
 
 # git Instructions
 
