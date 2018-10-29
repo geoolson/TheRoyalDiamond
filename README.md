@@ -5,10 +5,13 @@
 # git Instructions
 
 * ssh into a Linux server
-* To download the repo enter the following command :
-`git clone https://github.com/seal402/cs300.git`
-* Before working on the project please do the following to sync your local repo with github :
-`git pull`
+* Download/clone the repo if you haven't already :
+
+    `git clone https://github.com/seal402/cs300.git`
+
+* Every time, before working on the project, please do the following to sync your local repo with github :
+    
+    `git pull`
 
 ## Uploading Your Code
 
