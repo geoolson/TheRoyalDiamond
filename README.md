@@ -23,7 +23,7 @@ in the working directory of the project you're working on, do the following
 
 *  Make a commit. This will bring up a text editor. Provide a brief description of the changes/additions made then save and quit
 
-    `git commit`
+    `git commit -m "Message here"`
 
 *  Upload your commit to Github.
 
