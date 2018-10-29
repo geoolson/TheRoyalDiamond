@@ -13,11 +13,16 @@
 ## uploading your code
 
 in the working diretory of the project you're working on do the following
-*  The following will add the changes you've made
+*  Add the changes you've made
+
 `git add .`
 
-*  this will bring up a text editor. Provide a brief description of the changes/additions made then save and quit
+*  This will bring up a text editor. Provide a brief description of the changes/additions made then save and quit
+
 `git commit`
 
 *  This last command will upload your commit to Github.
+
 `git push origin master`
+
+
