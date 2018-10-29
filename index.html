@@ -3,22 +3,45 @@
 		<title>Frupal</title>
 	</head>
     <script>
-            function Hero(x, y, whiffles, energy, jems)
+            //This is actually a JavaScript Class... It's weird, but it's how Javascript implements classes
+            // The class is implemented as a function that takes in several arguments that are stored in 
+            // the newly created object.
+            function Hero(x, y, whiffles, energy)
             {
                 this.x = x;
                 this.y = y;
                 this.whiffles = whiffles;
                 this.energy = energy;
-                this.jems = jems;
+                this.jems = 0;
                 this.move_north = function() {this.y = this.y + 1;};
                 this.move_south = function() {this.y = this.y - 1;};
                 this.move_east = function() {this.x = this.x + 1;};
                 this.move_west = function() {this.x = this.x - 1;};
             }
+            //Starting Map Class - This class will create a new Hero and keep track of him and his
+            // stats. Some of the functions in this map class will call functions in the hero class.
+            // This map class will communicate extensively with the hero class.
+            function Map(width, height, starting_x, starting_y, starting_whiffles, starting_energy)
+            {
+                //Data Members:
+                this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); /*Creates a new hero
+                                                                                                   * and passes the hero 
+                                                                                                   * constructor the parameters.*/
+
+                this.width = width; //The width of the map.
+                this.height = height; //The height of the map.
+                
+                //Moves the player north by calling the move_north function of the player class
+                this.move_north = function(){
+                
+                };
+
+
+            }
     </script>
   <body>
         <script>
-            var player = new Hero(0,0,1000,10,0);
+            var game_map = new Map(25,25,1000,10,0);
         </script>
     <h1>FRUPAL - the game ...</h1>
     <table>
