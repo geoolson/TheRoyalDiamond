@@ -27,48 +27,119 @@
                 this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); /*Creates a new hero
                                                                                                    * and passes the hero 
                                                                                                    * constructor the parameters.*/
-
+                this.hero_x = starting_x; //The hero's location on the map
+                this.hero_y = startnig_y;
                 this.width = width; //The width of the map.
                 this.height = height; //The height of the map.
-                
+
+
+
+
+
+                //Member Functions:
                 //Moves the player north by calling the move_north function of the player class
                 this.move_north = function(){
-                
+                    if(!((this.hero_y + 1) > height)) //If the hero is not at the edge of the map, she can move north
+                                                 // But if she is at the edge of the map, then we skip the movement call, 
+                                                 // because she can't move north anymore.
+                    {
+                        hero.move_north();
+                        this.hero_y = this.hero_y + 1;
+                    }
+                    else
+                    {
+                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    }
+
+                    //This part will update the text fields with the hero's current location:
+                    document.getElementById("location").innerHTML = "Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
                 };
+                //Moves the player sorth by calling the move_south function of the player class
+                this.move_south = function(){
+                    if(!((this.hero_y - 1) < 0)) //If the hero is not at the edge of the map, she can move south
+                                                 // But if she is at the edge of the map, then we skip the movement call, 
+                                                 // because she can't move south anymore.
+                    {
+                        hero.move_south();
+                        this.hero_y = this.hero_y - 1;
+                    }
+                    else
+                    {
+                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    }
 
+                    //This part will update the text fields with the hero's current location:
+                    document.getElementById("location").innerHTML = "Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
 
+                };
+                //Moves the player east by calling the move_east function of the player class
+                this.move_east = function(){
+                    if(!((this.hero_x - 1) < 0)) //If the hero is not at the edge of the map, she can move east
+                                                 // But if she is at the edge of the map, then we skip the movement call, 
+                                                 // because she can't move east anymore.
+                    {
+                        hero.move_east();
+                        this.hero_x = this.hero_x - 1;
+                    }
+                    else
+                    {
+                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    }
+
+                    //This part will update the text fields with the hero's current location:
+                    document.getElementById("location").innerHTML = "Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
+
+                };
+                //Moves the player west by calling the move_west function of the player class
+                this.move_west = function(){
+                    if(!((this.hero_x + 1) > width)) //If the hero is not at the edge of the map, she can move west
+                                                     // But if she is at the edge of the map, then we skip the movement call, 
+                                                     // because she can't move west anymore.
+                    {
+                        hero.move_west();
+                        this.hero_x = this.hero_x + 1;
+                    }
+                    else
+                    {
+                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    }
+
+                    //This part will update the text fields with the hero's current location:
+                    document.getElementById("location").innerHTML = "Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
+
+                };
             }
     </script>
   <body>
         <script>
-            var game_map = new Map(25,25,1000,10,0);
+            var game_map = new Map(25,25,0,0,1000,10); //Creates a new game map with the proper parameters.
         </script>
     <h1>FRUPAL - the game ...</h1>
     <table>
       <tr>
         <th></th>
-        <th><button type="button" onclick="player.move_north()">NORTH</button></th>
+        <th><button type="button" onclick="game_map.move_north()">NORTH</button></th>
         <th></th>
       </tr>
       <tr>
-        <th><button type="button" onclick="player.move_west()">WEST</button></th>
+        <th><button type="button" onclick="game_map.move_west()">WEST</button></th>
         <th></th>
-        <th><button type="button" onclick="player.move_east()">EAST</button></th>
+        <th><button type="button" onclick="game_map.move_east()">EAST</button></th>
       </tr>
       <tr>
         <th></th>
-        <th><button type="button" onclick="player.move_south()">SOUTH</button></th>
+        <th><button type="button" onclick="game_map.move_south()">SOUTH</button></th>
         <th></th>
       </tr>
     </table>
     <br>
     <br>
-    Current Location: <input type="text" name="location"></input>
+    Current Location: <input type="text" name="Location" id="location"></input>
     <br>
-    Energy: <input type="text" name="energy"></input>
+    Energy: <input type="text" name="Energy" id="energy"></input>
     <br>
-    Whiffles: <input type="text" name="whiffles"></input>
+    Whiffles: <input type="text" name="Whiffles" id="whiffles"></input>
     <br>
-    Message: <input type="text" name="message"></input>
+    Message: <input type="text" name="Message" id="message"></input>
   </body>
 </html>
