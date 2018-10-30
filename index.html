@@ -46,9 +46,9 @@
                         this.hero.move_north();
                         this.hero_y = this.hero_y + 1;
                     }
-                    else
-                    {
-                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    else // If hero gets to the edge going north they
+                    {   // will be wrapped around to the other side (southmost)
+			this.hero_y = 0;
                     }
 
                     //This part will update the text fields with the hero's current location:
@@ -63,9 +63,9 @@
                         this.hero.move_south();
                         this.hero_y = this.hero_y - 1;
                     }
-                    else
-                    {
-                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    else // If hero gets to edge going south, they
+                    {   // will be wrapped to the other side (northmost)
+		       this.hero_y = height;
                     }
 
                     //This part will update the text fields with the hero's current location:
@@ -81,9 +81,9 @@
                         this.hero.move_east();
                         this.hero_x = this.hero_x - 1;
                     }
-                    else
-                    {
-                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    else // Hero gets to eastmost edge, and is
+                    {   // wrapped to westmost side
+		       this.hero_x = width;
                     }
 
                     //This part will update the text fields with the hero's current location:
@@ -99,9 +99,9 @@
                         this.hero.move_west();
                         this.hero_x = this.hero_x + 1;
                     }
-                    else
-                    {
-                        alert("You have reached the edge of the map, and you cannot travel in this direction anymore!");
+                    else // When hero reaches westmost edge, they
+                    {    // are wrapped around to the eastmost side.
+		       this.hero_x = 0;
                     }
 
                     //This part will update the text fields with the hero's current location:
