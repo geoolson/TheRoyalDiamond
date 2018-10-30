@@ -28,7 +28,7 @@
                                                                                                    * and passes the hero 
                                                                                                    * constructor the parameters.*/
                 this.hero_x = starting_x; //The hero's location on the map
-                this.hero_y = startnig_y;
+                this.hero_y = starting_y;
                 this.width = width; //The width of the map.
                 this.height = height; //The height of the map.
 
@@ -43,7 +43,7 @@
                                                  // But if she is at the edge of the map, then we skip the movement call, 
                                                  // because she can't move north anymore.
                     {
-                        hero.move_north();
+                        this.hero.move_north();
                         this.hero_y = this.hero_y + 1;
                     }
                     else
@@ -60,7 +60,7 @@
                                                  // But if she is at the edge of the map, then we skip the movement call, 
                                                  // because she can't move south anymore.
                     {
-                        hero.move_south();
+                        this.hero.move_south();
                         this.hero_y = this.hero_y - 1;
                     }
                     else
@@ -78,7 +78,7 @@
                                                  // But if she is at the edge of the map, then we skip the movement call, 
                                                  // because she can't move east anymore.
                     {
-                        hero.move_east();
+                        this.hero.move_east();
                         this.hero_x = this.hero_x - 1;
                     }
                     else
@@ -96,7 +96,7 @@
                                                      // But if she is at the edge of the map, then we skip the movement call, 
                                                      // because she can't move west anymore.
                     {
-                        hero.move_west();
+                        this.hero.move_west();
                         this.hero_x = this.hero_x + 1;
                     }
                     else
@@ -134,7 +134,7 @@
     </table>
     <br>
     <br>
-    Current Location: <input type="text" name="Location" id="location"></input>
+    Current Location: <div id="location">Starting Location</div>
     <br>
     Energy: <input type="text" name="Energy" id="energy"></input>
     <br>
