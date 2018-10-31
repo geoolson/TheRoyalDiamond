@@ -36,7 +36,14 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
     this.width = width; //The width of the map.
     this.height = height; //The height of the map.
 
-
+    // Create an empty world
+    this.cells = [[]];
+    for (var i = 0; i < height; ++i) {
+        this.cells[i] = [];
+        for (var j = 0; j < width; ++j) {
+            this.cells[i][j] = new mapCell();
+        }
+    }
 
 
 
@@ -130,5 +137,53 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
 
     };
+
+    // Formats the map array as the contents of an HTML table.
+    this.map_string = function() {
+        result = "";
+        for (var i = 0; i < cells.length; ++i) {
+            result += "<tr>";
+            for (var j = 0; j < cells.length; ++j) {
+                var cell = cells[i][j];
+                result += "<td>";
+                    if(cell.isVisible) {
+                        switch(cell.terrain) {
+                        case 0:
+                            // Meadow
+                            result += ".";
+                            break;
+                        case 1:
+                            // Forest
+                            result += ";";
+                            break;
+                        case 2:
+                            // Water
+                            result += "~";
+                            break;
+                        case 3:
+                            // Wall
+                            result += "#";
+                            break;
+                        case 4:
+                            // Bog
+                            result += ",";
+                            break;
+                        case 5:
+                            // Swamp
+                            result += "%";
+                            break;
+                        default:
+                            result += "?";
+                        }
+                    } else {
+                        result += " ";
+                    }
+                result += "</td>";
+            }
+            result += "</tr>"
+        }
+        return result;
+    }
+
 }
 
