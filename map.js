@@ -45,15 +45,9 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         }
     }
 
-    this.update = function() {
-        // For a normal step, as long as hero has 
-        // enough energy, they will lose 1 energy.
-        this.hero.decrement_energy();
 
-        //This part will update the text fields with the hero's current location:
-        document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
-        document.getElementById("map_box").innerHTML = this.map_string();
-    };
+
+
 
     //Member Functions:
     //Moves the player north by calling the move_north function of the player class
@@ -116,6 +110,20 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
 
         this.update();
     };
+
+    //This function will decrement the hero's energy, and will call other functions (such as check for diamonds, 
+    // update whiffles, etc.) it will also call the map display function.
+    this.update = function() {
+        // For a normal step, as long as hero has 
+        // enough energy, they will lose 1 energy.
+        this.hero.decrement_energy();
+
+        //This part will update the text fields with the hero's current location:
+        document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
+        document.getElementById("map_box").innerHTML = this.map_string();
+    };
+
+
 
     // Formats the map array as the contents of an HTML table.
     this.map_string = function() {
