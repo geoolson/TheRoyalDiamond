@@ -1,6 +1,23 @@
 //Starting Map Class - This class will create a new Hero and keep track of him and his
 // stats. Some of the functions in this map class will call functions in the hero class.
 // This map class will communicate extensively with the hero class.
+
+function mapCell(isVisible, terrain, content)
+{
+    if ( isVisible === undefined || terrain == undefined || content == undefined ) // parameter was omitted in call
+    {
+        this.isVisible = 0;
+        this.terrain = 0;
+        this.content = "None";
+    }
+    else
+    {
+        this.isVisible = isVisible;
+        this.terrain = terrain;
+        this.content = content;
+    }
+}
+
 function Map(width, height, starting_x, starting_y, starting_whiffles, starting_energy)
 {
     //Data Members:
