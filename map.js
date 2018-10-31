@@ -2,16 +2,23 @@
 // stats. Some of the functions in this map class will call functions in the hero class.
 // This map class will communicate extensively with the hero class.
 
-function mapCell(isVisible, terrain, content)
+function mapCell(x, y, isVisible, terrain, content)
 {
-    if ( isVisible === undefined || terrain == undefined || content == undefined ) // parameter was omitted in call
+    // parameter was omitted in call
+    if ( 
+    x == undefined || y == undefined isVisible === undefined || 
+    terrain == undefined || content == undefined ) 
     {
+        this.x = 0;
+        this.y = 0;
         this.isVisible = 0;
         this.terrain = 0;
         this.content = "None";
     }
     else
     {
+        this.x = x;
+        this.y = y;
         this.isVisible = isVisible;
         this.terrain = terrain;
         this.content = content;
