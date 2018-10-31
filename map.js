@@ -6,7 +6,7 @@ function mapCell(x, y, isVisible, terrain, content)
 {
     // parameter was omitted in call
     if ( 
-    x == undefined || y == undefined isVisible === undefined || 
+    x == undefined || y == undefined || isVisible === undefined || 
     terrain == undefined || content == undefined ) 
     {
         this.x = 0;
