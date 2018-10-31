@@ -1,3 +1,31 @@
+<html>
+<title>Frupal Config</title>
+<h1>Frupal Config</h1>
+<h2>Enter Preferences:</h2>
+<form id="preferences" action="index.html" method="post" onsubmit="file_from_preferences(size, starting_x, starting_y, starting_whiffles, starting_energy)">
+  <p>Map Height (all maps are square): <input type="text" name="size" value="25"></p>
+
+  <p>Initial Position: <input type="text" name="starting_x" value="0"> , <input type="text" name="starting_y" value="0"></p>
+
+  <p>Initial Whiffles: <input type="text" name="starting_whiffles" value="1000"></p>
+
+  <p>Initial Energy: <input type="text" name="starting_energy" value="10"></p>
+
+  <p><button type="button" onclick="file_from_preferences(size, starting_x, starting_y, starting_whiffles, starting_energy)">Save</button>
+     <button type="submit" name="submit">Start Game</button>
+  </p>
+</form>
+<h2>Or Paste a Map Here:</h2>
+<form class="" action="index.html" method="post">
+<textarea name= "map" rows="8" cols="80"></textarea>
+
+<p><button type="submit" onclick="localStorage.setItem('map', map)">Submit</button></p>
+</form>
 <script>
-localStorage.setItem('map','[Sample Frugal Game Map][25][#####################][12,12][103][1000][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]')
+  function file_from_preferences(size, starting_x, starting_y, starting_whiffles, starting_energy){
+    alert("running")
+    localStorage.setItem('map','[Sample Frugal Game Map][' + size + '][#####################]['+ starting_x + ',' + starting_y + '][' + starting_whiffles +'][' + starting_energy + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]');
+    alert(localStorage.getItem('map');
+  }
 </script>
+</html>
