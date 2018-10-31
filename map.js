@@ -1,6 +1,30 @@
 //Starting Map Class - This class will create a new Hero and keep track of him and his
 // stats. Some of the functions in this map class will call functions in the hero class.
 // This map class will communicate extensively with the hero class.
+
+function mapCell(x, y, isVisible, terrain, content)
+{
+    // parameter was omitted in call
+    if ( 
+    x == undefined || y == undefined || isVisible === undefined || 
+    terrain == undefined || content == undefined ) 
+    {
+        this.x = 0;
+        this.y = 0;
+        this.isVisible = 0;
+        this.terrain = 0;
+        this.content = "None";
+    }
+    else
+    {
+        this.x = x;
+        this.y = y;
+        this.isVisible = isVisible;
+        this.terrain = terrain;
+        this.content = content;
+    }
+}
+
 function Map(width, height, starting_x, starting_y, starting_whiffles, starting_energy)
 {
     //Data Members:
@@ -12,7 +36,14 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
     this.width = width; //The width of the map.
     this.height = height; //The height of the map.
 
-
+    // Create an empty world
+    this.cells = [[]];
+    for (var i = 0; i < height; ++i) {
+        this.cells[i] = [];
+        for (var j = 0; j < width; ++j) {
+            this.cells[i][j] = new mapCell();
+        }
+    }
 
 
 
@@ -31,6 +62,11 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero_y = 0;
         }
 
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
+	
+
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
     };
@@ -47,6 +83,10 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         {   // will be wrapped to the other side (northmost)
             this.hero_y = height;
         }
+
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
 
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
@@ -66,6 +106,11 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero_x = 0;
         }
 
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
+
+
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
 
@@ -84,9 +129,61 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero_x = width;
         }
 
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
+
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
 
     };
+
+    // Formats the map array as the contents of an HTML table.
+    this.map_string = function() {
+        result = "";
+        for (var i = 0; i < cells.length; ++i) {
+            result += "<tr>";
+            for (var j = 0; j < cells.length; ++j) {
+                var cell = cells[i][j];
+                result += "<td>";
+                    if(cell.isVisible) {
+                        switch(cell.terrain) {
+                        case 0:
+                            // Meadow
+                            result += ".";
+                            break;
+                        case 1:
+                            // Forest
+                            result += ";";
+                            break;
+                        case 2:
+                            // Water
+                            result += "~";
+                            break;
+                        case 3:
+                            // Wall
+                            result += "#";
+                            break;
+                        case 4:
+                            // Bog
+                            result += ",";
+                            break;
+                        case 5:
+                            // Swamp
+                            result += "%";
+                            break;
+                        default:
+                            result += "?";
+                        }
+                    } else {
+                        result += " ";
+                    }
+                result += "</td>";
+            }
+            result += "</tr>"
+        }
+        return result;
+    }
+
 }
 
