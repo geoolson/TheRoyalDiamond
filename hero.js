@@ -12,4 +12,9 @@ function Hero(x, y, whiffles, energy)
     this.move_south = function() {this.y = this.y - 1;};
     this.move_east = function() {this.x = this.x + 1;};
     this.move_west = function() {this.x = this.x - 1;};
+    this.decrement_energy = function() {
+        if(!outOfEnergy(this.energy))
+	    this.energy = this.energy - 1;
+	document.getElementById("energy").innerHTML = "<b>Energy: </b>" + this.energy;
+    }
 }

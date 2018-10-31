@@ -55,6 +55,11 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero_y = 0;
         }
 
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
+	
+
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
     };
@@ -71,6 +76,10 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         {   // will be wrapped to the other side (northmost)
             this.hero_y = height;
         }
+
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
 
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
@@ -90,6 +99,11 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero_x = 0;
         }
 
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
+
+
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
 
@@ -107,6 +121,10 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         {    // are wrapped around to the eastmost side.
             this.hero_x = width;
         }
+
+	// For a normal step, as long as hero has 
+	// enough energy, they will lose 1 energy.
+	this.hero.decrement_energy();
 
         //This part will update the text fields with the hero's current location:
         document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
