@@ -4,6 +4,7 @@ function outOfEnergy(energyUnit) {
 	if(energyUnit <= 0) {
 		alert("The hero has run out of energy.");
 		alert("You have lost. Game Over!");
+        alert("This Worked. - Jon");
 		return true;
 	}
 	return false;

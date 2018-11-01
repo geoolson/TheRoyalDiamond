@@ -2,41 +2,18 @@
 // stats. Some of the functions in this map class will call functions in the hero class.
 // This map class will communicate extensively with the hero class.
 
-function mapCell(x, y, isVisible, terrain, content)
-{
-    // parameter was omitted in call
-    if ( 
-    x == undefined || y == undefined || isVisible === undefined || 
-    terrain == undefined || content == undefined ) 
-    {
-        this.x = 0;
-        this.y = 0;
-        this.isVisible = 0;
-        this.terrain = 0;
-        this.content = "None";
-    }
-    else
-    {
-        this.x = x;
-        this.y = y;
-        this.isVisible = isVisible;
-        this.terrain = terrain;
-        this.content = content;
-    }
-}
 
 function Map(width, height, starting_x, starting_y, starting_whiffles, starting_energy)
 {
     //Data Members:
-    this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); /*Creates a new hero
-                                                                                       * and passes the hero 
-                                                                                       * constructor the parameters.*/
-    this.hero_x = starting_x; //The hero's location on the map
-    this.hero_y = starting_y;
+
+    //This creates a new hero, and passes the hero constructor the parameters
+    this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); 
+
     this.width = width; //The width of the map.
     this.height = height; //The height of the map.
 
-    // Create an empty world
+    //This creates an empty world
     this.cells = [[]];
     for (var i = 0; i < height; ++i) {
         this.cells[i] = [];
@@ -50,68 +27,89 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
 
 
     //Member Functions:
-    //Moves the player north by calling the move_north function of the player class
-    this.move_north = function(){
-        if(!((this.hero_y + 1) > height)) //If the hero is not at the edge of the map, she can move north
-                                     // But if she is at the edge of the map, then we wrap around to the south
+
+    //These functions move the hero.  They call the hero's move functions, and they
+    // check to see if the hero needs to wrap to the other side of the map.
+    this.move_north = function()
+    {
+        //First, check to see if the hero is at the edge of the map,
+        // if so, wrap the hero to the other side of the map.
+        if(this.check_bounds_north())
+        {
+            this.hero.wrap_north();
+        }
+        //Otherwise, move the hero north
+        else 
         {
             this.hero.move_north();
-            this.hero_y = this.hero_y + 1;
-        }
-        else // If hero gets to the edge going north they
-        {   // will be wrapped around to the other side (southmost)
-            this.hero_y = 0;
         }
         
+
+        //???Not sure if we really need this yet?...
         this.update();
     };
-    //Moves the player sorth by calling the move_south function of the player class
-    this.move_south = function(){
-        if(!((this.hero_y - 1) < 0)) //If the hero is not at the edge of the map, she can move south
-                                     // But if she is at the edge of the map, then we wrap around to the north
+    this.move_south = function()
+    {
+        //First, check to see if the hero is at the edge of the map,
+        // if so, wrap the hero to the other side of the map.
+        if(this.check_bounds_south())
+        {
+            this.hero.wrap_south();
+        }
+        //Otherwise, move the hero south
+        else
         {
             this.hero.move_south();
-            this.hero_y = this.hero_y - 1;
         }
-        else // If hero gets to edge going south, they
-        {   // will be wrapped to the other side (northmost)
-            this.hero_y = height-1;
-        }
-
+        
+        //???Not sure if we really need this yet?...
         this.update();
     };
-    //Moves the player east by calling the move_east function of the player class
-    this.move_east = function(){
-        if(!((this.hero_x + 1) > width)) //If the hero is not at the edge of the map, she can move east
-                                     // But if she is at the edge of the map, then we wrap around to the west
+    this.move_east = function()
+    {
+        //First, check to see if the hero is at the edge of the map,
+        // if so, wrap the hero to the other side of the map.
+        if(this.check_bounds_east())
+        {
+            this.hero.wrap_east();
+        }
+        //Otherwise, move the hero east
+        else
         {
             this.hero.move_east();
-            this.hero_x = this.hero_x + 1;
         }
-        else // Hero gets to eastmost edge, and is
-        {   // wrapped to westmost side
-            this.hero_x = 0;
-        }
-
+        
+        //???Not sure if we really need this yet?...
         this.update();
     };
-    //Moves the player west by calling the move_west function of the player class
-    this.move_west = function(){
-        if(!((this.hero_x - 1) < 0)) //If the hero is not at the edge of the map, she can move west
-                                         // But if she is at the edge of the map, then we wrap around to the east
+    this.move_west = function()
+    {
+        //First, check to see if the hero is at the edge of the map,
+        // if so, wrap the hero to the other side of the map.
+        if(this.check_bounds_west())
+        {
+            this.hero.wrap_west();
+        }
+        //Otherwise, move the hero west
+        else
         {
             this.hero.move_west();
-            this.hero_x = this.hero_x - 1;
         }
-        else // When hero reaches westmost edge, they
-        {    // are wrapped around to the eastmost side.
-            this.hero_x = width-1;
-        }
-
+        
+        //???Not sure if we really need this yet?...
         this.update();
     };
 
-    //This function will decrement the hero's energy, and will call other functions (such as check for diamonds, 
+
+
+
+
+
+
+
+
+
+        //This function will decrement the hero's energy, and will call other functions (such as check for diamonds, 
     // update whiffles, etc.) it will also call the map display function.
     this.update = function() {
         // For a normal step, as long as hero has 
@@ -170,6 +168,5 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         }
         return result;
     };
-
 }
 
