@@ -1,15 +1,4 @@
 
-function loadFileAsText(){
-    var fileToLoad = document.getElementById("fileToLoad").files[0];
-
-    var fileReader = new FileReader( fileToLoad );
-    fileReader.onload = function(fileLoadedEvent){
-        var textFromFileLoaded = fileLoadedEvent.target.result;
-    };
-    fileReader.readAsText(fileToLoad, "UTF-8");
-    dimensions(fileReader.result);
-}
-
 var openFile = function(event){
     var input = event.target;
 
