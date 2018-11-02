@@ -9,6 +9,7 @@ function Hero(x, y, whiffles, energy)
     this.whiffles = whiffles;
     this.energy = energy;
     this.jems = 0;
+    this.innerthoughts = "";
      
 
 
@@ -45,23 +46,23 @@ function Hero(x, y, whiffles, energy)
     //  When the hero moves, their energy will decrement according to the space 
     //  they are moving into.  This function will call other functions to 
     //  determine the amount of energy to decrement by, and to determine if the 
-    //  hero has stumbled upon an item, if they have found the royal gems, or if 
-    //  they have acquired some more whiffles.  It will take a cellMap object in
-    //  as an argument, so that it can call some other functions to determine
-    //  which stats to change.
+    //  hero has stumbled upon an item, or if they have acquired some more 
+    //  whiffles.  It will take a cellMap object in as an argument, so that it 
+    //  can call some other functions to determine which stats to change.
     this.update_stats = function(current_cell)
     {
-        //Check For Diamonds 1st! If the player has found the diamonds, then they
-        //  have won!
-        if(current_cell.check_diamonds())
-            return false;
-
         //Check energy cost of the current cell, and decrement the hero's energy
         //  by that amount.
         var energy_cost = current_cell.energy;
         this.decrement_energy(energy_cost);
 
-        return true;
+        //Set the player's new whiffles amount to be the amount of whiffles that
+        //  the new cell contains.  Remove those whiffles from that cell.
+        this.whiffles = whiffles + current_cell.whiffles;
+        current_cell.whiffles = 0;
+
+        //Set the hero's inner thoughts to be the message of the current cell.
+        this.innerthoughts = current_cell.message;
     }
 
 
@@ -69,21 +70,61 @@ function Hero(x, y, whiffles, energy)
     // passed in as an argument.
     this.decrement_energy = function(energy_cost) 
     {
-        if(!outOfEnergy(this.energy - energy_cost))
 	    this.energy = this.energy - energy_cost;
     }
 
 
     //This function checks if the hero has run out of energy, and returns a bool.
-    this.outOfEnergy = function(energy_amount) 
+    this.out_of_energy = function(current_cell) 
     {
-	    if(energy_amount <= 0) 
+        var energy_cost = current_cell.energy;
+        var new_energy_level = this.energy-energy_cost;
+        if(new_energy_level <= 0)
         {
-		    alert("The hero has run out of energy.");
-		    alert("You have lost. Game Over!");
-		    return true;
-	    }
+            return true;
+        }
+        return false;
+    }
 
-	    return false;
+    //This function checks to see if the hero has found the gems.  If the hero
+    // has found the gems, it returns true.  Otherwise it returns false.
+    this.found_diamonds = function(current_cell)
+    {
+        if(current_cell.gems)
+            return true;
+        return false;
+    }
+
+    
+    //These functions will return an HTML string representing the hero's current
+    //  statistics.
+    this.display_location = function()
+    {
+        var to_return = "<b>Current Location:</b> Coordinates: (";
+        to_return += this.x;
+        to_return += ", ";
+        to_return += this.y;
+        to_return += ")";
+        return to_return;
+    }
+    this.display_whiffles = function()
+    {
+        var to_return = "<b>Current Whiffles:</b> ";
+        to_return += this.whiffles;
+        to_return += " Whiffles";
+        return to_return;
+    }
+    this.display_energy = function()
+    {
+        var to_return = "<b>Current Energy:</b> ";
+        to_return += this.energy;
+        to_return += " Energy Units";
+        return to_return;
+    }
+    this.display_message = function()
+    {
+        "<b>Message:</b> ";
+        to_return += this.innerthoughts;
+        return to_return
     }
 }
