@@ -10,14 +10,14 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
     //This creates a new hero, and passes the hero constructor the parameters
     this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); 
 
-    this.width = width; //The width of the map.
-    this.height = height; //The height of the map.
+    this.width = width - 1; //The width of the map.  This is -1 from the width passed in, because we start at 0.
+    this.height = height - 1; //The height of the map.  This is -1 from the height passed in, because we start at 0.
 
     //This creates an empty world
     this.cells = [[]];
-    for (var i = 0; i < height; ++i) {
+    for (var i = 0; i <= width; ++i) {
         this.cells[i] = [];
-        for (var j = 0; j < width; ++j) {
+        for (var j = 0; j <= height; ++j) {
             this.cells[i][j] = new mapCell();
         }
     }
@@ -45,6 +45,7 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         }
     }
 
+
     //These functions move the hero.  They call the hero's move functions, and they
     // check to see if the hero needs to wrap to the other side of the map.
     this.move_north = function()
@@ -53,17 +54,28 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         // if so, wrap the hero to the other side of the map.
         if(this.check_bounds_north())
         {
-            this.hero.wrap_north();
+            this.wrap_north();
         }
         //Otherwise, move the hero north
-        else 
+        else
         {
             this.hero.move_north();
         }
         
+        //Get the map cell that the player is moving into:
+        var new_cell = cells[hero.x][hero.y];
 
-        //???Not sure if we really need this yet?...
+        //Update the hero's stats based on the cell that the hero has travelled into.
+        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+
+        //Update the Map.
         this.update();
+
+
+
+        //If the hero has found the diamonds, then start the end-game sequence:
+        if(!still_searching_for_diamonds)
+            this.end_game();
     };
     this.move_south = function()
     {
@@ -71,7 +83,7 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         // if so, wrap the hero to the other side of the map.
         if(this.check_bounds_south())
         {
-            this.hero.wrap_south();
+            this.wrap_south();
         }
         //Otherwise, move the hero south
         else
@@ -79,8 +91,21 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero.move_south();
         }
         
-        //???Not sure if we really need this yet?...
+        //Get the map cell that the player is moving into:
+        var new_cell = cells[hero.x][hero.y];
+
+        //Update the hero's stats based on the cell that the hero has travelled into.
+        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+
+        //Update the Map.
         this.update();
+
+
+
+        //If the hero has found the diamonds, then start the end-game sequence:
+        if(!still_searching_for_diamonds)
+            this.end_game();
+
     };
     this.move_east = function()
     {
@@ -88,7 +113,7 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         // if so, wrap the hero to the other side of the map.
         if(this.check_bounds_east())
         {
-            this.hero.wrap_east();
+            this.wrap_east();
         }
         //Otherwise, move the hero east
         else
@@ -96,8 +121,20 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
             this.hero.move_east();
         }
         
-        //???Not sure if we really need this yet?...
+        //Get the map cell that the player is moving into:
+        var new_cell = cells[hero.x][hero.y];
+
+        //Update the hero's stats based on the cell that the hero has travelled into.
+        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+
+        //Update the Map.
         this.update();
+
+
+
+        //If the hero has found the diamonds, then start the end-game sequence:
+        if(!still_searching_for_diamonds)
+            this.end_game();
     };
     this.move_west = function()
     {
@@ -105,17 +142,87 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         // if so, wrap the hero to the other side of the map.
         if(this.check_bounds_west())
         {
-            this.hero.wrap_west();
+            this.wrap_west();
         }
-        //Otherwise, move the hero west
         else
         {
             this.hero.move_west();
         }
         
-        //???Not sure if we really need this yet?...
+        //Get the map cell that the player is moving into:
+        var new_cell = cells[hero.x][hero.y];
+
+        //Update the hero's stats based on the cell that the hero has travelled into.
+        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+
+        //Update the Map.
         this.update();
+
+
+
+        //If the hero has found the diamonds, then start the end-game sequence:
+        if(!still_searching_for_diamonds)
+            this.end_game();
     };
+
+
+    //These functions will check to see if the hero is at the edge of the map.
+    //  They will return true if the hero is at the edge of the map, and false
+    //  otherwise.
+    this.check_bounds_north = function()
+    {
+        //If the hero is at the top of the map, return true.
+        if(this.hero.y == 0)
+            return true;
+        return false;
+    }
+    this.check_bounds_south = function()
+    {
+        //If the hero is at the bottom of the map, return true.
+        if(this.hero.y == height)
+            return true;
+        return false;
+    }
+    this.check_bounds_east = function()
+    {
+        //If the hero is at the rightmost side of the map, return true.
+        if(this.hero.x == width)
+            return true;
+        return false;
+    }
+    this.check_bounds_west = function()
+    {
+        //If the hero is at the leftmost side of the map, return true.
+        if(this.hero.x == 0)
+            return true;
+        return false;
+    }
+
+
+    //These functions will wrap the hero to the other side of the map, when
+    //  they are on the edge of the map.
+    this.wrap_north = function()
+    {
+        //If the hero is at the top of the map, set their y to the bottom.
+        this.hero.y = height;
+    }
+    this.wrap_south = function()
+    {
+        //If the hero is at the bottom of the map, set their y to the top.
+        this.hero.y = 0;
+    }
+    this.wrap_east = function()
+    {
+        //If the hero is at the eastmost edge of the map, set their x to
+        //  the leftmost edge.
+        this.hero.x = 0;
+    }
+    this.wrap_west = function()
+    {
+        //If the hero is at the westmost edge of the map, set their x to
+        //  the eastmost edge.  
+        this.hero.x = width;
+    }
 
 
 
