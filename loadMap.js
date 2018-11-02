@@ -13,7 +13,7 @@ var openFile = function(event){
 function dimensions(file){
     var pattern = /[0-9]+/;
     var result = pattern.exec(file);
-    alert("dimensions" + result);
+    alert("dimensions = " + result);
     var str = file.substr(result.index + result[0].length, file.length);
     if(result)
     playerLocation(str);
@@ -24,13 +24,13 @@ function playerLocation(file){
     var pattern = /[0-9]+/;
     var result = pattern.exec(file);
     var str = file.substr(result.index + result[0].length, file.length);
-    alert("x coordinate" + result);
+    alert("x coordinate = " + result);
 
     //y position
     pattern = /[0-9]+/;
     result = pattern.exec(str);
     str = str.substr(result.index + result[0].length, file.length);
-    alert("y coordinate" + result);
+    alert("y coordinate = " + result);
 
     parseInventory(str);
 }
@@ -39,7 +39,7 @@ function parseInventory(file){
     var pattern = /[A-z ]+/;
     var result = pattern.exec(file);
     str = file.substr(result.index + result[0].length, file.length);
-    alert("item" + result);
+    alert("item = " + result);
     if(str[3] === '#')
         parseCell(str);
     else
@@ -51,31 +51,31 @@ function parseCell(file){
     var pattern = /[0-9]+/;
     var result = pattern.exec(file);
     var str = file.substr(result.index + result[0].length, file.length);
-    alert("x coordinate " + result);
+    alert("x coordinate = " + result);
 
     //y position
     pattern = /[0-9]+/;
     result = pattern.exec(str);
     str = str.substr(result.index + result[0].length, file.length);
-    alert("y coordinate " + result);
+    alert("y coordinate = " + result);
 
     //visibility
-    pattern = /[0-9]+/;
+    pattern = /[0-1]/;
     result = pattern.exec(str);
     str = str.substr(result.index + result[0].length, file.length);
-    alert("visible " + result);
+    alert("visible = " + result);
 
     //terrain id
     pattern = /[0-9]+/;
     result = pattern.exec(str);
     str = str.substr(result.index + result[0].length, file.length);
-    alert("terrain id " + result);
+    alert("terrain id = " + result);
 
     //content string
     pattern = /[A-z ]+/;
     result = pattern.exec(file);
     str = file.substr(result.index + result[0].length, file.length);
-    alert("content string " + result);
+    alert("content string = " + result);
     parseCell(str);
 }
 
