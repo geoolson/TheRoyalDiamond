@@ -1,4 +1,6 @@
 
+var game_map;
+
 var openFile = function(event){
     var input = event.target;
 
@@ -31,6 +33,16 @@ function playerLocation(file){
     result = pattern.exec(str);
     str = str.substr(result.index + result[0].length, file.length);
     alert("y coordinate = " + result);
+
+    //energy
+    result = pattern.exec(str);
+    str = str.substr(result.index + result[0].length, file.length);
+    alert("energy = " + result);
+
+    //whiffles
+    result = pattern.exec(str);
+    str = str.substr(result.index + result[0].length, file.length);
+    alert("whiffles = " + result);
 
     parseInventory(str);
 }
