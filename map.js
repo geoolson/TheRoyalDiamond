@@ -3,12 +3,12 @@
 // This map class will communicate extensively with the hero class.
 
 
-function Map(width, height, starting_x, starting_y, starting_whiffles, starting_energy)
+function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles)
 {
     //Data Members:
 
     //This creates a new hero, and passes the hero constructor the parameters
-    this.hero = new Hero(starting_x, starting_y, starting_whiffles, starting_energy); 
+    this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
 
     this.width = width - 1; //The width of the map.  This is -1 from the width passed in, because we start at 0.
     this.height = height - 1; //The height of the map.  This is -1 from the height passed in, because we start at 0.
