@@ -6,6 +6,7 @@
     <script src="map.js"></script>
     <script src="energy.js"></script>
     <script src="cell.js"></script>
+    <script src="loadMap.js"></script>
   <body>
         <script>
             var game_map = new Map(25,25,0,0,1000,10); //Creates a new game map with the proper parameters.
@@ -41,7 +42,7 @@
     <br>
     <br>
     <b>Load Map</b>
-    <input type="file" id="file" name="file"/>
+    <input type="file" onchange='openFile(event)'/>
     <output id="map"></output>
     <br>
     <div style='line-height: 14px; letter-spacing: 4px; font-family: "Courier-New",monospace;' id="map_box"></div>
