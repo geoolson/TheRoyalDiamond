@@ -16,7 +16,8 @@ function Hero(x, y, whiffles, energy)
     //Member Functions:
 
 
-    //These functions are called by the map class
+    //These functions are called by the map class.  They simply increment the 
+    //  hero's location.
     this.move_north = function()
     {
         //The hero starts at 0,0 which is at the top left corner of the map.
@@ -40,20 +41,43 @@ function Hero(x, y, whiffles, energy)
     };
 
 
-    //This function will decrement the hero's energy according to the integer
-    // passed in as an argument.
-    this.decrement_energy = function() 
+    //This function will update all of the hero's stats after the hero moves. 
+    //  When the hero moves, their energy will decrement according to the space 
+    //  they are moving into.  This function will call other functions to 
+    //  determine the amount of energy to decrement by, and to determine if the 
+    //  hero has stumbled upon an item, if they have found the royal gems, or if 
+    //  they have acquired some more whiffles.  It will take a cellMap object in
+    //  as an argument, so that it can call some other functions to determine
+    //  which stats to change.
+    this.update_stats = function(current_cell)
     {
-        if(!outOfEnergy(this.energy))
-	    this.energy = this.energy - 1;
-	    document.getElementById("energy").innerHTML = "<b>Energy: </b>" + this.energy;
+        //Check For Diamonds 1st! If the player has found the diamonds, then they
+        //  have won!
+        if(current_cell.check_diamonds())
+            return false;
+
+        //Check energy cost of the current cell, and decrement the hero's energy
+        //  by that amount.
+        var energy_cost = current_cell.energy;
+        this.decrement_energy(energy_cost);
+
+        return true;
     }
 
 
-    /*This function checks if the hero has run out of energy, and returns a bool.
-    this.outOfEnergy = function(decrement_amount) 
+    //This function will decrement the hero's energy according to the integer
+    // passed in as an argument.
+    this.decrement_energy = function(energy_cost) 
     {
-	    if(energyUnit <= 0) 
+        if(!outOfEnergy(this.energy - energy_cost))
+	    this.energy = this.energy - energy_cost;
+    }
+
+
+    //This function checks if the hero has run out of energy, and returns a bool.
+    this.outOfEnergy = function(energy_amount) 
+    {
+	    if(energy_amount <= 0) 
         {
 		    alert("The hero has run out of energy.");
 		    alert("You have lost. Game Over!");
@@ -62,5 +86,4 @@ function Hero(x, y, whiffles, energy)
 
 	    return false;
     }
-    */
 }
