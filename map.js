@@ -10,8 +10,8 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
 
     //width and height of the map
-    this.width = width;
-    this.height = height;
+    this.width = parseInt(width);
+    this.height = parseInt(height);
 
     //This creates an empty world
     this.cells = [[]];
