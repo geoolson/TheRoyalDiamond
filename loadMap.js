@@ -18,31 +18,34 @@ function dimensions(file){
     alert("dimensions = " + result);
     var str = file.substr(result.index + result[0].length, file.length);
     if(result)
-    playerLocation(str);
+        playerLocation(str, result);
+    else
+        alert("invalid file");
 }
 
-function playerLocation(file){
+function playerLocation(file, dim){
     //x position
     var pattern = /[0-9]+/;
-    var result = pattern.exec(file);
-    var str = file.substr(result.index + result[0].length, file.length);
-    alert("x coordinate = " + result);
+    var x = pattern.exec(file);
+    var str = file.substr(x.index + x[0].length, file.length);
+    alert("x coordinate = " + x);
 
     //y position
-    pattern = /[0-9]+/;
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("y coordinate = " + result);
+    var y = pattern.exec(str);
+    str = str.substr(y.index + y[0].length, str.length);
+    alert("y coordinate = " + y);
 
     //energy
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("energy = " + result);
+    var energy = pattern.exec(str);
+    str = str.substr(energy.index + energy[0].length, file.length);
+    alert("energy = " + energy);
 
     //whiffles
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("whiffles = " + result);
+    var whiffles = pattern.exec(str);
+    str = str.substr(whiffles.index + whiffles[0].length, str.length);
+    alert("whiffles = " + whiffles);
+
+    game_map = new Map(dim, dim, x, y, whiffles, energy);
 
     parseInventory(str);
 }
@@ -61,33 +64,36 @@ function parseInventory(file){
 function parseCell(file){
     //x position
     var pattern = /[0-9]+/;
-    var result = pattern.exec(file);
-    var str = file.substr(result.index + result[0].length, file.length);
-    alert("x coordinate = " + result);
+    var x = pattern.exec(file);
+    var str = file.substr(x.index + x[0].length, file.length);
+    alert("x coordinate = " + x);
 
     //y position
-    pattern = /[0-9]+/;
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("y coordinate = " + result);
+    var y = pattern.exec(str);
+    str = str.substr(y.index + y[0].length, str.length);
+    alert("y coordinate = " + y);
 
     //visibility
     pattern = /[0-1]/;
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("visible = " + result);
+    var visible = pattern.exec(str);
+    str = str.substr(visible.index + visible[0].length, str.length);
+    alert("visible = " + visible);
 
     //terrain id
     pattern = /[0-9]+/;
-    result = pattern.exec(str);
-    str = str.substr(result.index + result[0].length, file.length);
-    alert("terrain id = " + result);
+    var terrain = pattern.exec(str);
+    str = str.substr(terrain.index + terrain[0].length, str.length);
+    alert("terrain id = " + terrain);
 
     //content string
     pattern = /[A-z ]+/;
-    result = pattern.exec(file);
-    str = file.substr(result.index + result[0].length, file.length);
-    alert("content string = " + result);
+    var content = pattern.exec(file);
+    str = file.substr(content.index + content[0].length, str.length);
+    alert("content string = " + content);
+
+    if(isNaN(x))
+        return;
+    game_map.cells[x][y] = new mapCell(x, y, visible, terrain, content);
     parseCell(str);
 }
 
