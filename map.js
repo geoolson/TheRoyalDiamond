@@ -22,6 +22,12 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         }
     }
 
+    //This outputs the currently correct data values for the map
+    document.getElementById("location").innerHTML = this.hero.display_location();
+    document.getElementById("energy").innerHTML = this.hero.display_energy();
+    document.getElementById("whiffles").innerHTML = this.hero.display_whiffles();
+    document.getElementById("message").innerHTML = this.hero.display_message();
+
 
 
 
@@ -65,17 +71,28 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         //Get the map cell that the player is moving into:
         var new_cell = cells[hero.x][hero.y];
 
-        //Update the hero's stats based on the cell that the hero has travelled into.
-        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+        //Check to see if the hero has found the royal diamonds:
+        if(this.hero.found_diamonds(new_cell))
+        {
+            //The player has won the game.  Call the player_won function.
+            this.player_won();
+            return;
+        }
+        //Otherwise, check to see if the player has run out of energy:
+        else if(this.hero.out_of_energy(new_cell))
+        {
+            //The player has lost the game.  Call the player_lost function.
+            this.player_lost();
+            return;
+        }
+        //Otherwise, update the hero's information and the map's information:
+        else
+        {
+            this.hero.update_stats(new_cell);
+        }
 
         //Update the Map.
         this.update();
-
-
-
-        //If the hero has found the diamonds, then start the end-game sequence:
-        if(!still_searching_for_diamonds)
-            this.end_game();
     };
     this.move_south = function()
     {
@@ -94,18 +111,28 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         //Get the map cell that the player is moving into:
         var new_cell = cells[hero.x][hero.y];
 
-        //Update the hero's stats based on the cell that the hero has travelled into.
-        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+        //Check to see if the hero has found the royal diamonds:
+        if(this.hero.found_diamonds(new_cell))
+        {
+            //The player has won the game.  Call the player_won function.
+            this.player_won();
+            return;
+        }
+        //Otherwise, check to see if the player has run out of energy:
+        else if(this.hero.out_of_energy(new_cell))
+        {
+            //The player has lost the game.  Call the player_lost function.
+            this.player_lost();
+            return;
+        }
+        //Otherwise, update the hero's information and the map's information:
+        else
+        {
+            this.hero.update_stats(new_cell);
+        }
 
         //Update the Map.
         this.update();
-
-
-
-        //If the hero has found the diamonds, then start the end-game sequence:
-        if(!still_searching_for_diamonds)
-            this.end_game();
-
     };
     this.move_east = function()
     {
@@ -115,7 +142,7 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         {
             this.wrap_east();
         }
-        //Otherwise, move the hero east
+        //Otherwise, move the hero south
         else
         {
             this.hero.move_east();
@@ -124,17 +151,28 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         //Get the map cell that the player is moving into:
         var new_cell = cells[hero.x][hero.y];
 
-        //Update the hero's stats based on the cell that the hero has travelled into.
-        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+        //Check to see if the hero has found the royal diamonds:
+        if(this.hero.found_diamonds(new_cell))
+        {
+            //The player has won the game.  Call the player_won function.
+            this.player_won();
+            return;
+        }
+        //Otherwise, check to see if the player has run out of energy:
+        else if(this.hero.out_of_energy(new_cell))
+        {
+            //The player has lost the game.  Call the player_lost function.
+            this.player_lost();
+            return;
+        }
+        //Otherwise, update the hero's information and the map's information:
+        else
+        {
+            this.hero.update_stats(new_cell);
+        }
 
         //Update the Map.
         this.update();
-
-
-
-        //If the hero has found the diamonds, then start the end-game sequence:
-        if(!still_searching_for_diamonds)
-            this.end_game();
     };
     this.move_west = function()
     {
@@ -144,6 +182,7 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         {
             this.wrap_west();
         }
+        //Otherwise, move the hero south
         else
         {
             this.hero.move_west();
@@ -152,17 +191,28 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
         //Get the map cell that the player is moving into:
         var new_cell = cells[hero.x][hero.y];
 
-        //Update the hero's stats based on the cell that the hero has travelled into.
-        var still_searching_for_diamonds = this.hero.update_stats(new_cell);
+        //Check to see if the hero has found the royal diamonds:
+        if(this.hero.found_diamonds(new_cell))
+        {
+            //The player has won the game.  Call the player_won function.
+            this.player_won();
+            return;
+        }
+        //Otherwise, check to see if the player has run out of energy:
+        else if(this.hero.out_of_energy(new_cell))
+        {
+            //The player has lost the game.  Call the player_lost function.
+            this.player_lost();
+            return;
+        }
+        //Otherwise, update the hero's information and the map's information:
+        else
+        {
+            this.hero.update_stats(new_cell);
+        }
 
         //Update the Map.
         this.update();
-
-
-
-        //If the hero has found the diamonds, then start the end-game sequence:
-        if(!still_searching_for_diamonds)
-            this.end_game();
     };
 
 
@@ -225,6 +275,21 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
     }
 
 
+    //This function will be called when the player has won the game.  It
+    // will do an end-game sequence.
+    this.player_won = function()
+    {
+        alert("Congratulations, you have won the game!");
+    }
+
+
+    //This function will be called when the player has lost the game.  It
+    // will do an end-game sequence.
+    this.player_lost = function()
+    {
+        alert("You ran out of energy and died.");
+        alert("You have lost the game");
+    }
 
 
 
@@ -232,18 +297,26 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
 
 
 
-
-    //This function will decrement the hero's energy, and will call other functions 
-    // (such as check for diamonds, update whiffles, etc.) it will also call the
-    // map display function.
+    //This function will update the map with the hero's new location.  It will also 
+    //  update the web page's information with the current information about the hero.
+    //  It will also update the map's visibility.
     this.update = function() 
     {
-        // For a normal step, as long as hero has 
-        // enough energy, they will lose 1 energy.
-        this.hero.decrement_energy();
+        //Update the map to set the tiles around the hero to be visible:
+        
+        //Update the location of the hero on the web page:
+        document.getElementById("location").innerHTML = this.hero.display_location();
 
-        //This part will update the text fields with the hero's current location:
-        document.getElementById("location").innerHTML = "<b>Current Location: </b>Coordinates: (" + this.hero_x + ", " + this.hero_y + ")";
+        //Update the amount of whiffles on the webpage:
+        document.getElementById("whiffles").innerHTML = this.hero.display_whiffles();
+
+        //Update the amount of energy on the webpage:
+        document.getElementById("energy").innerHTML = this.hero.display_energy();
+
+        //Update the hero's inner thoughts on the webpage:
+        document.getElementById("message").innerHTML = this.hero.display_message();
+
+        //Update the map displayed on the page:
         document.getElementById("map_box").innerHTML = this.map_string();
     };
 
@@ -252,8 +325,8 @@ function Map(width, height, starting_x, starting_y, starting_whiffles, starting_
     // Formats the map array as the contents of an HTML table.
     this.map_string = function() {
         result = "";
-        for (var i = 0; i < this.cells.length; ++i) {
-            for (var j = 0; j < this.cells.length; ++j) {
+        for (var i = 0; i <= width; ++i) {
+            for (var j = 0; j <= height; ++j) {
                 var cell = this.cells[i][j];
                 if (i == this.hero_y && j == this.hero_x) {
                     result += "@";
