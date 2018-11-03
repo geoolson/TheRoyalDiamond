@@ -27,7 +27,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     document.getElementById("location").innerHTML = this.hero.display_location();
     document.getElementById("energy").innerHTML = this.hero.display_energy();
     document.getElementById("whiffles").innerHTML = this.hero.display_whiffles();
-    document.getElementById("message").innerHTML = this.hero.display_message();
+    //document.getElementById("message").innerHTML = this.hero.display_message();
 
 
 
@@ -315,10 +315,10 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
         document.getElementById("energy").innerHTML = this.hero.display_energy();
 
         //Update the hero's inner thoughts on the webpage:
-        document.getElementById("message").innerHTML = this.hero.display_message();
+        //document.getElementById("message").innerHTML = this.hero.display_message();
 
         //Update the map displayed on the page:
-        document.getElementById("map_box").innerHTML = this.map_string();
+        //document.getElementById("map_box").innerHTML = this.map_string();
     };
 
 
