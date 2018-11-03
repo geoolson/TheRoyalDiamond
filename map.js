@@ -3,8 +3,7 @@
 // This map class will communicate extensively with the hero class.
 
 
-function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles)
-{
+function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles) {
     //Data Members:
 
     //This creates a new hero, and passes the hero constructor the parameters
@@ -28,8 +27,6 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     document.getElementById("energy").innerHTML = this.hero.display_energy();
     document.getElementById("whiffles").innerHTML = this.hero.display_whiffles();
     //document.getElementById("message").innerHTML = this.hero.display_message();
-
-
 
 
 
@@ -94,7 +91,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
         //Update the Map.
         this.update();
-    };
+    }
     this.move_south = function()
     {
         //First, check to see if the hero is at the edge of the map,
@@ -134,7 +131,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
         //Update the Map.
         this.update();
-    };
+    }
     this.move_east = function()
     {
         //First, check to see if the hero is at the edge of the map,
@@ -174,7 +171,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
         //Update the Map.
         this.update();
-    };
+    }
     this.move_west = function()
     {
         //First, check to see if the hero is at the edge of the map,
@@ -214,7 +211,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
         //Update the Map.
         this.update();
-    };
+    }
 
 
     //These functions will check to see if the hero is at the edge of the map.
@@ -315,10 +312,10 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
         document.getElementById("energy").innerHTML = this.hero.display_energy();
 
         //Update the hero's inner thoughts on the webpage:
-        //document.getElementById("message").innerHTML = this.hero.display_message();
+        document.getElementById("message").innerHTML = this.hero.display_message();
 
         //Update the map displayed on the page:
-        //document.getElementById("map_box").innerHTML = this.map_string();
+        document.getElementById("map_box").innerHTML = this.map_string();
     };
 
 
