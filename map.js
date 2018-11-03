@@ -10,14 +10,14 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     //This creates a new hero, and passes the hero constructor the parameters
     this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
 
-    this.width = width - 1; //The width of the map.  This is -1 from the width passed in, because we start at 0.
-    this.height = height - 1; //The height of the map.  This is -1 from the height passed in, because we start at 0.
+    this.width = width; //The width of the map.  This is -1 from the width passed in, because we start at 0.
+    this.height = height; //The height of the map.  This is -1 from the height passed in, because we start at 0.
 
     //This creates an empty world
     this.cells = [[]];
-    for (var i = 0; i <= width; ++i) {
+    for (var i = 0; i < width; ++i) {
         this.cells[i] = [];
-        for (var j = 0; j <= height; ++j) {
+        for (var j = 0; j < height; ++j) {
             this.cells[i][j] = new mapCell();
         }
     }
