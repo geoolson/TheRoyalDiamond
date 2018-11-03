@@ -1,6 +1,7 @@
 
 var game_map;
 
+//opens file then calls the parser
 var openFile = function(event){
     var input = event.target;
 
@@ -53,8 +54,10 @@ function playerLocation(file, dim){
 function parseInventory(file){
     var pattern = /[A-z ]+/;
     var result = pattern.exec(file);
-    str = file.substr(result.index + result[0].length, file.length);
+    var str = file.substr(result.index + result[0].length, file.length);
     alert("item = " + result);
+
+    //if delimiter is reached begin parsing the game Cells.
     if(str[3] === '#')
         parseCell(str);
     else
@@ -91,6 +94,7 @@ function parseCell(file){
     str = file.substr(content.index + content[0].length, str.length);
     alert("content string = " + content);
 
+    //checking if eof was reached
     if(isNaN(x))
         return;
     game_map.cells[x][y] = new mapCell(x, y, visible, terrain, content);
