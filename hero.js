@@ -3,14 +3,12 @@
 // the newly created object.
 function Hero(x, y, energy, whiffles) {
     //Data Members:
-    this.x = x;
-    this.y = y;
+    this.x = parseInt(x);
+    this.y = parseInt(y);
     this.energy = energy;
     this.whiffles = whiffles;
     this.gems = 0;
     this.innerthoughts = "This is a cell message";
-
-
 
 
     //Member Functions:
