@@ -1,0 +1,14 @@
+Sample Frugal Game Map
+6
+#####################
+10,11
+106
+999
+Axe
+Axe
+Shears
+Pretty Rock
+#####################
+2,3,1,1,None
+1,4,0,1,Tree
+3,4,0,2,None
