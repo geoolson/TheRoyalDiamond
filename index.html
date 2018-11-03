@@ -3,9 +3,9 @@
 		<title>Frupal</title>
 	</head>
     <script src="hero.js"></script>
-    <script src="map.js"></script>
     <script src="energy.js"></script>
     <script src="cell.js"></script>
+    <script src="map.js"></script>
     <script src="loadMap.js"></script>
   <body>
     <h1>Welcome to Frupal</h1>
@@ -27,15 +27,13 @@
       </tr>
     </table>
     <br>
-    <br>
-    <div id="location"><b>Coordinates: </b><script>document.write("("+game_map.hero.x+','+game_map.hero.y+')</p>')</script></div>
-    <br>
-    <div id="energy"><b>Energy: </b><script>document.write(game_map.hero.energy+'</p>')</script></div>
-    <br>
-    <div id="whiffles"><b>Whiffles: </b><script>document.write(game_map.hero.whiffles+'</p>')</script></div>
-    <br>
-    <div id="message"><b>Message: </b>Message</div>
-    <br>
+    <form>
+      <br><br>
+      Current Location: <input id="location" type="text" value="(0,0)" size= maxlength=12><br>
+      Energy:           <input id="energy" type="text" value=0 size=6 maxlength=6><br>
+      Whiffles:         <input id="whiffles" type="text" value=0 size=6 maxlength=10><br>
+      Message:          <input id="message" type="text" value="Welcome to the island ..." size=80 maxlength=80>
+    </form>
     <br>
     <b>Load Map</b>
     <input type="file" onchange='openFile(event)'/>
