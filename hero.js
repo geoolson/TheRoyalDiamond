@@ -128,7 +128,7 @@ function Hero(x, y, whiffles, energy)
         return to_return
     }
 	
-    //This function checks if the hero has found the Royal Diamonds, and returns a bool.
+   /* //This function checks if the hero has found the Royal Diamonds, and returns a bool.
     this.findDiamonds = function(playerX,playerY,diamondX,diamondY)
     {
 	if(playerX == diamondX && playerY == diamondY)
@@ -138,5 +138,5 @@ function Hero(x, y, whiffles, energy)
 		return true;
 	}
 	return false;
-    }
+    }*/
 }
