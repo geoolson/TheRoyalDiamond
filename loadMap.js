@@ -46,9 +46,38 @@ function playerLocation(file, dim){
     str = str.substr(whiffles.index + whiffles[0].length, str.length);
     //alert("whiffles = " + whiffles);
 
+
+    // This checks the dimensions from the file
+    // and compares it to the x and y from the file
+    // to make sure that a player is not placed somewhere
+    // not within the map.
+    checkValidityDimensions(dim, x, y);
+
+
     game_map = new Map(dim, dim, x, y, energy, whiffles);
 
     parseInventory(str);
+}
+
+// Compares the integer value of the set dimensions
+// to the set x and y coordinates that the hero is
+// supposed to start at. If the coordinates are not
+// valid, the user is alerted and redirected
+// to the welcome page.
+function checkValidityDimensions(dim, x, y){
+    // The variable dim (dimensions) is converted 
+    // to an integer.
+    var intDim = parseInt(dim);
+
+    // Compare set dimensions to x and y coordinates
+    if(x > intDim || y > intDim)
+    {
+        alert("Invalid player coordinates. Load a different file or fix the current one.");
+        window.location.replace("welcome.html");
+    }
+    // The coordinates to dimensions are valid
+    else
+        return;
 }
 
 function parseInventory(file){
