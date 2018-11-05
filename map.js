@@ -84,7 +84,7 @@ Map.prototype.move_north = function()
         this.player_won();
 
     //check energy level
-    if (this.hero.energy-1 <= 0)
+    if (this.hero.energy <= 0)
         this.player_lost();
 }
 
@@ -114,7 +114,7 @@ Map.prototype.move_south = function()
         this.player_won();
 
     //check energy level
-    if (this.hero.energy-1 <= 0)
+    if (this.hero.energy <= 0)
         this.player_lost();
 }
 
@@ -144,7 +144,7 @@ Map.prototype.move_east = function()
         this.player_won();
 
     //check energy level
-    if (this.hero.energy-1 <= 0)
+    if (this.hero.energy <= 0)
         this.player_lost();
 }
 
@@ -174,7 +174,7 @@ Map.prototype.move_west = function()
         this.player_won();
 
     //check energy level
-    if (this.hero.energy-1 <= 0)
+    if (this.hero.energy <= 0)
         this.player_lost();
 }
 
@@ -275,7 +275,7 @@ Map.prototype.update = function()
     document.forms[0].whiffles.value=this.hero.display_whiffles();
     document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 
-};
+}
 
 
 
