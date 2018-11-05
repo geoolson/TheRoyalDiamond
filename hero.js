@@ -20,12 +20,12 @@ function Hero(x, y, energy, whiffles) {
     {
         //The hero starts at 0,0 which is at the top left corner of the map.
         //When the hero moves North, the y value will be decreasing until it gets to 0.
-        this.y -= 1;
+        this.y += 1;
     };
     this.move_south = function()
     {
         //When the hero moves South, the y value will increase.
-        this.y += 1;
+        this.y -= 1;
     };
     this.move_east = function()
     {
@@ -46,7 +46,7 @@ function Hero(x, y, energy, whiffles) {
     //  hero has stumbled upon an item, or if they have acquired some more
     //  whiffles.  It will take a cellMap object in as an argument, so that it
     //  can call some other functions to determine which stats to change.
-    this.update_stats = function(ecost, wcost)
+    this.update_stats = function(ecost)
     {
         //Check energy cost of the current cell, and decrement the hero's energy
         //  by that amount.
@@ -54,7 +54,7 @@ function Hero(x, y, energy, whiffles) {
 
         //Set the player's new whiffles amount to be the amount of whiffles that
         //  the new cell contains.  Remove those whiffles from that cell.
-        this.whiffles = whiffles + wcost;
+        //this.whiffles = whiffles + wcost;
 
         //Set the hero's inner thoughts to be the message of the current cell.
         //this.innerthoughts = current_cell.message;
