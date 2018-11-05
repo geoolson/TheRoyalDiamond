@@ -30,7 +30,8 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     document.forms[0].location.value = this.hero.display_location();
     document.forms[0].energy.value = this.hero.display_energy();
     document.forms[0].whiffles.value = this.hero.display_whiffles();
-    document.forms[0].message.value = this.hero.display_message();
+    document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+
 }
 
 //Member Functions:
@@ -328,7 +329,8 @@ Map.prototype.update = function()
     document.forms[0].location.value=this.hero.display_location();
     document.forms[0].energy.value=this.hero.display_energy();
     document.forms[0].whiffles.value=this.hero.display_whiffles();
-    document.forms[0].message.value=this.hero.display_message();
+    document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+
 };
 
 

@@ -46,6 +46,12 @@ function playerLocation(file, dim){
     str = str.substr(whiffles.index + whiffles[0].length, str.length);
     //alert("whiffles = " + whiffles);
 
+    // Converts the important starting stats to integers.
+    dim = parseInt(dim);
+    x = parseInt(x);
+    y = parseInt(y);
+    energy = parseInt(energy);
+    whiffles = parseInt(whiffles);
 
     // This checks the dimensions from the file
     // and compares it to the x and y from the file
@@ -65,12 +71,9 @@ function playerLocation(file, dim){
 // valid, the user is alerted and redirected
 // to the welcome page.
 function checkValidityDimensions(dim, x, y){
-    // The variable dim (dimensions) is converted 
-    // to an integer.
-    var intDim = parseInt(dim);
 
     // Compare set dimensions to x and y coordinates
-    if(x > intDim || y > intDim)
+    if(x > dim || y > dim)
     {
         alert("Invalid player coordinates. Load a different file or fix the current one.");
         window.location.replace("welcome.html");
@@ -126,6 +129,13 @@ function parseCell(file){
     //checking if eof was reached
     if(isNaN(x))
         return;
+
+    // Converts x, y, visible, and terrain to integers
+    x = parseInt(x);
+    y = parseInt(y);
+    visible = parseInt(visible);
+    terrain = parseInt(terrain);
+
     game_map.cells[x][y] = new mapCell(x, y, visible, terrain, object);
     parseCell(str);
 }
