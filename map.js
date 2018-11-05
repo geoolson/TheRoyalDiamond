@@ -20,9 +20,9 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
     //This creates an empty world
     this.cells = [[]];
-    for (var i = 0; i < width; ++i) {
+    for (var i = 0; i < this.width; ++i) {
         this.cells[i] = [];
-        for (var j = 0; j < height; ++j) {
+        for (var j = 0; j < this.height; ++j) {
             this.cells[i][j] = new mapCell();
         }
     }
@@ -268,7 +268,7 @@ Map.prototype.update = function()
     //Update the map to set the tiles around the hero to be visible:
 
     //Update the map displayed on the page:
-    //document.getElementById("map_box").innerHTML = this.map_string();
+    document.getElementById("map_box").innerHTML = this.map_string();
 
     document.forms[0].location.value=this.hero.display_location();
     document.forms[0].energy.value=this.hero.display_energy();
@@ -282,10 +282,10 @@ Map.prototype.update = function()
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
     result = "";
-    for (var i = height-1; i >= 0; --i) {
-        for (var j = 0; j <= width; ++j) {
+    for (var j = this.height-1; j >= 0; --j) {
+        for (var i = 0; i < this.width; ++i) {
             var cell = this.cells[i][j];
-            if (i === this.hero.y && j === this.hero.x) {
+            if (j === this.hero.y && i === this.hero.x) {
                 result += "@";
             } else if(cell.isVisible) {
                 switch(cell.terrain) {
