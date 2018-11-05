@@ -6,7 +6,7 @@ function message(hero_obj, map_tile){
     // This will return the message that will be 
     // updated as the hero moves around the map.
     return document.getElementById("message").innerHTML = "You are currently walking and ... "
-	+ xyEdge(hero_obj) + visibilityMessage(map_tile) + terrainMessage(map_tile)
+	+ xyEdgeMessage(hero_obj) + visibilityMessage(map_tile) + terrainMessage(map_tile)
 	+ contentMessage(map_tile);
 
 }
