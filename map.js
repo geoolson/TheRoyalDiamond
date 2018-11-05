@@ -266,6 +266,19 @@ Map.prototype.player_lost = function()
 Map.prototype.update = function()
 {
     //Update the map to set the tiles around the hero to be visible:
+    var start_i = this.hero.x - 1;
+    if (start_i < 0) {
+        start_i = 0;
+    }
+    var start_j = this.hero.y-1;
+    if (start_j < 0) {
+        start_j = 0;
+    }
+    for (var i = start_i; (i <= this.hero.x + 1) && (i < this.width); ++i) {
+        for (var j = start_j; (j <= this.hero.y + 1) && (j < this.height); ++j) {
+            this.cells[i][j].isVisible = true; 
+        }
+    }
 
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
@@ -288,36 +301,53 @@ Map.prototype.map_string = function() {
             if (j === this.hero.y && i === this.hero.x) {
                 result += "@";
             } else if(cell.isVisible) {
-                switch(cell.terrain) {
-                    case 0:
+                switch(cell.object) {
+                    case "Tree":
                         // Meadow
-                        result += ".";
+                        result += "T";
                         break;
-                    case 1:
+                    case "Boulder":
                         // Forest
-                        result += ";";
+                        result += "R";
                         break;
-                    case 2:
+                    case "Blackberry Bushes":
                         // Water
                         result += "~";
                         break;
-                    case 3:
-                        // Wall
-                        result += "#";
-                        break;
-                    case 4:
-                        // Bog
-                        result += ",";
-                        break;
-                    case 5:
-                        // Swamp
-                        result += "%";
-                        break;
                     default:
-                        result += "?";
+                    switch(cell.terrain) {
+                        case 0:
+                            // Meadow
+                            result += "-";
+                            break;
+                        case 1:
+                            // Forest
+                            result += ";";
+                            break;
+                        case 2:
+                            // Water
+                            result += "~";
+                            break;
+                        case 3:
+                            // Wall
+                            result += "#";
+                            break;
+                        case 4:
+                            // Bog
+                            result += ",";
+                            break;
+                        case 5:
+                            // Swamp
+                            result += "%";
+                            break;
+                        default:
+                            result += "?";
+                            break;
+                    }
+                    break;
                 }
             } else {
-                result += "-";
+                result += " ";
             }
         }
         result += "<br>";
