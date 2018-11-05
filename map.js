@@ -282,10 +282,10 @@ Map.prototype.update = function()
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
     result = "";
-    for (var i = 0; i <= width; ++i) {
-        for (var j = 0; j <= height; ++j) {
+    for (var i = height-1; i >= 0; --i) {
+        for (var j = 0; j <= width; ++j) {
             var cell = this.cells[i][j];
-            if (i === this.hero_y && j === this.hero_x) {
+            if (i === this.hero.y && j === this.hero.x) {
                 result += "@";
             } else if(cell.isVisible) {
                 switch(cell.terrain) {
