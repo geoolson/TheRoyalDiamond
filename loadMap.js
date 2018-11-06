@@ -122,8 +122,8 @@ function parseCell(file){
 
     //object string
     pattern = /[A-z ]+/;
-    var object = pattern.exec(file);
-    str = file.substr(object.index + object[0].length, str.length);
+    var object = pattern.exec(str);
+    str = str.substr(object.index + object[0].length, str.length);
     //alert("object string = " + object);
 
     //checking if eof was reached
@@ -136,7 +136,7 @@ function parseCell(file){
     visible = parseInt(visible);
     terrain = parseInt(terrain);
 
-    game_map.cells[x][y] = new mapCell(x, y, visible, terrain, object);
+    game_map.cells[x][y] = new mapCell(x, y, visible, terrain, object[0]);
     parseCell(str);
 }
 
