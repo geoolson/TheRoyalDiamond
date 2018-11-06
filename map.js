@@ -3,9 +3,9 @@
 // This map class will communicate extensively with the hero class.
 
 
+//map class constructor
 function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles) {
     //Data Members:
-
 
     //This creates a new hero, and passes the hero constructor the parameters
     this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
@@ -27,17 +27,14 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
         }
     }
 
-    //This outputs the currently correct data values for the map
-    //document.getElementById("location").innerHTML = this.hero.display_location();
-    //document.getElementById("energy").innerHTML = this.hero.display_energy();
-    //document.getElementById("whiffles").innerHTML = this.hero.display_whiffles();
-    //document.getElementById("message").innerHTML = this.hero.display_message();
+    //This outputs the currently correct data values for the map to index.html
     document.forms[0].location.value = this.hero.display_location();
     document.forms[0].energy.value = this.hero.display_energy();
     document.forms[0].whiffles.value = this.hero.display_whiffles();
     document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
-
 }
+
+
 
 //Member Functions:
 
@@ -59,19 +56,20 @@ Map.prototype.build_map = function()
 }
 
 
+
 //These functions move the hero.  They call the hero's move functions, and they
 // check to see if the hero needs to wrap to the other side of the map.
+
+//MOVE NORTH
 Map.prototype.move_north = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
-    if(this.check_bounds_north())
-    {
+    if(this.check_bounds_north()) {
         this.wrap_north();
     }
     //Otherwise, move the hero north
-    else
-    {
+    else {
         this.hero.move_north();
     }
     //update energy
@@ -88,19 +86,16 @@ Map.prototype.move_north = function()
         this.player_lost();
 }
 
-
-
+// MOVE SOUTH
 Map.prototype.move_south = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
-    if(this.check_bounds_south())
-    {
+    if(this.check_bounds_south()) {
         this.wrap_south();
     }
     //Otherwise, move the hero south
-    else
-    {
+    else {
         this.hero.move_south();
     }
 
@@ -118,19 +113,16 @@ Map.prototype.move_south = function()
         this.player_lost();
 }
 
-
-
+//MOVE EAST
 Map.prototype.move_east = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
-    if(this.check_bounds_east())
-    {
+    if(this.check_bounds_east()) {
         this.wrap_east();
     }
     //Otherwise, move the hero south
-    else
-    {
+    else {
         this.hero.move_east();
     }
 
@@ -148,19 +140,16 @@ Map.prototype.move_east = function()
         this.player_lost();
 }
 
-
-
+// MOVE WEST
 Map.prototype.move_west = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
-    if(this.check_bounds_west())
-    {
+    if(this.check_bounds_west()) {
         this.wrap_west();
     }
     //Otherwise, move the hero south
-    else
-    {
+    else {
         this.hero.move_west();
     }
 
@@ -214,6 +203,7 @@ Map.prototype.check_bounds_west = function()
 }
 
 
+
 //These functions will wrap the hero to the other side of the map, when
 //  they are on the edge of the map.
 Map.prototype.wrap_north = function()
@@ -240,6 +230,7 @@ Map.prototype.wrap_west = function()
 }
 
 
+
 //This function will be called when the player has won the game.  It
 // will do an end-game sequence.
 Map.prototype.player_won = function()
@@ -257,7 +248,6 @@ Map.prototype.player_lost = function()
     alert("You have lost the game");
     window.location.replace("welcome.html");
 }
-
 
 
 
@@ -279,7 +269,6 @@ Map.prototype.update = function()
             this.cells[i][j].isVisible = true; 
         }
     }
-
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
