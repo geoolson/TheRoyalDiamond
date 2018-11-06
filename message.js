@@ -6,7 +6,7 @@ function message(hero_obj, map_tile){
     // This will return the message that will be 
     // updated as the hero moves around the map.
     return "You are currently walking and ... "
-	+ xyEdgeMessage(hero_obj) + visibilityMessage(map_tile) + terrainMessage(map_tile)
+	+ xyEdgeMessage(hero_obj) + terrainMessage(map_tile)
 	+ contentMessage(map_tile);
 
 }
@@ -18,15 +18,6 @@ function xyEdgeMessage(hero_obj){
 //	return " You are at an edge of the map! ";
 //    else
 	return " "
-}
-
-
-function visibilityMessage(map_tile){
-    if(map_tile.isVisible == 0)
-	return "It is difficult to see. ";
-    else if(map_tile.isVisible == 1)
-	return "The area you are at is visible. ";
-    return " ";
 }
 
 
