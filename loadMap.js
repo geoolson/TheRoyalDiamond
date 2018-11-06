@@ -17,12 +17,12 @@ var openFile = function(event){
 function dimensions(){
     var result = parseNum();
     if(result)
-        playerLocation(result);
+        playerInfo(result);
     else
         alert("invalid file");
 }
 
-function playerLocation(dim){
+function playerInfo(dim){
     var x = parseNum();
     var y = parseNum();
     var energy = parseNum();
