@@ -9,9 +9,9 @@ var openFile = function(event){
     reader.onload = function(){
         var text = reader.result;
         dimensions(text);
-    }
+    };
     reader.readAsText(input.files[0]);
-}
+};
 
 function dimensions(file){
     var pattern = /[0-9]+/;
