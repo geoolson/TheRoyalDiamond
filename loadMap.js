@@ -30,6 +30,7 @@ function playerInfo(dim){
     {
         game_map = new Map(dim, dim, x, y, energy, whiffles);
         parseInventory();
+        game_map.update();
     }
 }
 

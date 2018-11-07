@@ -272,6 +272,7 @@ Map.prototype.update = function()
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
+    // Update the game state information displayed on the page:
     document.getElementById("location").value  = this.hero.display_location();
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
