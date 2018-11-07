@@ -289,7 +289,7 @@ Map.prototype.map_string = function() {
         for (var i = 0; i < this.width; ++i) {
             var cell = this.cells[i][j];
             if (j === this.hero.y && i === this.hero.x) {
-                result += "@";
+                result += "<b>@</b>";
             } else if(cell.isVisible) {
                 switch(cell.object) {
                     case "Tree":
