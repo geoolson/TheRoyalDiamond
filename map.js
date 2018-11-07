@@ -292,48 +292,55 @@ Map.prototype.map_string = function() {
             } else if(cell.isVisible) {
                 switch(cell.object) {
                     case "Tree":
-                        // Meadow
+                        // Tree
                         result += "T";
                         break;
                     case "Boulder":
-                        // Forest
+                        // Rock
                         result += "R";
                         break;
                     case "Blackberry Bushes":
-                        // Water
-                        result += "~";
+                        // Bushes
+                        result += "B";
+                        break;
+                    case "Royal Diamonds":
+                        // Bushes
+                        result += "<span style=\"color:blue;\">D</span>";
+                        break;
+                    case "None":
+                        switch(cell.terrain) {
+                            case 0:
+                                // Meadow
+                                result += "-";
+                                break;
+                            case 1:
+                                // Forest
+                                result += ";";
+                                break;
+                            case 2:
+                                // Water
+                                result += "~";
+                                break;
+                            case 3:
+                                // Wall
+                                result += "#";
+                                break;
+                            case 4:
+                                // Bog
+                                result += ",";
+                                break;
+                            case 5:
+                                // Swamp
+                                result += "%";
+                                break;
+                            default:
+                                result += "?";
+                                break;
+                        }
                         break;
                     default:
-                    switch(cell.terrain) {
-                        case 0:
-                            // Meadow
-                            result += "-";
-                            break;
-                        case 1:
-                            // Forest
-                            result += ";";
-                            break;
-                        case 2:
-                            // Water
-                            result += "~";
-                            break;
-                        case 3:
-                            // Wall
-                            result += "#";
-                            break;
-                        case 4:
-                            // Bog
-                            result += ",";
-                            break;
-                        case 5:
-                            // Swamp
-                            result += "%";
-                            break;
-                        default:
-                            result += "?";
-                            break;
-                    }
-                    break;
+                        result += "?";
+                        break;
                 }
             } else {
                 result += " ";
