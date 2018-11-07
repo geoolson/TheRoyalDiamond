@@ -46,15 +46,15 @@ function terrainMessage(map_tile){
 // the current map cell and returns a message.
 // There will be more to add to this.
 function contentMessage(map_tile){
-    if(map_tile.content == "None")
+    if(map_tile.object == "None")
 	return " ";
-    if(map_tile.content == "Tree")
+    if(map_tile.object == "Tree")
 	return "And there is a tree. ";
-    if(map_tile.content == "Boulder")
+    if(map_tile.object == "Boulder")
 	return "And there is a boulder. ";
-    if(map_tile.content == "Power Bar")
+    if(map_tile.object == "Power Bar")
 	return "Yum, a power bar! ";
-    if(map_tile.content == "Blackberry Bushes")
+    if(map_tile.object == "Blackberry Bushes")
 	return "And there is a blackberry bush. ";
     
     return " ";
