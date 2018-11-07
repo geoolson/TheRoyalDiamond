@@ -10,7 +10,7 @@
             var starting_whiffles = form.starting_whiffles.value;
             var starting_energy = form.elements.starting_energy.value;
             mapstring = '[Sample Frugal Game Map][' + size + '][#####################]['+ starting_x + ',' + starting_y + '][' + starting_whiffles +'][' + starting_energy + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
-            localStorage.setItem('map', mapstring);
+            localStorage.setItem('map', JSON.stringify(mapstring) );
             alert(localStorage.getItem('map'));
         }
     </script>
@@ -40,7 +40,7 @@
 
         <p>
         <!--save button sends map file from text box to local storage-->
-        <button type="button" name="save" onclick="localStorage.setItem('map',pastedmap.value)">Save</button>
+        <button type="button" name="save" onclick="localStorage.setItem('map', JSON.stringify(pastedmap.value) )">Save</button>
         <!--submit button redirects to index.html -->
         <button type="submit">Submit</button>
         </p>
