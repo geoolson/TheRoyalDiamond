@@ -66,10 +66,7 @@ function parseCell(){
     var x = parseNum();
     var y = parseNum();
 
-    var pattern = /[0-1]/;
-    var visible = pattern.exec(text);
-    text = text.substr(visible.index + visible[0].length, text.length);
-
+    var visible = parseNum();
     var terrain = parseNum();
     var object = parseNextString();
 
