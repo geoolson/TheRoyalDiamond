@@ -91,5 +91,5 @@ function parseNextString(){
     var pattern = /[A-z ]+/;
     var result = pattern.exec(text);
     text = text.substr(result.index + result[0].length, text.length);
-    return result;
+    return result[0];
 }
