@@ -7,6 +7,7 @@ var openFile = function(event){
     reader.onload = function(){
         text = reader.result;
         dimensions(text);
+        game_map.update();
     };
     reader.readAsText(input.files[0]);
 };
