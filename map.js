@@ -5,29 +5,32 @@
 
 //map class constructor
 function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles) {
-    //Data Members:
-
-    //This creates a new hero, and passes the hero constructor the parameters
-    this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
-
-    //width and height of the map
-    this.width = parseInt(width);
-    this.height = parseInt(height);
-
-    //set diamond location
-    this.diamond_x = 2;
-    this.diamond_y = 2;
-
-    //This creates an empty world
-    this.cells = [[]];
-    for (var i = 0; i < this.width; ++i) {
-        this.cells[i] = [];
-        for (var j = 0; j < this.height; ++j) {
-            this.cells[i][j] = new mapCell();
-        }
+    //copy constructor
+    if(height === undefined ){
+        var state = width;
+        this.hero = state.hero;
+        this.width = state.width;
+        this.height = state.height;
+        this.diamond_x = state.diamond_x;
+        this.diamond_y = state.diamond_y;
+        this.cells = state.cells;
     }
-
-    this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+    else{
+        //This creates a new hero, and passes the hero constructor the parameters
+        this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
+        this.width = parseInt(width);
+        this.height = parseInt(height);
+        this.diamond_x = 2;
+        this.diamond_y = 2;
+        this.cells = [[]];
+        for (var i = 0; i < this.width; ++i) {
+            this.cells[i] = [];
+            for (var j = 0; j < this.height; ++j) {
+                this.cells[i][j] = new mapCell();
+            }
+        }
+        this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+    }
 }
 
 
@@ -88,7 +91,7 @@ Map.prototype.move_south = function()
     //check energy level
     if (this.hero.energy <= 0)
         this.player_lost();
-}
+};
 
 //MOVE EAST
 Map.prototype.move_east = function()

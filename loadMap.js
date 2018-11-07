@@ -79,14 +79,18 @@ function parseCell(){
 
 function parseNum(){
     var pattern = /[0-9]+/;
-    var result = pattern.exec(text);
-    text = text.substr(result.index + result[0].length, text.length);
-    return parseInt(result);
+    if(text){
+        var result = pattern.exec(text);
+        text = text.substr(result.index + result[0].length, text.length);
+        return parseInt(result);
+    }
 }
 
 function parseNextString(){
     var pattern = /[A-z ]+/;
-    var result = pattern.exec(text);
-    text = text.substr(result.index + result[0].length, text.length);
-    return result[0];
+    if(text){
+        var result = pattern.exec(text);
+        text = text.substr(result.index + result[0].length, text.length);
+        return result[0];
+    }
 }
