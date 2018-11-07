@@ -20,7 +20,7 @@
             var starting_y = form.starting_y.value;
             var starting_whiffles = form.starting_whiffles.value;
             var starting_energy = form.elements.starting_energy.value;
-            text = '[Sample Frugal Game Map][' + size + '][#####################][' + starting_x + ',' + starting_y + '][' + starting_whiffles + '][' + starting_energy + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
+            text = '[Sample Frugal Game Map][' + size + '][#####################][' + starting_x + ',' + starting_y + '][' + starting_energy + '][' + starting_whiffles + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map));
             alert(localStorage.getItem('map'));
@@ -36,9 +36,9 @@
 
         <p>Initial Position: <input type="text" name="starting_x" id="starting_x" value="0"> , <input type="text" name="starting_y" value="0"></p>
 
-        <p>Initial Whiffles: <input type="text" name="starting_whiffles" id="starting_whiffles" value="1000"></p>
-
         <p>Initial Energy: <input type="text" name="starting_energy" id="starting_energy" value="10"></p>
+
+        <p>Initial Whiffles: <input type="text" name="starting_whiffles" id="starting_whiffles" value="1000"></p>
 
         <!--save button sends map file with user preferences to local storage-->
         <p><input type="button" onclick="file_from_preferences()" value="Save">
