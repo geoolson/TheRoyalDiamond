@@ -27,6 +27,8 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
         }
     }
 
+    this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+
     //This outputs the currently correct data values for the map to index.html
     document.forms[0].location.value = this.hero.display_location();
     document.forms[0].energy.value = this.hero.display_energy();
