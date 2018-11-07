@@ -30,10 +30,10 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
 
     //This outputs the currently correct data values for the map to index.html
-    document.forms[0].location.value = this.hero.display_location();
-    document.forms[0].energy.value = this.hero.display_energy();
-    document.forms[0].whiffles.value = this.hero.display_whiffles();
-    document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+    document.getElementById("location").value  = this.hero.display_location();
+    document.getElementById("energy").value = this.hero.display_energy();
+    document.getElementById("whiffles").value  = this.hero.display_whiffles();
+    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 }
 
 
@@ -218,8 +218,7 @@ Map.prototype.wrap_west = function()
 // will do an end-game sequence.
 Map.prototype.player_won = function()
 {
-    alert("Congratulations, you have won the game!");
-    window.location.replace("welcome.html");
+    window.location.replace("win.html");
 }
 
 
@@ -227,9 +226,7 @@ Map.prototype.player_won = function()
 // will do an end-game sequence.
 Map.prototype.player_lost = function()
 {
-    alert("You ran out of energy and died.");
-    alert("You have lost the game");
-    window.location.replace("welcome.html");
+    window.location.replace("lose.html");
 }
 
 
@@ -255,11 +252,10 @@ Map.prototype.update = function()
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
-    document.forms[0].location.value=this.hero.display_location();
-    document.forms[0].energy.value=this.hero.display_energy();
-    document.forms[0].whiffles.value=this.hero.display_whiffles();
-    document.forms[0].message.value = message(this.hero, this.cells[this.hero.x][this.hero.y]);
-
+    document.getElementById("location").value  = this.hero.display_location();
+    document.getElementById("energy").value  = this.hero.display_energy();
+    document.getElementById("whiffles").value  = this.hero.display_whiffles();
+    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 }
 
 
