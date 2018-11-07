@@ -19,7 +19,7 @@
 <body>
     <h1>Frupal Config</h1>
     <h2>Enter Preferences:</h2>
-    <form id="preferences" method="post" action="index.html">
+    <form id="preferences" method="post" action="game.html">
         <p>Map Height (all maps are square): <input type="text" name="size" id="size" value="25"></p>
 
         <p>Initial Position: <input type="text" name="starting_x" id="starting_x" value="0"> , <input type="text" name="starting_y" value="0"></p>
@@ -30,18 +30,18 @@
 
         <!--save button sends map file with user preferences to local storage-->
         <p><input type="button" onclick="file_from_preferences()" value="Save">
-        <!--submit button redirects to index.html -->
+        <!--submit button redirects to game.html -->
         <button type="submit" name="submit">Start Game</button>
         </p>
     </form>
     <h2>Or Paste a Map Here:</h2>
-    <form class="" action="index.html" method="post">
+    <form class="" action="game.html" method="post">
         <textarea name= "pastedmap" rows="8" cols="80"></textarea>
 
         <p>
         <!--save button sends map file from text box to local storage-->
         <button type="button" name="save" onclick="localStorage.setItem('map', JSON.stringify(pastedmap.value) )">Save</button>
-        <!--submit button redirects to index.html -->
+        <!--submit button redirects to game.html -->
         <button type="submit">Submit</button>
         </p>
     </form>

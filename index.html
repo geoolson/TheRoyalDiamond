@@ -1,61 +1,14 @@
 <html>
-	<head>
-		<title>Frupal</title>
-	</head>
-    <script src="hero.js"></script>
-    <script src="cell.js"></script>
-    <script src="map.js"></script>
-    <script src="loadMap.js"></script>
-    <script src="message.js"></script>
-  <body>
+<head>
+    <title>Frupal</title>
     <h1>Welcome to Frupal</h1>
-    <table>
-      <tr>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_north()">NORTH</button></th>
-        <th></th>
-      </tr>
-      <tr>
-        <th><button type="button" onclick="game_map.move_west()">WEST</button></th>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_east()">EAST</button></th>
-      </tr>
-      <tr>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_south()">SOUTH</button></th>
-        <th></th>
-      </tr>
-    </table>
-    <br>
-    <form>
-      <br><br>
-      Current Location: <input id="location" type="text" value="(X, Y)" size= maxlength=12><br>
-      Energy:           <input id="energy" type="text" value=0 size=6 maxlength=6><br>
-      Whiffles:         <input id="whiffles" type="text" value=0 size=6 maxlength=10><br>
-      Message:          <input id="message" type="text" value="Welcome to the island ..." size=80 maxlength=80>
+</head>
+<body>
+    <form action="game.html" method="post">
+      <button type="submit">Start</button>
     </form>
-		<script>
-			//if there is no map in local storage, use the default map
-			if(localStorage.getItem('map')===null){
-				var stored_map = "Sample Frugal Game Map 25 ##################### 12,13 103 1000 Axe Axe Shears Pretty Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree"
-				text = stored_map;
-				dimensions();
-			}
-			//if there is a map in local storage (from options page), use it
-			else{
-				var stored_map = localStorage.getItem('map');
-				text = stored_map;
-				dimensions();
-			}
-		</script>
-    <br>
-    <b>Load Map</b>
-    <input type="file" onchange='openFile(event)'/>
-    <output id="map"></output>
-    <br>
-    <pre style='line-height: 14px; letter-spacing: 4px; font-family: "Courier-New",monospace; border-style: solid; display: inline-block;' id="map_box"></pre>
-    <script>
-        document.getElementById("map_box").innerHTML = game_map.map_string();
-    </script>
-  </body>
+    <form action="map.html" method="post">
+      <button type="submit">Load and Options</button>
+    </form>
+</body>
 </html>

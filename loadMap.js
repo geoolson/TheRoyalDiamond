@@ -46,7 +46,7 @@ function areDimensionsValid(dim, x, y){
     if(x > dim || y > dim)
     {
         alert("Invalid player coordinates. Load a different file or fix the current one.");
-        window.location.replace("welcome.html");
+        window.location.replace("index.html");
     }
     // The coordinates to dimensions are valid
     else
@@ -69,7 +69,6 @@ function parseCell(){
     var visible = parseNum();
     var terrain = parseNum();
     var object = parseNextString();
-
 
     //checking if eof was reached
     if(isNaN(x))
