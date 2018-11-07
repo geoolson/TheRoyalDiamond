@@ -62,6 +62,7 @@ function parseInventory(){
 }
 
 function parseCell(){
+    text = text.trim();
     var x = parseNum();
     var y = parseNum();
 
