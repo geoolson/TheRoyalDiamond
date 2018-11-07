@@ -1,47 +1,48 @@
 <head>
-  <script>
-  // takes map options from form and adds a map file to local storage
-    function file_from_preferences(){
-      let form = document.forms[0];
-      var size = form.size.value;
-      var starting_x = form.starting_x.value;
-      var starting_y = form.starting_y.value;
-      var starting_whiffles = form.starting_whiffles.value;
-      var starting_energy = form.elements.starting_energy.value;
-      mapstring = '[Sample Frugal Game Map][' + size + '][#####################]['+ starting_x + ',' + starting_y + '][' + starting_whiffles +'][' + starting_energy + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
-      localStorage.setItem('map', mapstring);
-      alert(localStorage.getItem('map'));
-    }
-  </script>
-  <title>Frupal Config</title>
+    <script>
+        //This function takes map options from form and adds a map file to local storage 
+        function file_from_preferences(){
+            //Get the form from the document, and use it to create other map variables
+            var form = document.getElementById("preferences");
+            var size = form.size.value;
+            var starting_x = form.starting_x.value;
+            var starting_y = form.starting_y.value;
+            var starting_whiffles = form.starting_whiffles.value;
+            var starting_energy = form.elements.starting_energy.value;
+            mapstring = '[Sample Frugal Game Map][' + size + '][#####################]['+ starting_x + ',' + starting_y + '][' + starting_whiffles +'][' + starting_energy + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
+            localStorage.setItem('map', mapstring);
+            alert(localStorage.getItem('map'));
+        }
+    </script>
+    <title>Frupal Config</title>
 </head>
 <body>
-  <h1>Frupal Config</h1>
-  <h2>Enter Preferences:</h2>
-  <form id="preferences" method="post" action="index.html">
-    <p>Map Height (all maps are square): <input type="text" name="size" value="25"></p>
+    <h1>Frupal Config</h1>
+    <h2>Enter Preferences:</h2>
+    <form id="preferences" method="post" action="index.html">
+        <p>Map Height (all maps are square): <input type="text" name="size" id="size" value="25"></p>
 
-    <p>Initial Position: <input type="text" name="starting_x" value="0"> , <input type="text" name="starting_y" value="0"></p>
+        <p>Initial Position: <input type="text" name="starting_x" id="starting_x" value="0"> , <input type="text" name="starting_y" value="0"></p>
 
-    <p>Initial Whiffles: <input type="text" name="starting_whiffles" value="1000"></p>
+        <p>Initial Whiffles: <input type="text" name="starting_whiffles" id="starting_whiffles" value="1000"></p>
 
-    <p>Initial Energy: <input type="text" name="starting_energy" value="10"></p>
+        <p>Initial Energy: <input type="text" name="starting_energy" id="starting_energy" value="10"></p>
 
-<!--save button sends map file with user preferences to local storage-->
-    <p><input type="button" onclick="file_from_preferences()" value="Save">
-      <!--submit button redirects to index.html -->
-       <button type="submit" name="submit">Start Game</button>
-    </p>
-  </form>
-  <h2>Or Paste a Map Here:</h2>
-  <form class="" action="index.html" method="post">
-    <textarea name= "pastedmap" rows="8" cols="80"></textarea>
+        <!--save button sends map file with user preferences to local storage-->
+        <p><input type="button" onclick="file_from_preferences()" value="Save">
+        <!--submit button redirects to index.html -->
+        <button type="submit" name="submit">Start Game</button>
+        </p>
+    </form>
+    <h2>Or Paste a Map Here:</h2>
+    <form class="" action="index.html" method="post">
+        <textarea name= "pastedmap" rows="8" cols="80"></textarea>
 
-    <p>
-<!--save button sends map file from text box to local storage-->
-      <button type="button" name="save" onclick="localStorage.setItem('map',pastedmap.value)">Save</button>
-      <!--submit button redirects to index.html -->
-      <button type="submit">Submit</button>
-    </p>
-  </form>
+        <p>
+        <!--save button sends map file from text box to local storage-->
+        <button type="button" name="save" onclick="localStorage.setItem('map',pastedmap.value)">Save</button>
+        <!--submit button redirects to index.html -->
+        <button type="submit">Submit</button>
+        </p>
+    </form>
 </body>
