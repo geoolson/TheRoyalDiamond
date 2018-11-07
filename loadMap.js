@@ -76,7 +76,7 @@ function parseCell(){
     //checking if eof was reached
     if(isNaN(x))
         return;
-    game_map.cells[x][y] = new mapCell(x, y, visible, terrain, object[0]);
+    game_map.cells[x][y] = new mapCell(x, y, visible, terrain, object);
     parseCell();
 }
 
