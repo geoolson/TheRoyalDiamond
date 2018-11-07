@@ -70,6 +70,7 @@ function parseCell(){
     var terrain = parseNum();
     var object = parseNextString();
 
+
     //checking if eof was reached
     if(isNaN(x))
         return;
