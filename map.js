@@ -40,25 +40,6 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 
 //Member Functions:
 
-//This function builds the map.  It will create the map based on a text file
-// read in from local storage.  If there is no file currently in local storage,
-// this function will create the default one.
-Map.prototype.build_map = function()
-{
-    //Try and get the map from local Storage
-    var new_map = window.localStorage.getItem('map');
-
-    //If "map" does not exist in local storage, we create the default map, and
-    // store it in local storage.
-    if(new_map == null)
-    {
-        //Create Default Map:
-        window.localStorage.setItem('map','default_map');
-    }
-}
-
-
-
 //These functions move the hero.  They call the hero's move functions, and they
 // check to see if the hero needs to wrap to the other side of the map.
 
