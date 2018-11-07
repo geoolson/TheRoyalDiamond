@@ -28,12 +28,6 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     }
 
     this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
-
-    //This outputs the currently correct data values for the map to game.html
-    document.getElementById("location").value  = this.hero.display_location();
-    document.getElementById("energy").value = this.hero.display_energy();
-    document.getElementById("whiffles").value  = this.hero.display_whiffles();
-    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 }
 
 
