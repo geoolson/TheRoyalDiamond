@@ -2,18 +2,40 @@
 // stats. Some of the functions in this map class will call functions in the hero class.
 // This map class will communicate extensively with the hero class.
 
+var game_map;
+var text;
 
 //map class constructor
 function Map(width, height, starting_x, starting_y, starting_energy, starting_whiffles) {
+    //default constructor
+    if(width === undefined){
+        //This creates a new hero, and passes the hero constructor the parameters
+        this.hero = new Hero(0, 0, 10000,10000);
+        this.width = 25;
+        this.height = 25;
+        this.diamond_x = 2;
+        this.diamond_y = 2;
+        this.cells = [[]];
+        for (var i = 0; i < this.width; ++i) {
+            this.cells[i] = [];
+            for (var j = 0; j < this.height; ++j) {
+                this.cells[i][j] = new mapCell();
+            }
+        }
+        this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+        return;
+    }
     //copy constructor
     if(height === undefined ){
         var state = width;
-        this.hero = state.hero;
+        this.hero = new Hero(state.hero.x, state.hero.y, state.hero.energy, state.hero.whiffles);
         this.width = state.width;
         this.height = state.height;
         this.diamond_x = state.diamond_x;
         this.diamond_y = state.diamond_y;
         this.cells = state.cells;
+        this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+        return;
     }
     else{
         //This creates a new hero, and passes the hero constructor the parameters
@@ -30,6 +52,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
             }
         }
         this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
+        return;
     }
 }
 
@@ -64,7 +87,7 @@ Map.prototype.move_north = function()
     //check energy level
     if (this.hero.energy <= 0)
         this.player_lost();
-}
+};
 
 // MOVE SOUTH
 Map.prototype.move_south = function()
@@ -118,7 +141,7 @@ Map.prototype.move_east = function()
     //check energy level
     if (this.hero.energy <= 0)
         this.player_lost();
-}
+};
 
 // MOVE WEST
 Map.prototype.move_west = function()
@@ -145,7 +168,7 @@ Map.prototype.move_west = function()
     //check energy level
     if (this.hero.energy <= 0)
         this.player_lost();
-}
+};
 
 
 
@@ -159,28 +182,28 @@ Map.prototype.check_bounds_north = function()
     if(this.hero.y === this.height-1)
         return true;
     return false;
-}
+};
 Map.prototype.check_bounds_south = function()
 {
     //If the hero is at the bottom of the map, return true.
     if(this.hero.y === 0)
         return true;
     return false;
-}
+};
 Map.prototype.check_bounds_east = function()
 {
     //If the hero is at the rightmost side of the map, return true.
     if(this.hero.x === this.width-1)
         return true;
     return false;
-}
+};
 Map.prototype.check_bounds_west = function()
 {
     //If the hero is at the leftmost side of the map, return true.
     if(this.hero.x === 0)
         return true;
     return false;
-}
+};
 
 
 
@@ -190,24 +213,24 @@ Map.prototype.wrap_north = function()
 {
     //If the hero is at the top of the map, set their y to the bottom.
     this.hero.y = 0;
-}
+};
 Map.prototype.wrap_south = function()
 {
     //If the hero is at the bottom of the map, set their y to the top.
     this.hero.y = this.height-1;
-}
+};
 Map.prototype.wrap_east = function()
 {
     //If the hero is at the eastmost edge of the map, set their x to
     //  the leftmost edge.
     this.hero.x = 0;
-}
+};
 Map.prototype.wrap_west = function()
 {
     //If the hero is at the westmost edge of the map, set their x to
     //  the eastmost edge.
     this.hero.x = this.width-1;
-}
+};
 
 
 
@@ -216,7 +239,7 @@ Map.prototype.wrap_west = function()
 Map.prototype.player_won = function()
 {
     window.location.replace("win.html");
-}
+};
 
 
 //This function will be called when the player has lost the game.  It
@@ -224,7 +247,7 @@ Map.prototype.player_won = function()
 Map.prototype.player_lost = function()
 {
     window.location.replace("lose.html");
-}
+};
 
 
 
@@ -243,7 +266,7 @@ Map.prototype.update = function()
     }
     for (var i = start_i; (i <= this.hero.x + 1) && (i < this.width); ++i) {
         for (var j = start_j; (j <= this.hero.y + 1) && (j < this.height); ++j) {
-            this.cells[i][j].isVisible = true; 
+            this.cells[i][j].isVisible = true;
         }
     }
     //Update the map displayed on the page:
@@ -253,7 +276,7 @@ Map.prototype.update = function()
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
-}
+};
 
 
 

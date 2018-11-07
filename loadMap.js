@@ -1,5 +1,3 @@
-var game_map;
-var text;
 
 //opens file then calls the parser
 var openFile = function(event){
