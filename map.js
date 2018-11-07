@@ -276,6 +276,7 @@ Map.prototype.update = function()
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+    localStorage.setItem('map', JSON.stringify(game_map) );
 };
 
 
