@@ -46,6 +46,8 @@ function terrainMessage(map_tile){
 // the current map cell and returns a message.
 // There will be more to add to this.
 function contentMessage(map_tile){
+    if(map_tile.object == "Royal Diamonds")
+	return "You have found the royal diamonds!";
     if(map_tile.object == "None")
 	return " ";
     if(map_tile.object == "Tree")
