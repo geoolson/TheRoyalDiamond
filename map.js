@@ -81,14 +81,6 @@ Map.prototype.move_north = function()
     this.hero.update_stats(1);
     //Update the Map.
     this.update();
-
-    //check diamonds
-    if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
-        this.player_won();
-
-    //check energy level
-    if (this.hero.energy <= 0)
-        this.player_lost();
 };
 
 // MOVE SOUTH
@@ -108,14 +100,6 @@ Map.prototype.move_south = function()
     this.hero.update_stats(1);
     //Update the Map.
     this.update();
-
-    //check diamonds
-    if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
-        this.player_won();
-
-    //check energy level
-    if (this.hero.energy <= 0)
-        this.player_lost();
 };
 
 //MOVE EAST
@@ -135,14 +119,6 @@ Map.prototype.move_east = function()
     this.hero.update_stats(1);
     //Update the Map.
     this.update();
-
-    //check diamonds
-    if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
-        this.player_won();
-
-    //check energy level
-    if (this.hero.energy <= 0)
-        this.player_lost();
 };
 
 // MOVE WEST
@@ -162,14 +138,6 @@ Map.prototype.move_west = function()
     this.hero.update_stats(1);
     //Update the Map.
     this.update();
-
-    //check diamonds
-    if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
-        this.player_won();
-
-    //check energy level
-    if (this.hero.energy <= 0)
-        this.player_lost();
 };
 
 
@@ -241,6 +209,7 @@ Map.prototype.wrap_west = function()
 Map.prototype.player_won = function()
 {
     window.location.replace("win.html");
+    localStorage.clear();
 };
 
 
@@ -249,6 +218,7 @@ Map.prototype.player_won = function()
 Map.prototype.player_lost = function()
 {
     window.location.replace("lose.html");
+    localStorage.clear();
 };
 
 
@@ -280,6 +250,14 @@ Map.prototype.update = function()
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
     localStorage.setItem('map', JSON.stringify(game_map) );
+
+    //check diamonds
+    if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
+        this.player_won();
+
+    //check energy level
+    if (this.hero.energy <= 0)
+        this.player_lost();
 };
 
 // Places a number of treasure chests on the map cells randomly
