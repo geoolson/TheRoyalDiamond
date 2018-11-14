@@ -1,9 +1,9 @@
-// Compares the heros current location 
+// Compares the heros current location
 // with the map and checks for any obstacles
 // which may include visibility, tools,
 // items, jewels, frupals, etc.
 function message(hero_obj, map_tile){
-    // This will return the message that will be 
+    // This will return the message that will be
     // updated as the hero moves around the map.
     return "You are currently walking and ... "
 	+ xyEdgeMessage(hero_obj) + terrainMessage(map_tile)
@@ -58,6 +58,10 @@ function contentMessage(map_tile){
 	return "Yum, a power bar! ";
     if(map_tile.object == "Blackberry Bushes")
 	return "And there is a blackberry bush. ";
-    
+    if(map_tile.object == "Chest 1")
+  return "And there is a type 1 Chest."
+    if(map_tile.object == "Chest 2")
+  return "And there is a type 2 Chest."
+
     return " ";
 }
