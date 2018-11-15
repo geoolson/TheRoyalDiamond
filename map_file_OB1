@@ -1,0 +1,9 @@
+Sample Frugal Game Map (X - Out of bounds)
+5
+#####################
+8,1
+6
+7
+#####################
+2,3,1,1,None
+1,4,0,1,Tree

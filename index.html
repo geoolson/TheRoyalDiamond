@@ -1,47 +1,14 @@
 <html>
-	<head>
-		<title>Frupal</title>
-	</head>
-    <script src="hero.js"></script>
-    <script src="energy.js"></script>
-    <script src="cell.js"></script>
-    <script src="map.js"></script>
-    <script src="loadMap.js"></script>
-  <body>
+<head>
+    <title>Frupal</title>
     <h1>Welcome to Frupal</h1>
-    <table>
-      <tr>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_north()">NORTH</button></th>
-        <th></th>
-      </tr>
-      <tr>
-        <th><button type="button" onclick="game_map.move_west()">WEST</button></th>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_east()">EAST</button></th>
-      </tr>
-      <tr>
-        <th></th>
-        <th><button type="button" onclick="game_map.move_south()">SOUTH</button></th>
-        <th></th>
-      </tr>
-    </table>
-    <br>
-    <form>
-      <br><br>
-      Current Location: <input id="location" type="text" value="(0,0)" size= maxlength=12><br>
-      Energy:           <input id="energy" type="text" value=0 size=6 maxlength=6><br>
-      Whiffles:         <input id="whiffles" type="text" value=0 size=6 maxlength=10><br>
-      Message:          <input id="message" type="text" value="Welcome to the island ..." size=80 maxlength=80>
+</head>
+<body>
+    <form action="game.html" method="post">
+      <button type="submit">Start</button>
     </form>
-    <br>
-    <b>Load Map</b>
-    <input type="file" onchange='openFile(event)'/>
-    <output id="map"></output>
-    <br>
-    <div style='line-height: 14px; letter-spacing: 4px; font-family: "Courier-New",monospace;' id="map_box"></div>
-    <script>
-        document.getElementById("map_box").innerHTML = game_map.map_string();
-    </script>
-  </body>
+    <form action="map.html" method="post">
+      <button type="submit">Load and Options</button>
+    </form>
+</body>
 </html>
