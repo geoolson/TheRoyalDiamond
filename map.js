@@ -75,8 +75,17 @@ Map.prototype.move_north = function()
     else {
         this.hero.move_north();
     }
-    //update energy
-    this.hero.update_stats(1);
+
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_stats(2);
+    }
+    else {
+      //update energy
+      this.hero.update_stats(1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -94,8 +103,16 @@ Map.prototype.move_south = function()
         this.hero.move_south();
     }
 
-    //update energy
-    this.hero.update_stats(1);
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_stats(2);
+    }
+    else {
+      //update energy
+      this.hero.update_stats(1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -113,8 +130,16 @@ Map.prototype.move_east = function()
         this.hero.move_east();
     }
 
-    //update energy
-    this.hero.update_stats(1);
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_stats(2);
+    }
+    else {
+      //update energy
+      this.hero.update_stats(1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -132,8 +157,17 @@ Map.prototype.move_west = function()
         this.hero.move_west();
     }
 
-    //update energy
-    this.hero.update_stats(1);
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_stats(2);
+    }
+    else {
+      //update energy
+      this.hero.update_stats(1);
+    }
+
+
     //Update the Map.
     this.update();
 };
