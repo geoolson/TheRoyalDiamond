@@ -66,13 +66,14 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 //MOVE NORTH
 Map.prototype.move_north = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
-//    window.alert(this.cells[this.hero.x][this.height-1].terrain);
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //Lose one energy without moving to the other side of the map.
     if(this.check_bounds_north()) {
-//	if(this.cells[this.hero.x][this.0].terrain !== 2) {
+	if(this.cells[this.hero.x][0].terrain !== 2) {
             this.wrap_north();
-//	}
+	}
     }
     //Otherwise, move the hero north
     else {
@@ -91,13 +92,14 @@ Map.prototype.move_north = function()
 // MOVE SOUTH
 Map.prototype.move_south = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
-//    window.alert(this.cells[this.hero.x][this.0].terrain);
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check to see if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_south()) {
-//	if(this.cells[this.hero.x][this.0].terrain !== 2) {
+	if(this.cells[this.hero.x][this.height-1].terrain !== 2) {
             this.wrap_south();
-//	}
+	}
     }
     //Otherwise, move the hero south
     else {
@@ -117,13 +119,14 @@ Map.prototype.move_south = function()
 //MOVE EAST
 Map.prototype.move_east = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
-//    window.alert(this.cells[this.width-1][this.hero.y].terrain);
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_east()) {
-//	if(this.cells[this.width-1][this.hero.y].terrain !== 2) {
+	if(this.cells[0][this.hero.y].terrain !== 2) {
             this.wrap_east();
-//	}
+	}
     }
     //Otherwise, move the hero east
     else {
@@ -143,13 +146,14 @@ Map.prototype.move_east = function()
 // MOVE WEST
 Map.prototype.move_west = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
-//    window.alert(this.cells[this.0][this.hero.y].terrain);
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check to see if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_west()) {
-//	if(this.cells[this.0][this.hero.y].terrain !== 2) {
+	if(this.cells[this.width-1][this.hero.y].terrain !== 2) {
             this.wrap_west();
-//	}
+	}
     }
     //Otherwise, move the hero west
     else {
