@@ -69,11 +69,15 @@ Map.prototype.move_north = function()
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
     if(this.check_bounds_north()) {
-        this.wrap_north();
+	if(this.height-1.cell.terrain !== 2) {
+            this.wrap_north();
+	}
     }
     //Otherwise, move the hero north
     else {
-        this.hero.move_north();
+	if(this.height-1.cell.terrain !== 2) {
+            this.hero.move_north();
+	}
     }
     //update energy
     this.hero.update_stats(1);
@@ -87,11 +91,15 @@ Map.prototype.move_south = function()
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
     if(this.check_bounds_south()) {
-        this.wrap_south();
+	if(this.0.cell.terrain !== 2) {
+            this.wrap_south();
+	}
     }
     //Otherwise, move the hero south
     else {
-        this.hero.move_south();
+	if(this.0.cell.terrain !== 2) {
+            this.hero.move_south();
+	}
     }
 
     //update energy
@@ -106,11 +114,15 @@ Map.prototype.move_east = function()
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
     if(this.check_bounds_east()) {
-        this.wrap_east();
+	if(this.width-1.cell.terrain !== 2) {
+            this.wrap_east();
+	}
     }
     //Otherwise, move the hero south
     else {
-        this.hero.move_east();
+	if(this.width-1.cell.terrain !== 2) {
+            this.hero.move_east();
+	}
     }
 
     //update energy
@@ -125,11 +137,15 @@ Map.prototype.move_west = function()
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
     if(this.check_bounds_west()) {
-        this.wrap_west();
+	if(this.0.cell.terrain !== 2) {
+            this.wrap_west();
+	}
     }
     //Otherwise, move the hero south
     else {
-        this.hero.move_west();
+	if(this.0.cell.terrain !== 2) {
+            this.hero.move_west();
+	}
     }
 
     //update energy
