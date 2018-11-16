@@ -68,14 +68,17 @@ Map.prototype.move_north = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
+//    window.alert(this.cells[this.hero.x][this.height-1].terrain);
     if(this.check_bounds_north()) {
-	if(this.height-1.cell.terrain !== 2) {
+//	if(this.cells[this.hero.x][this.0].terrain !== 2) {
             this.wrap_north();
-	}
+//	}
     }
     //Otherwise, move the hero north
     else {
-	if(this.height-1.cell.terrain !== 2) {
+	//If the cell north of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x][this.hero.y+1].terrain !== 2) {
             this.hero.move_north();
 	}
     }
@@ -90,14 +93,17 @@ Map.prototype.move_south = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
+//    window.alert(this.cells[this.hero.x][this.0].terrain);
     if(this.check_bounds_south()) {
-	if(this.0.cell.terrain !== 2) {
+//	if(this.cells[this.hero.x][this.0].terrain !== 2) {
             this.wrap_south();
-	}
+//	}
     }
     //Otherwise, move the hero south
     else {
-	if(this.0.cell.terrain !== 2) {
+	//If the cell south of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x][this.hero.y-1].terrain !== 2) {
             this.hero.move_south();
 	}
     }
@@ -113,14 +119,17 @@ Map.prototype.move_east = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
+//    window.alert(this.cells[this.width-1][this.hero.y].terrain);
     if(this.check_bounds_east()) {
-	if(this.width-1.cell.terrain !== 2) {
+//	if(this.cells[this.width-1][this.hero.y].terrain !== 2) {
             this.wrap_east();
-	}
+//	}
     }
-    //Otherwise, move the hero south
+    //Otherwise, move the hero east
     else {
-	if(this.width-1.cell.terrain !== 2) {
+	//If the cell east of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x+1][this.hero.y].terrain !== 2) {
             this.hero.move_east();
 	}
     }
@@ -136,14 +145,17 @@ Map.prototype.move_west = function()
 {
     //First, check to see if the hero is at the edge of the map,
     // if so, wrap the hero to the other side of the map.
+//    window.alert(this.cells[this.0][this.hero.y].terrain);
     if(this.check_bounds_west()) {
-	if(this.0.cell.terrain !== 2) {
+//	if(this.cells[this.0][this.hero.y].terrain !== 2) {
             this.wrap_west();
-	}
+//	}
     }
-    //Otherwise, move the hero south
+    //Otherwise, move the hero west
     else {
-	if(this.0.cell.terrain !== 2) {
+	//If the cell west of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x-1][this.hero.y].terrain !== 2) {
             this.hero.move_west();
 	}
     }
