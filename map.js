@@ -66,14 +66,22 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 //MOVE NORTH
 Map.prototype.move_north = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //Lose one energy without moving to the other side of the map.
     if(this.check_bounds_north()) {
-        this.wrap_north();
+	if(this.cells[this.hero.x][0].terrain !== 2) {
+            this.wrap_north();
+	}
     }
     //Otherwise, move the hero north
     else {
-        this.hero.move_north();
+	//If the cell north of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x][this.hero.y+1].terrain !== 2) {
+            this.hero.move_north();
+	}
     }
     //update energy
     this.hero.update_stats(1);
@@ -84,14 +92,22 @@ Map.prototype.move_north = function()
 // MOVE SOUTH
 Map.prototype.move_south = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check to see if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_south()) {
-        this.wrap_south();
+	if(this.cells[this.hero.x][this.height-1].terrain !== 2) {
+            this.wrap_south();
+	}
     }
     //Otherwise, move the hero south
     else {
-        this.hero.move_south();
+	//If the cell south of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x][this.hero.y-1].terrain !== 2) {
+            this.hero.move_south();
+	}
     }
 
     //update energy
@@ -103,14 +119,22 @@ Map.prototype.move_south = function()
 //MOVE EAST
 Map.prototype.move_east = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_east()) {
-        this.wrap_east();
+	if(this.cells[0][this.hero.y].terrain !== 2) {
+            this.wrap_east();
+	}
     }
-    //Otherwise, move the hero south
+    //Otherwise, move the hero east
     else {
-        this.hero.move_east();
+	//If the cell east of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x+1][this.hero.y].terrain !== 2) {
+            this.hero.move_east();
+	}
     }
 
     //update energy
@@ -122,14 +146,22 @@ Map.prototype.move_east = function()
 // MOVE WEST
 Map.prototype.move_west = function()
 {
-    //First, check to see if the hero is at the edge of the map,
-    // if so, wrap the hero to the other side of the map.
+    //First, check to see if the hero is at the edge of the map.
+    //If so, check to see if the other side of the map is water terrain.
+    //If not, wrap the hero to the other side of the map. Otherwise,
+    //lose one energy without moving.
     if(this.check_bounds_west()) {
-        this.wrap_west();
+	if(this.cells[this.width-1][this.hero.y].terrain !== 2) {
+            this.wrap_west();
+	}
     }
-    //Otherwise, move the hero south
+    //Otherwise, move the hero west
     else {
-        this.hero.move_west();
+	//If the cell west of the hero is not water, the hero can move.
+	//Otherwise, the hero does not move, and one energy is lost.
+	if(this.cells[this.hero.x-1][this.hero.y].terrain !== 2) {
+            this.hero.move_west();
+	}
     }
 
     //update energy
