@@ -3,11 +3,9 @@
 // Map.  The Map will be a 2D array of cell objects, so this class
 // is a building block for the Map class.
 
-function mapCell(x, y, isVisible, terrain, object)
-{
+function mapCell(x, y, isVisible, terrain, object) {
     //If any parameter was omitted in constructor call, set all data members to 0
-    if (x === undefined)
-    {
+    if (x === undefined) {
         this.x = 0;
         this.y = 0;
         this.isVisible = 0;
@@ -15,8 +13,7 @@ function mapCell(x, y, isVisible, terrain, object)
         this.object = "None";
         return;
     }
-    else if (y === undefined)
-    {
+    else if (y === undefined) {
         var copy = x
         this.x = copy.x;
         this.y = copy.y;
@@ -26,8 +23,7 @@ function mapCell(x, y, isVisible, terrain, object)
         return;
     }
     //Otherwise set them to the argument values...
-    else
-    {
+    else {
         this.x = x;
         this.y = y;
         this.isVisible = isVisible;
