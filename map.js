@@ -101,6 +101,7 @@ Map.prototype.move_south = function()
     //If not, wrap the hero to the other side of the map. Otherwise,
     //lose one energy without moving.
     if(this.check_bounds_south()) {
+
         if(this.cells[this.hero.x][this.height-1].terrain !== 2) {
             this.wrap_south();
         }
