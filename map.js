@@ -317,17 +317,18 @@ Map.prototype.player_lost = function()
 //  It will also update the map's visibility.
 Map.prototype.update = function()
 {
+    var view_distance = 1;
     //Update the map to set the tiles around the hero to be visible:
-    var start_i = this.hero.x - 1;
+    var start_i = this.hero.x - view_distance;
     if (start_i < 0) {
         start_i = 0;
     }
-    var start_j = this.hero.y-1;
+    var start_j = this.hero.y-view_distance;
     if (start_j < 0) {
         start_j = 0;
     }
-    for (var i = start_i; (i <= this.hero.x + 1) && (i < this.width); ++i) {
-        for (var j = start_j; (j <= this.hero.y + 1) && (j < this.height); ++j) {
+    for (var i = start_i; (i <= this.hero.x + view_distance) && (i < this.width); ++i) {
+        for (var j = start_j; (j <= this.hero.y + view_distance) && (j < this.height); ++j) {
             this.cells[i][j].isVisible = true;
         }
     }
