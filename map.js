@@ -22,6 +22,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
                 this.cells[i][j] = new mapCell();
             }
         }
+        this.place_chests()
         this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
         return;
     }
@@ -51,6 +52,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
                 this.cells[i][j] = new mapCell();
             }
         }
+        this.place_chests()
         this.cells[this.diamond_x][this.diamond_y].object = "Royal Diamonds";
         return;
     }
@@ -338,6 +340,16 @@ Map.prototype.update = function()
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
     localStorage.setItem('map', JSON.stringify(game_map) );
+    //check chests
+    if(this.cells[this.hero.x][this.hero.y].object == "Chest 1"){
+        this.hero.update_whiffles(100);
+        this.cells[this.hero.x][this.hero.y].object = "None";
+    }
+
+    if(this.cells[this.hero.x][this.hero.y].object == "Chest 2"){
+        this.hero.whiffles = 0;
+        this.cells[this.hero.x][this.hero.y].object = "None";
+    }
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
@@ -348,7 +360,22 @@ Map.prototype.update = function()
         this.player_lost();
 };
 
-
+// Places a number of treasure chests on the map cells randomly
+Map.prototype.place_chests = function(){
+    var amount = 5;
+    var x, y, type;
+    for (var i = 0; i < amount; ++i){
+        x = Math.floor(Math.random() * this.width);
+        y = Math.floor(Math.random() * this.height);
+        type = Math.floor(Math.random() * 2);
+        if (type == 1){
+          this.cells[x][y].object = "Chest 1";
+        }
+        else{
+          this.cells[x][y].object = "Chest 2";
+        }
+    }
+}
 
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
@@ -376,6 +403,13 @@ Map.prototype.map_string = function() {
                         // Diamonds
                         result += "<span style=\"color:blue;\">D</span>";
                         break;
+                    case "Chest 1":
+                        //chest type 1
+                        result += "<span style=\"color:orange;\">C</span>";
+                        break;
+                    case "Chest 2":
+                        //chest type 2 looks the same as 1
+                        result += "<span style=\"color:orange;\">C</span>";
                     case "Power Bar":
                         // Power Bar
                         result += "P";
