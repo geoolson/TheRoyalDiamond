@@ -83,26 +83,23 @@ Map.prototype.move_north = function()
             this.hero.move_north();
         }
     }
-<<<<<<< HEAD
 
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_stats(2);
-    }
-    else {
-      //update energy
-      this.hero.update_stats(1);
-    }
 
-=======
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
         this.powerBar();
     }
-    //update energy for one step
-    this.hero.update_energy(-1);
->>>>>>> development
+
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_energy(-2);
+    }
+    else{
+        //update energy for one step
+        this.hero.update_energy(-1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -128,26 +125,23 @@ Map.prototype.move_south = function()
             this.hero.move_south();
         }
     }
-<<<<<<< HEAD
 
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_stats(2);
-    }
-    else {
-      //update energy
-      this.hero.update_stats(1);
-    }
 
-=======
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
         this.powerBar();
     }
-    //update energy for one step
-    this.hero.update_energy(-1);
->>>>>>> development
+
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_energy(-2);
+    }
+    else{
+        //update energy for one step
+        this.hero.update_energy(-1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -172,26 +166,23 @@ Map.prototype.move_east = function()
             this.hero.move_east();
         }
     }
-<<<<<<< HEAD
 
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_stats(2);
-    }
-    else {
-      //update energy
-      this.hero.update_stats(1);
-    }
 
-=======
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
         this.powerBar();
     }
-    //update energy for one step
-    this.hero.update_energy(-1);
->>>>>>> development
+
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_energy(-2);
+    }
+    else{
+        //update energy for one step
+        this.hero.update_energy(-1);
+    }
+
     //Update the Map.
     this.update();
 };
@@ -216,27 +207,23 @@ Map.prototype.move_west = function()
             this.hero.move_west();
         }
     }
-<<<<<<< HEAD
-
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_stats(2);
-    }
-    else {
-      //update energy
-      this.hero.update_stats(1);
-    }
 
 
-=======
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
         this.powerBar();
     }
-    //update energy for one step
-    this.hero.update_energy(-1);
->>>>>>> development
+
+    // Compare hero's current cell terrain with bog value
+    // and calls update hero stats tp deduct energy by 2
+    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+        this.hero.update_energy(-2);
+    }
+    else{
+        //update energy for one step
+        this.hero.update_energy(-1);
+    }
+
     //Update the Map.
     this.update();
 };
