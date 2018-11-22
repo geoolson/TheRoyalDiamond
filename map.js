@@ -68,149 +68,36 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
 //MOVE NORTH
 Map.prototype.move_north = function()
 {
-    //First, check to see if the hero is at the edge of the map.
-    //If so, check if the other side of the map is water terrain.
-    //If not, wrap the hero to the other side of the map. Otherwise,
-    //Lose one energy without moving to the other side of the map.
-    if(this.check_bounds_north()) {
-        if(this.cells[this.hero.x][0].terrain !== 2) {
-            this.wrap_north();
-        }
-    }
-    //Otherwise, move the hero north
-    else {
-        //If the cell north of the hero is not water, the hero can move.
-        //Otherwise, the hero does not move, and one energy is lost.
-        if(this.cells[this.hero.x][this.hero.y+1].terrain !== 2) {
-            this.hero.move_north();
-        }
-    }
-
-
-    //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
-        this.powerBar();
-    }
-
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_energy(-2);
-    }
-    else{
-        //update energy for one step
-        this.hero.update_energy(-1);
-    }
-
-    //Update the Map.
-    this.update();
+    this.move(0,1);
 };
 
 // MOVE SOUTH
 Map.prototype.move_south = function()
 {
-    //First, check to see if the hero is at the edge of the map.
-    //If so, check to see if the other side of the map is water terrain.
-    //If not, wrap the hero to the other side of the map. Otherwise,
-    //lose one energy without moving.
-    if(this.check_bounds_south()) {
-
-        if(this.cells[this.hero.x][this.height-1].terrain !== 2) {
-            this.wrap_south();
-        }
-    }
-    //Otherwise, move the hero south
-    else {
-        //If the cell south of the hero is not water, the hero can move.
-        //Otherwise, the hero does not move, and one energy is lost.
-        if(this.cells[this.hero.x][this.hero.y-1].terrain !== 2) {
-            this.hero.move_south();
-        }
-    }
-
-
-    //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
-        this.powerBar();
-    }
-
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_energy(-2);
-    }
-    else{
-        //update energy for one step
-        this.hero.update_energy(-1);
-    }
-
-    //Update the Map.
-    this.update();
+    this.move(0,-1);
 };
 
 //MOVE EAST
 Map.prototype.move_east = function()
 {
-    //First, check to see if the hero is at the edge of the map.
-    //If so, check if the other side of the map is water terrain.
-    //If not, wrap the hero to the other side of the map. Otherwise,
-    //lose one energy without moving.
-    if(this.check_bounds_east()) {
-        if(this.cells[0][this.hero.y].terrain !== 2) {
-            this.wrap_east();
-        }
-    }
-    //Otherwise, move the hero east
-    else {
-        //If the cell east of the hero is not water, the hero can move.
-        //Otherwise, the hero does not move, and one energy is lost.
-        if(this.cells[this.hero.x+1][this.hero.y].terrain !== 2) {
-            this.hero.move_east();
-        }
-    }
-
-
-    //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
-        this.powerBar();
-    }
-
-    // Compare hero's current cell terrain with bog value
-    // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
-        this.hero.update_energy(-2);
-    }
-    else{
-        //update energy for one step
-        this.hero.update_energy(-1);
-    }
-
-    //Update the Map.
-    this.update();
+    this.move(1,0);
 };
 
 // MOVE WEST
 Map.prototype.move_west = function()
 {
-    //First, check to see if the hero is at the edge of the map.
-    //If so, check to see if the other side of the map is water terrain.
-    //If not, wrap the hero to the other side of the map. Otherwise,
-    //lose one energy without moving.
-    if(this.check_bounds_west()) {
-        if(this.cells[this.width-1][this.hero.y].terrain !== 2) {
-            this.wrap_west();
-        }
-    }
-    //Otherwise, move the hero west
-    else {
-        //If the cell west of the hero is not water, the hero can move.
-        //Otherwise, the hero does not move, and one energy is lost.
-        if(this.cells[this.hero.x-1][this.hero.y].terrain !== 2) {
-            this.hero.move_west();
-        }
-    }
+    this.move(-1,0);
+};
 
 
+Map.prototype.move = function(x,y)
+{
+    this.hero.x = (this.hero.x + x) % this.width;
+    this.hero.y = (this.hero.y + y) % this.height;
+    if(this.hero.x < 0)
+        this.hero.x = this.width -1;
+    if(this.hero.y < 0)
+        this.hero.y = this.height -1;
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
         this.powerBar();
@@ -226,73 +113,25 @@ Map.prototype.move_west = function()
         this.hero.update_energy(-1);
     }
 
+    this.isObstacle();
     //Update the Map.
     this.update();
 };
 
 
-
-
-//These functions will check to see if the hero is at the edge of the map.
-//  They will return true if the hero is at the edge of the map, and false
-//  otherwise.
-Map.prototype.check_bounds_north = function()
+//checking for obstacle then removing said obstacle and decrementing hero's energy
+Map.prototype.isObstacle = function()
 {
-    //If the hero is at the top of the map, return true.
-    if(this.hero.y === this.height-1)
-        return true;
-    return false;
+    let currentObject = this.cells[this.hero.x][this.hero.y].object;
+    if(currentObject === "Tree" || currentObject === "Boulder" || currentObject === "BlackBerry Bushes")
+    {
+        this.hero.energy -= 10;
+        if(this.hero.energy <= 0)
+            this.player_lost();
+        else
+            this.cells[this.hero.x][this.hero.y].object = "None";
+    }
 };
-Map.prototype.check_bounds_south = function()
-{
-    //If the hero is at the bottom of the map, return true.
-    if(this.hero.y === 0)
-        return true;
-    return false;
-};
-Map.prototype.check_bounds_east = function()
-{
-    //If the hero is at the rightmost side of the map, return true.
-    if(this.hero.x === this.width-1)
-        return true;
-    return false;
-};
-Map.prototype.check_bounds_west = function()
-{
-    //If the hero is at the leftmost side of the map, return true.
-    if(this.hero.x === 0)
-        return true;
-    return false;
-};
-
-
-
-//These functions will wrap the hero to the other side of the map, when
-//  they are on the edge of the map.
-Map.prototype.wrap_north = function()
-{
-    //If the hero is at the top of the map, set their y to the bottom.
-    this.hero.y = 0;
-};
-Map.prototype.wrap_south = function()
-{
-    //If the hero is at the bottom of the map, set their y to the top.
-    this.hero.y = this.height-1;
-};
-Map.prototype.wrap_east = function()
-{
-    //If the hero is at the eastmost edge of the map, set their x to
-    //  the leftmost edge.
-    this.hero.x = 0;
-};
-Map.prototype.wrap_west = function()
-{
-    //If the hero is at the westmost edge of the map, set their x to
-    //  the eastmost edge.
-    this.hero.x = this.width-1;
-};
-
-
 
 //This function will be called when the player has won the game.  It
 // will do an end-game sequence.
