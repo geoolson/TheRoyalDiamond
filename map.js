@@ -99,13 +99,13 @@ Map.prototype.move = function(x,y)
     if(this.hero.y < 0)
         this.hero.y = this.height -1;
     //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object == "Power Bar") {
+    if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
         this.powerBar();
     }
 
     // Compare hero's current cell terrain with bog value
     // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain == 4) {
+    if(this.cells[this.hero.x][this.hero.y].terrain === 4) {
         this.hero.update_energy(-2);
     }
     else{
@@ -123,14 +123,23 @@ Map.prototype.move = function(x,y)
 Map.prototype.isObstacle = function()
 {
     let currentObject = this.cells[this.hero.x][this.hero.y].object;
-    if(currentObject === "Tree" || currentObject === "Boulder" || currentObject === "BlackBerry Bushes")
+    if(currentObject === "Tree")
     {
         this.hero.energy -= 10;
-        if(this.hero.energy <= 0)
-            this.player_lost();
-        else
-            this.cells[this.hero.x][this.hero.y].object = "None";
+        this.cells[this.hero.x][this.hero.y].object = "None";
     }
+    else if(currentObject === "Boulder")
+    {
+        this.hero.energy -= 16;
+        this.cells[this.hero.x][this.hero.y].object = "None";
+    }
+    else if(currentObject === "BlackBerry Bushes")
+    {
+        this.hero.energy -= 4;
+        this.cells[this.hero.x][this.hero.y].object = "None";
+    }
+    if(this.hero.energy <= 0)
+        this.player_lost();
 };
 
 //This function will be called when the player has won the game.  It
