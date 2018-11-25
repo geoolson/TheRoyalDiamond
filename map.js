@@ -259,6 +259,7 @@ Map.prototype.map_string = function() {
                     case "Chest 2":
                         //chest type 2 looks the same as 1
                         result += "<span style=\"color:orange;\">C</span>";
+                        break;
                     case "Power Bar":
                         // Power Bar
                         result += "P";
