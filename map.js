@@ -10,7 +10,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     //default constructor
     if(width === undefined){
         //This creates a new hero, and passes the hero constructor the parameters
-        this.hero = new Hero(0, 0, 10000,10000);
+        this.hero = new Hero(0, 0, 10000,10000, false);
         this.width = 25;
         this.height = 25;
         this.diamond_x = 2;
@@ -29,7 +29,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     //copy constructor
     if(height === undefined ){
         var state = width;
-        this.hero = new Hero(state.hero.x, state.hero.y, state.hero.energy, state.hero.whiffles);
+        this.hero = new Hero(state.hero.x, state.hero.y, state.hero.energy, state.hero.whiffles, state.hero.binoculars);
         this.width = state.width;
         this.height = state.height;
         this.diamond_x = state.diamond_x;
@@ -40,7 +40,7 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     }
     else{
         //This creates a new hero, and passes the hero constructor the parameters
-        this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles);
+        this.hero = new Hero(starting_x, starting_y, starting_energy, starting_whiffles, false);
         this.width = parseInt(width);
         this.height = parseInt(height);
         this.diamond_x = 2;
@@ -101,6 +101,10 @@ Map.prototype.move = function(x,y)
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
         this.powerBar();
+    }
+    // Check for binoculars
+    if(this.cells[this.hero.x][this.hero.y].object === "Binoculars") {
+        this.binoculars();
     }
 
     // Compare hero's current cell terrain with bog value
@@ -166,6 +170,9 @@ Map.prototype.player_lost = function()
 Map.prototype.update = function()
 {
     var view_distance = 1;
+    if(this.hero.binoculars) {
+        view_distance = 2;
+    }
     //Update the map to set the tiles around the hero to be visible:
     var start_i = this.hero.x - view_distance;
     if (start_i < 0) {
@@ -248,6 +255,10 @@ Map.prototype.map_string = function() {
                         // Bushes
                         result += "B";
                         break;
+                    case "Binoculars":
+                        // Binoculars = "Field Glasses"
+                        result += "F";
+                        break;
                     case "Royal Diamonds":
                         // Diamonds
                         result += "<span style=\"color:blue;\">D</span>";
@@ -318,5 +329,17 @@ Map.prototype.powerBar = function ()
         this.cells[this.hero.x][this.hero.y].object = "None";
         this.hero.update_energy(20);
         this.hero.update_whiffles(-1);
+    }
+}
+
+Map.prototype.binoculars = function ()
+{
+    //prompt user
+    var result = window.confirm("Would You like to purchase a pair of BINOCULARS for 50 Whiffle?");
+    if (result){
+        //if purchased, remove from mapCell
+        this.cells[this.hero.x][this.hero.y].object = "None";
+        this.hero.binoculars = true;
+        this.hero.update_whiffles(-50);
     }
 }

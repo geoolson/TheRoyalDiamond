@@ -1,12 +1,13 @@
 //This is actually a JavaScript Class... It's weird, but it's how Javascript implements classes
 // The class is implemented as a function that takes in several arguments that are stored in 
 // the newly created object.
-function Hero(x, y, energy, whiffles) {
+function Hero(x, y, energy, whiffles, binoculars) {
     //Data Members:
     this.x = parseInt(x);
     this.y = parseInt(y);
     this.energy = energy;
     this.whiffles = whiffles;
+    this.binoculars = binoculars;
 
 
     //Member Functions:
