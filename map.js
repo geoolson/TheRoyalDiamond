@@ -92,18 +92,15 @@ Map.prototype.move_west = function()
 
 Map.prototype.move = function(x,y)
 {
-    this.hero.x = (this.hero.x + x) % this.width;
-    this.hero.y = (this.hero.y + y) % this.height;
-    if(this.hero.x < 0)
-        this.hero.x = this.width -1;
-    if(this.hero.y < 0)
-        this.hero.y = this.height -1;
-    //check if the hero is trying to walk over water
-    if(this.cells[this.hero.x][this.hero.y].terrain === 2){
-        this.hero.x = x;
-        this.hero.y = y;
-        this.hero.update_energy(-1);
-        return;
+    nextx = (this.hero.x + x) % this.width;
+    nexty = (this.hero.y + y) % this.height;
+    if(nextx < 0)
+        nextx = this.width -1;
+    if(nexty < 0)
+        nexty = this.height -1;
+    if ( !this.isWater(nextx, nexty) ){
+        this.hero.x = nextx;
+        this.hero.y = nexty;
     }
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
@@ -127,6 +124,12 @@ Map.prototype.move = function(x,y)
     this.isObstacle();
     //Update the Map.
     this.update();
+};
+
+// checking if the cell contains water
+Map.prototype.isWater = function(x,y)
+{
+    return this.cells[x][y].terrain === 2;
 };
 
 
