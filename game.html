@@ -72,6 +72,26 @@
     </table>
     <script>
         game_map.update();
+        document.onkeydown = function (e) {
+            switch (e.keyCode) {
+                case 37: // left
+                    e.preventDefault();
+                    game_map.move_west();
+                    break;
+                case 38: // up
+                    e.preventDefault();
+                    game_map.move_north();
+                    break;
+                case 39: // right
+                    e.preventDefault();
+                    game_map.move_east();
+                    break;
+                case 40: // down
+                    e.preventDefault();
+                    game_map.move_south();
+                    break;
+            }
+        }    
     </script>
   </body>
 </html>
