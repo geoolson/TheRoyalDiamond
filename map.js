@@ -110,6 +110,16 @@ Map.prototype.move = function(x,y)
     if(this.cells[this.hero.x][this.hero.y].object === "Binoculars") {
         this.binoculars();
     }
+    // Check for tool
+    if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
+        this.purchase_item("Axe");
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Sheers") {
+        this.purchase_item("Sheers");
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
+        this.purchase_item("Rock");
+    }
 
     // Compare hero's current cell terrain with bog value
     // and calls update hero stats tp deduct energy by 2
@@ -282,6 +292,18 @@ Map.prototype.map_string = function() {
                         // Power Bar
                         result += "P";
                         break;
+                    case "Axe":
+                        //Axe
+                        result += "<span style=\"color:green;\">A</span>";
+                        break;
+                    case "Shears":
+                        //Sheers
+                        result += "<span style=\"color:green;\">S</span>";
+                        break;
+                    case "Rock":
+                        //Rock
+                        result += "<span style=\"color:green;\">R</span>";
+                        break;
                     case "None":
                         switch(cell.terrain) {
                             case 0:
@@ -308,6 +330,7 @@ Map.prototype.map_string = function() {
                                 // Swamp
                                 result += "%";
                                 break;
+
                             default:
                                 result += "?";
                                 break;
@@ -371,5 +394,22 @@ Map.prototype.check_chests = function () {
     if(this.cells[this.hero.x][this.hero.y].object == "Chest 2"){
         this.hero.whiffles = 0;
         this.cells[this.hero.x][this.hero.y].object = "None";
+    }
+}
+
+
+Map.prototype.purchase_item = function(item_type) {
+    if(this.hero.check_balance(300) === false)
+    {
+        alert("You do not have enough whiffles for " + item_type);
+    }
+    else
+    {
+        var result = window.confirm("Would you like to purchase " + item_type + " for 300 Whiffle?");
+        if(result){
+            this.cells[this.hero.x][this.hero.y].object = "None";
+            this.hero.inventory.add_item(item_type);
+            this.hero.update_whiffles(-300);
+        }
     }
 }
