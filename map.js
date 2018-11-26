@@ -98,6 +98,13 @@ Map.prototype.move = function(x,y)
         this.hero.x = this.width -1;
     if(this.hero.y < 0)
         this.hero.y = this.height -1;
+    //check if the hero is trying to walk over water
+    if(this.cells[this.hero.x][this.hero.y].terrain === 2){
+        this.hero.x = x;
+        this.hero.y = y;
+        this.hero.update_energy(-1);
+        return;
+    }
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
         this.powerBar();
