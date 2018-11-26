@@ -228,6 +228,9 @@ Map.prototype.update = function()
 
 // Places a number of treasure chests on the map cells randomly
 Map.prototype.place_chests = function(){
+  //chests in the lower left corner for testing
+    this.cells[0][1].object = "Chest 1";
+    this.cells[0][2].object = "Chest 2";
     var amount = 5;
     var x, y, type;
     for (var i = 0; i < amount; ++i){
