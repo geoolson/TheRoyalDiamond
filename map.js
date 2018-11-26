@@ -197,6 +197,7 @@ Map.prototype.update = function()
             this.cells[i][j].isVisible = true;
         }
     }
+
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
@@ -206,16 +207,9 @@ Map.prototype.update = function()
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
     localStorage.setItem('map', JSON.stringify(game_map) );
-    //check chests
-    if(this.cells[this.hero.x][this.hero.y].object == "Chest 1"){
-        this.hero.update_whiffles(100);
-        this.cells[this.hero.x][this.hero.y].object = "None";
-    }
 
-    if(this.cells[this.hero.x][this.hero.y].object == "Chest 2"){
-        this.hero.whiffles = 0;
-        this.cells[this.hero.x][this.hero.y].object = "None";
-    }
+    //check for treasure chests
+    this.check_chests();
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
@@ -335,24 +329,47 @@ Map.prototype.map_string = function() {
 
 Map.prototype.powerBar = function ()
 {
-    //prompt user
-    var result = window.confirm("Would You like to purchase a POWER BAR for 1 Whiffle?");
-    if (result){
-        //if purchased, remove from mapCell
-        this.cells[this.hero.x][this.hero.y].object = "None";
-        this.hero.update_energy(20);
-        this.hero.update_whiffles(-1);
+    //check if hero has enough whiffles
+    if (this.hero.check_balance(1) === false){
+        alert("You do not have enough whiffles for a Power Bar.")
+    } else {
+        //prompt user
+        var result = window.confirm("Would You like to purchase a POWER BAR for 1 Whiffle?");
+        if (result) {
+            //if purchased, remove from mapCell
+            this.cells[this.hero.x][this.hero.y].object = "None";
+            this.hero.update_energy(20);
+            this.hero.update_whiffles(-1);
+        }
     }
 }
 
 Map.prototype.binoculars = function ()
 {
-    //prompt user
-    var result = window.confirm("Would You like to purchase a pair of BINOCULARS for 50 Whiffle?");
-    if (result){
-        //if purchased, remove from mapCell
+    //check if hero has enough whiffles
+    if (this.hero.check_balance(50) === false){
+        alert("You do not have enough whiffles for Binoculars.")
+    } else {
+        //prompt user
+        var result = window.confirm("Would You like to purchase a pair of BINOCULARS for 50 Whiffle?");
+        if (result) {
+            //if purchased, remove from mapCell
+            this.cells[this.hero.x][this.hero.y].object = "None";
+            this.hero.binoculars = true;
+            this.hero.update_whiffles(-50);
+        }
+    }
+}
+
+Map.prototype.check_chests = function () {
+    //check chests
+    if(this.cells[this.hero.x][this.hero.y].object == "Chest 1"){
+        this.hero.update_whiffles(100);
         this.cells[this.hero.x][this.hero.y].object = "None";
-        this.hero.binoculars = true;
-        this.hero.update_whiffles(-50);
+    }
+
+    if(this.cells[this.hero.x][this.hero.y].object == "Chest 2"){
+        this.hero.whiffles = 0;
+        this.cells[this.hero.x][this.hero.y].object = "None";
     }
 }

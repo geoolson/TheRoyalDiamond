@@ -31,7 +31,7 @@ Pretty Rock
 11,2,0,2,None
 11,3,0,2,None
 12,0,0,2,None
-12,1,0,2,None
+12,1,0,2,Binoculars
 12,2,0,2,None
 12,3,0,2,None
 13,0,0,2,None
@@ -48,14 +48,14 @@ Pretty Rock
 2,8,0,3,None
 3,5,0,3,None
 3,6,0,3,None
-3,7,0,3,None
+3,7,0,3,Binoculars
 3,8,0,3,None
 5,5,0,4,None
 5,6,0,4,None
 5,7,0,4,None
 5,8,0,4,None
 6,5,0,4,None
-6,6,0,4,None
+6,6,0,4,Power Bar
 6,7,0,4,None
 6,8,0,4,None
 7,5,0,4,None
@@ -75,11 +75,11 @@ Pretty Rock
 11,7,0,5,None
 11,8,0,5,None
 12,5,0,5,None
-12,6,0,5,None
+12,6,0,5,Binoculars
 12,7,0,5,None
 12,8,0,5,None
 13,5,0,5,None
-13,6,0,5,None
+13,6,0,5,Power Bar
 13,7,0,5,None
 13,8,0,5,None
 3,12,0,0,Tree
@@ -89,4 +89,3 @@ Pretty Rock
 1,14,1,0,None
 0,13,1,0,None
 1,13,1,0,Boulder
-12,13,1,0,ABCD

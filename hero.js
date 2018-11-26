@@ -44,6 +44,14 @@ function Hero(x, y, energy, whiffles, binoculars) {
         this.whiffles += whiffle_change;
     }
 
+    //check whiffle balance for hero purchases,
+    // return true if hero has enough whiffles
+    this.check_balance = function (whiffle_change){
+        if (this.whiffles - whiffle_change < 0)
+            return false;
+        return true;
+    }
+
 
     //These functions will return an HTML string representing the hero's current
     //  statistics.
