@@ -71,4 +71,7 @@ function Hero(x, y, energy, whiffles, binoculars) {
     this.display_energy = function () {
         return this.energy;
     }
+    this.display_inventory = function() {
+        document.getElementById("inventory").innerHTML = this.inventory.display_inventory();
+    }
 }

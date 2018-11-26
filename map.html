@@ -1,4 +1,5 @@
 <head>
+    <script src="inventory.js"></script>
     <script src="hero.js"></script>
     <script src="cell.js"></script>
     <script src="map.js"></script>
@@ -51,7 +52,7 @@
             var starting_y = form.starting_y.value;
             var starting_whiffles = form.starting_whiffles.value;
             var starting_energy = form.elements.starting_energy.value;
-            text = '[Sample Frugal Game Map][' + size + '][#####################][' + starting_x + ',' + starting_y + '][' + starting_energy + '][' + starting_whiffles + '][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
+            text = 'Sample Frugal Game Map' + size + ' ##################### ' + starting_x + ',' + starting_y + ' ' + starting_energy + ' ' + starting_whiffles + 'Axe Axe Sheers Rock ##################### 12,12,1,1, None 13,12,0,1, Tree 14,12,0,2, None';
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map));
         }

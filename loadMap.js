@@ -59,10 +59,7 @@ function areDimensionsValid(dim, x, y){
 function parseInventory(game_map){
     //Get First Inventory Item from the file:
     var result = parseNextString();
-    //TODO: store the item in the hero's inventory
-    alert(result);
     game_map.hero.inventory.add_item(result);
-    //result is correct, store result in a new inventory item.
     //if delimiter is reached begin parsing the game Cells.
     if(text[2] === '#')
         parseCell();
@@ -119,7 +116,7 @@ function parseNum(){
 
 //This function will return all the letters (including spaces) of the inventory items.
 function parseNextString(){
-    var pattern = /[A-z]+/;
+    var pattern = /[A-Z]+/i;
     if(text){
         var result = pattern.exec(text);
         text = text.substr(result.index + result[0].length, text.length);
