@@ -9,6 +9,7 @@ function Hero(x, y, energy, whiffles) {
     this.whiffles = whiffles;
     this.gems = 0;
     this.innerthoughts = "This is a cell message";
+    this.inventory = new Inventory();
 
 
     //Member Functions:

@@ -5,11 +5,42 @@
     <script src="loadMap.js"></script>
     <script src="message.js"></script>
     <script>
-        var store = val => {
+        //This function will take in a value, and set the global variable "text" to be that value.  Value
+        //  should be a game map string that the parser can interpret.  This function will then call
+        //  dimensions() which will set up the map by parsing the global variable "text."
+        //  It will then store the map into local storage.
+        function store(val){
             text = val;
+            if(!check_map_input(val))
+            {
+                alert("The map that you pasted is not in the correct format!");
+                return false;
+            }
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map));
         };
+
+        //This function will check the argument passed in, making sure that it follows the proper
+        //  file requirements - this function does not check all file requirements... it just checks
+        //  a few.
+        function check_map_input(map_input)
+        {
+            if(!map_input)
+                return false;
+            else
+            {
+                //Get the map size first.
+                var pattern = /[0-9]+/;
+                var result = pattern.exec(map_input);
+                if(!result)
+                    return false;
+                map_input = map_input.slice(result.index + result[0].length, map_input.length);
+                var result_as_an_integer = parseInt(result);
+                if(result_as_an_integer > 100)
+                    return false;
+            }
+            return true;
+        }
 
         //This function takes map options from form and adds a map file to local storage
         function file_from_preferences() {
@@ -20,10 +51,11 @@
             var starting_y = form.starting_y.value;
             var starting_whiffles = form.starting_whiffles.value;
             var starting_energy = form.elements.starting_energy.value;
-            text = '[Sample Frugal Game Map][' + size + '][#####################][' + starting_x + ',' + starting_y + '][' + starting_energy + '][' + starting_whiffles + '][Axe][Axe][Shears][Pretty Rock][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
+            text = '[Sample Frugal Game Map][' + size + '][#####################][' + starting_x + ',' + starting_y + '][' + starting_energy + '][' + starting_whiffles + '][#####################][12,12,1,1,None][13,12,0,1,Tree][14,12,0,2,None]';
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map));
-            alert(localStorage.getItem('map'));
+            //This was mostly used for testing purposes, and isn't really necessary any more.
+            //alert(localStorage.getItem('map'));
         }
     </script>
     <title>Frupal Config</title>
