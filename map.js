@@ -114,8 +114,8 @@ Map.prototype.move = function(x,y)
     if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
         this.purchase_item("Axe");
     }
-    if(this.cells[this.hero.x][this.hero.y].object === "Sheers") {
-        this.purchase_item("Sheers");
+    if(this.cells[this.hero.x][this.hero.y].object === "Shears") {
+        this.purchase_item("Shears");
     }
     if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
         this.purchase_item("Rock");
