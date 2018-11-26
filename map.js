@@ -103,7 +103,7 @@ Map.prototype.move = function(x,y)
         this.hero.y = nexty;
     }
     //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
+    if(this.cells[this.hero.x][this.hero.y].object === "PowerBar") {
         this.powerBar();
     }
     // Check for binoculars
@@ -288,7 +288,7 @@ Map.prototype.map_string = function() {
                         //chest type 2 looks the same as 1
                         result += "<span style=\"color:orange;\">C</span>";
                         break;
-                    case "Power Bar":
+                    case "PowerBar":
                         // Power Bar
                         result += "P";
                         break;

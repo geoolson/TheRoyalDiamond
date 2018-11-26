@@ -12,7 +12,7 @@ Pretty Rock
 5,3,0,1,None
 6,0,0,1,None
 6,1,0,1,None
-6,2,0,1,Power Bar
+6,2,0,1,PowerBar
 6,3,0,1,None
 7,0,0,1,None
 7,1,0,1,None
@@ -22,7 +22,7 @@ Pretty Rock
 8,1,0,1,None
 8,2,0,1,None
 8,3,0,1,None
-10,0,0,2,Power Bar
+10,0,0,2,PowerBar
 10,1,0,2,None
 10,2,0,2,None
 10,3,0,2,None
@@ -43,7 +43,7 @@ Pretty Rock
 0,7,0,3,None
 0,8,0,3,None
 1,5,0,3,None
-1,8,0,3,Power Bar
+1,8,0,3,PowerBar
 2,5,0,3,None
 2,8,0,3,None
 3,5,0,3,None
@@ -55,7 +55,7 @@ Pretty Rock
 5,7,0,4,None
 5,8,0,4,None
 6,5,0,4,None
-6,6,0,4,Power Bar
+6,6,0,4,PowerBar
 6,7,0,4,None
 6,8,0,4,None
 7,5,0,4,None
@@ -79,7 +79,7 @@ Pretty Rock
 12,7,0,5,None
 12,8,0,5,None
 13,5,0,5,None
-13,6,0,5,Power Bar
+13,6,0,5,PowerBar
 13,7,0,5,None
 13,8,0,5,None
 3,12,0,0,Tree
