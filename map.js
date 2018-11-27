@@ -357,7 +357,7 @@ Map.prototype.powerBar = function ()
         alert("You do not have enough whiffles for a Power Bar.")
     } else {
         //prompt user
-        var result = window.confirm("Would You like to purchase a POWER BAR for 1 Whiffle?");
+        var result = window.confirm("Would You like to purchase a POWER BAR (20 energy units) for 1 Whiffle?");
         if (result) {
             //if purchased, remove from mapCell
             this.cells[this.hero.x][this.hero.y].object = "None";
