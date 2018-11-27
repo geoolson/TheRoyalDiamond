@@ -157,7 +157,7 @@ Map.prototype.isObstacle = function()
         this.hero.energy -= 16;
         this.cells[this.hero.x][this.hero.y].object = "None";
     }
-    else if(currentObject === "BlackBerry Bushes")
+    else if(currentObject === "BlackberryBushes")
     {
         this.hero.energy -= 4;
         this.cells[this.hero.x][this.hero.y].object = "None";
@@ -268,7 +268,7 @@ Map.prototype.map_string = function() {
                         // Rock
                         result += "R";
                         break;
-                    case "Blackberry Bushes":
+                    case "BlackberryBushes":
                         // Bushes
                         result += "B";
                         break;

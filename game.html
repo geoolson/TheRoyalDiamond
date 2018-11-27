@@ -11,7 +11,7 @@
     <script>
         //if there is no map in local storage, use the default map
         if(localStorage.getItem('map')===null){
-            text = "Sample Frugal Game Map 25 ##################### 12,13 103 1000 Axe Axe Shears Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree";
+            text = "Sample Frugal Game Map 20 ##################### 12,13 100 1000 Axe Axe Shears Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree";
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map) );
         }
