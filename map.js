@@ -189,8 +189,6 @@ Map.prototype.player_lost = function()
 //  It will also update the map's visibility.
 Map.prototype.update = function()
 {
-    //check for treasure chests
-    this.check_chests();
     var view_distance = 1;
     if(this.hero.binoculars) {
         view_distance = 2;
