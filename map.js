@@ -264,15 +264,15 @@ Map.prototype.map_string = function() {
                 switch(cell.object) {
                     case "Tree":
                         // Tree
-                        result += "T";
+                        result += "<span style=\"color:red;\">T</span>";
                         break;
                     case "Boulder":
                         // Rock
-                        result += "R";
+                        result += "<span style=\"color:red;\">R</span>";
                         break;
                     case "BlackberryBushes":
                         // Bushes
-                        result += "B";
+                        result += "<span style=\"color:red;\">B</span>";
                         break;
                     case "Binoculars":
                         // Binoculars = "Field Glasses"
@@ -292,7 +292,7 @@ Map.prototype.map_string = function() {
                         break;
                     case "PowerBar":
                         // Power Bar
-                        result += "P";
+                        result += "<span style=\"color:purple;\">P</span>";
                         break;
                     case "Axe":
                         //Axe
@@ -326,11 +326,11 @@ Map.prototype.map_string = function() {
                                 break;
                             case 4:
                                 // Bog
-                                result += ",";
+                                result += "%";
                                 break;
                             case 5:
                                 // Swamp
-                                result += "%";
+                                result += ",";
                                 break;
 
                             default:
@@ -382,6 +382,7 @@ Map.prototype.binoculars = function ()
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.binoculars = true;
             this.hero.update_whiffles(-50);
+            this.hero.inventory.add_item("Binoculars");
         }
     }
 }

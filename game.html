@@ -11,7 +11,94 @@
     <script>
         //if there is no map in local storage, use the default map
         if(localStorage.getItem('map')===null){
-            text = "Sample Frugal Game Map 20 ##################### 12,13 100 1000 Axe Axe Shears Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree";
+            text = "Sample Frugal Game Map " +
+                "20 " +
+                "##################### " +
+                "12,13 " +
+                "100 " +
+                "1000 " +
+                "Axe " +
+                "Shears " +
+                "Rock " +
+                "##################### " +
+                "1,13,0,0,Boulder " +
+                "1,6,0,0,Boulder " +
+                "1,8,0,0,PowerBar " +
+                "3,12,0,0,Tree " +
+                "3,12,0,0,Tree " +
+                "3,5,0,0,Boulder " +
+                "5,15,0,0,Shears " +
+                "5,17,0,0,Shears " +
+                "5,5,0,4,Tree " +
+                "5,6,0,4,None " +
+                "5,7,0,4,None " +
+                "5,8,0,4,Binoculars " +
+                "5,9,0,4,None " +
+                "5,10,0,4,None " +
+                "6,2,0,0,PowerBar " +
+                "6,5,0,4,None " +
+                "6,6,0,4,Shears " +
+                "6,7,0,4,None " +
+                "6,8,0,4,PowerBar " +
+                "6,9,0,4,None " +
+                "6,10,0,4,None " +
+                "7,0,0,0,Boulder " +
+                "7,15,0,0,Axe " +
+                "7,17,0,0,Axe " +
+                "7,3,0,0,Tree " +
+                "7,5,0,4,None " +
+                "7,6,0,4,None " +
+                "7,7,0,4,Boulder " +
+                "7,8,0,4,None " +
+                "7,9,0,4,None " +
+                "7,10,0,4,None " +
+                "8,1,0,0,Binoculars " +
+                "8,5,0,4,None " +
+                "8,6,0,4,None " +
+                "8,7,0,4,None " +
+                "8,8,0,4,None " +
+                "8,9,0,4,None " +
+                "8,10,0,4,None " +
+                "9,5,0,4,None " +
+                "9,6,0,4,None " +
+                "9,7,0,4,None " +
+                "9,8,0,4,None " +
+                "9,9,0,4,None " +
+                "9,10,0,4,None " +
+                "9,15,0,0,Rock " +
+                "9,17,0,0,Rock " +
+                "10,7,0,0,Binoculars " +
+                "11,0,0,2,None " +
+                "11,1,0,2,None " +
+                "11,2,0,2,None " +
+                "11,3,0,2,None " +
+                "11,5,0,0,PowerBar " +
+                "12,0,0,2,None " +
+                "12,1,0,2,None " +
+                "12,2,0,2,None " +
+                "12,3,0,2,None " +
+                "12,7,0,0,PowerBar " +
+                "13,0,0,2,None " +
+                "13,1,0,2,None " +
+                "13,2,0,2,None " +
+                "13,3,0,2,None " +
+                "14,0,0,2,None " +
+                "14,1,0,2,None " +
+                "14,2,0,2,None " +
+                "14,3,0,2,None " +
+                "15,0,0,2,None " +
+                "15,12,0,0,BlackberryBushes " +
+                "15,15,0,0,BlackberryBushes " +
+                "15,2,0,2,None " +
+                "15,3,0,2,None " +
+                "15,9,0,0,BlackberryBushes " +
+                "16,0,0,2,None " +
+                "16,1,0,2,None " +
+                "16,2,0,2,None " +
+                "16,3,0,2,None " +
+                "18,12,0,0,BlackberryBushes " +
+                "18,15,0,0,BlackberryBushes " +
+                "18,18,1,0,Binoculars";
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map) );
         }
@@ -32,6 +119,10 @@
     </script>
   <body>
     <h1>Welcome to Frupal</h1>
+    <form action="index.html" method="post">
+        <button type="submit">Back to Home Page</button>
+    </form>
+    <br>
     <table>
       <tr>
         <th></th>
@@ -61,6 +152,9 @@
     <b>Load Map</b>
     <input type="file" onchange='openFile(event)'/>
     <output id="map"></output>
+    <td id="clearstorage">
+        <button type='button' onclick='localStorage.clear()';>Clear Local Storage</button>
+    </td>
     <br>
     <table>
         <td>
@@ -69,9 +163,6 @@
         <td id="inventory">
             <button type='button' onclick='open_inventory()'>OPEN INVENTORY</button>
         </td>
-				<tr id="clearstorage">
-            <button type='button' onclick='localStorage.clear()'>RESET</button>
-				</tr>
     </table>
     <script>
         game_map.update();
