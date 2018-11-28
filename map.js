@@ -112,13 +112,31 @@ Map.prototype.move = function(x,y)
     }
     // Check for tool
     if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
-        this.purchase_item("Axe");
+        this.purchase_item("Axe", 30);
     }
     if(this.cells[this.hero.x][this.hero.y].object === "Shears") {
-        this.purchase_item("Shears");
+        this.purchase_item("Shears", 35);
     }
     if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
-        this.purchase_item("Rock");
+        this.purchase_item("Rock", 1);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Machete") {
+        this.purchase_item("Machete", 25);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Hatchet") {
+        this.purchase_item("Hatchet", 15);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Chainsaw") {
+        this.purchase_item("Chainsaw", 60);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Chisel") {
+        this.purchase_item("Chisel", 5);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Sledge") {
+        this.purchase_item("Sledge", 25);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Jackhammer") {
+        this.purchase_item("Jackhammer", 100);
     }
 
     // Compare hero's current cell terrain with bog value
@@ -307,6 +325,30 @@ Map.prototype.map_string = function() {
                         //Rock
                         result += "<span style=\"color:green;\">R</span>";
                         break;
+                    case "Machete":
+                        //Machete
+                        result += "<span style=\"color:green;\">M</span>";
+                        break;
+                    case "Chainsaw":
+                        //Chainsaw
+                        result += "<span style=\"color:green;\">X</span>";
+                        break;
+                    case "Jackhammer":
+                        //Jackhammer
+                        result += "<span style=\"color:green;\">J</span>";
+                        break;
+                    case "Chisel":
+                        //Chisel
+                        result += "<span style=\"color:green;\">H</span>";
+                        break;
+                    case "Sledge":
+                        //Sledge
+                        result += "<span style=\"color:green;\">L</span>";
+                        break;
+                    case "Hatchet":
+                        //Hatchet
+                        result += "<span style=\"color:green;\">T</span>";
+                        break;
                     case "None":
                         switch(cell.terrain) {
                             case 0:
@@ -402,18 +444,18 @@ Map.prototype.check_chests = function () {
 }
 
 
-Map.prototype.purchase_item = function(item_type) {
-    if(this.hero.check_balance(60) === false)
+Map.prototype.purchase_item = function(item_type, item_cost) {
+    if(this.hero.check_balance(item_cost) === false)
     {
         alert("You do not have enough whiffles for " + item_type);
     }
     else
     {
-        var result = window.confirm("Would you like to purchase " + item_type + " for 60 Whiffles?");
+        var result = window.confirm("Would you like to purchase " + item_type + " for " + item_cost + " Whiffles?");
         if(result){
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.inventory.add_item(item_type);
-            this.hero.update_whiffles(-60);
+            this.hero.update_whiffles(-item_cost);
         }
     }
 }
