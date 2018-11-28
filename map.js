@@ -103,12 +103,22 @@ Map.prototype.move = function(x,y)
         this.hero.y = nexty;
     }
     //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object === "Power Bar") {
+    if(this.cells[this.hero.x][this.hero.y].object === "PowerBar") {
         this.powerBar();
     }
     // Check for binoculars
     if(this.cells[this.hero.x][this.hero.y].object === "Binoculars") {
         this.binoculars();
+    }
+    // Check for tool
+    if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
+        this.purchase_item("Axe");
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Shears") {
+        this.purchase_item("Shears");
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
+        this.purchase_item("Rock");
     }
 
     // Compare hero's current cell terrain with bog value
@@ -147,7 +157,7 @@ Map.prototype.isObstacle = function()
         this.hero.energy -= 16;
         this.cells[this.hero.x][this.hero.y].object = "None";
     }
-    else if(currentObject === "BlackBerry Bushes")
+    else if(currentObject === "BlackberryBushes")
     {
         this.hero.energy -= 4;
         this.cells[this.hero.x][this.hero.y].object = "None";
@@ -179,6 +189,8 @@ Map.prototype.player_lost = function()
 //  It will also update the map's visibility.
 Map.prototype.update = function()
 {
+    //check for treasure chests
+    this.check_chests();
     var view_distance = 1;
     if(this.hero.binoculars) {
         view_distance = 2;
@@ -208,8 +220,6 @@ Map.prototype.update = function()
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
     localStorage.setItem('map', JSON.stringify(game_map) );
 
-    //check for treasure chests
-    this.check_chests();
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
@@ -258,7 +268,7 @@ Map.prototype.map_string = function() {
                         // Rock
                         result += "R";
                         break;
-                    case "Blackberry Bushes":
+                    case "BlackberryBushes":
                         // Bushes
                         result += "B";
                         break;
@@ -278,9 +288,21 @@ Map.prototype.map_string = function() {
                         //chest type 2 looks the same as 1
                         result += "<span style=\"color:orange;\">C</span>";
                         break;
-                    case "Power Bar":
+                    case "PowerBar":
                         // Power Bar
                         result += "P";
+                        break;
+                    case "Axe":
+                        //Axe
+                        result += "<span style=\"color:green;\">A</span>";
+                        break;
+                    case "Shears":
+                        //Sheers
+                        result += "<span style=\"color:green;\">S</span>";
+                        break;
+                    case "Rock":
+                        //Rock
+                        result += "<span style=\"color:green;\">R</span>";
                         break;
                     case "None":
                         switch(cell.terrain) {
@@ -308,6 +330,7 @@ Map.prototype.map_string = function() {
                                 // Swamp
                                 result += "%";
                                 break;
+
                             default:
                                 result += "?";
                                 break;
@@ -334,7 +357,7 @@ Map.prototype.powerBar = function ()
         alert("You do not have enough whiffles for a Power Bar.")
     } else {
         //prompt user
-        var result = window.confirm("Would You like to purchase a POWER BAR for 1 Whiffle?");
+        var result = window.confirm("Would You like to purchase a POWER BAR (20 energy units) for 1 Whiffle?");
         if (result) {
             //if purchased, remove from mapCell
             this.cells[this.hero.x][this.hero.y].object = "None";
@@ -371,5 +394,22 @@ Map.prototype.check_chests = function () {
     if(this.cells[this.hero.x][this.hero.y].object == "Chest 2"){
         this.hero.whiffles = 0;
         this.cells[this.hero.x][this.hero.y].object = "None";
+    }
+}
+
+
+Map.prototype.purchase_item = function(item_type) {
+    if(this.hero.check_balance(300) === false)
+    {
+        alert("You do not have enough whiffles for " + item_type);
+    }
+    else
+    {
+        var result = window.confirm("Would you like to purchase " + item_type + " for 300 Whiffle?");
+        if(result){
+            this.cells[this.hero.x][this.hero.y].object = "None";
+            this.hero.inventory.add_item(item_type);
+            this.hero.update_whiffles(-300);
+        }
     }
 }

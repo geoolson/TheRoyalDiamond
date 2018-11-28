@@ -7,6 +7,7 @@ function Hero(x, y, energy, whiffles, binoculars) {
     this.y = parseInt(y);
     this.energy = energy;
     this.whiffles = whiffles;
+    this.inventory = new Inventory();
     this.binoculars = binoculars;
 
 
@@ -69,5 +70,8 @@ function Hero(x, y, energy, whiffles, binoculars) {
     }
     this.display_energy = function () {
         return this.energy;
+    }
+    this.display_inventory = function() {
+        document.getElementById("inventory").innerHTML = this.inventory.display_inventory();
     }
 }

@@ -2,6 +2,7 @@
 	<head>
 		<title>Frupal</title>
 	</head>
+    <script src="inventory.js"></script>
     <script src="hero.js"></script>
     <script src="cell.js"></script>
     <script src="map.js"></script>
@@ -10,7 +11,7 @@
     <script>
         //if there is no map in local storage, use the default map
         if(localStorage.getItem('map')===null){
-            text = "Sample Frugal Game Map 25 ##################### 12,13 103 1000 Axe Axe Shears Pretty Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree";
+            text = "Sample Frugal Game Map 20 ##################### 12,13 100 1000 Axe Axe Shears Rock ##################### 12,12,1,1,None 13,12,0,1,Tree 14,12,0,2,None 24,10,0,2,Tree 15,7,1,4,Tree 18,9,0,3,Tree";
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map) );
         }
@@ -19,6 +20,15 @@
             var localFile = JSON.parse(localStorage.getItem('map'));
             game_map = new Map(localFile);
         }
+        function close_inventory()
+        {
+            document.getElementById("inventory").innerHTML = "<button type='button' onclick='open_inventory()'>OPEN INVENTORY</button>";
+        }
+        function open_inventory()
+        {
+            game_map.hero.display_inventory();
+        }
+
     </script>
   <body>
     <h1>Welcome to Frupal</h1>
@@ -52,9 +62,39 @@
     <input type="file" onchange='openFile(event)'/>
     <output id="map"></output>
     <br>
+    <table>
+        <td>
     <pre style='line-height: 14px; letter-spacing: 4px; font-family: "Courier-New",monospace; border-style: solid; display: inline-block;' id="map_box"></pre>
+        </td>
+        <td id="inventory">
+            <button type='button' onclick='open_inventory()'>OPEN INVENTORY</button>
+        </td>
+				<tr id="clearstorage">
+            <button type='button' onclick='localStorage.clear()'>RESET</button>
+				</tr>
+    </table>
     <script>
         game_map.update();
+        document.onkeydown = function (e) {
+            switch (e.keyCode) {
+                case 37: // left
+                    e.preventDefault();
+                    game_map.move_west();
+                    break;
+                case 38: // up
+                    e.preventDefault();
+                    game_map.move_north();
+                    break;
+                case 39: // right
+                    e.preventDefault();
+                    game_map.move_east();
+                    break;
+                case 40: // down
+                    e.preventDefault();
+                    game_map.move_south();
+                    break;
+            }
+        }
     </script>
   </body>
 </html>
