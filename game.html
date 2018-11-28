@@ -69,6 +69,9 @@
         <td id="inventory">
             <button type='button' onclick='open_inventory()'>OPEN INVENTORY</button>
         </td>
+				<tr id="clearstorage">
+            <button type='button' onclick='localStorage.clear()'>RESET</button>
+				</tr>
     </table>
     <script>
         game_map.update();
@@ -91,7 +94,7 @@
                     game_map.move_south();
                     break;
             }
-        }    
+        }
     </script>
   </body>
 </html>
