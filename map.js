@@ -221,7 +221,8 @@ Map.prototype.update = function()
     document.getElementById("location").value  = this.hero.display_location();
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
-    localStorage.setItem('map', JSON.stringify(game_map) );
+    document.getElementById("inventory").innerHTML = this.hero.inventory.display_inventory();
+        localStorage.setItem('map', JSON.stringify(game_map) );
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
@@ -402,17 +403,17 @@ Map.prototype.check_chests = function () {
 
 
 Map.prototype.purchase_item = function(item_type) {
-    if(this.hero.check_balance(300) === false)
+    if(this.hero.check_balance(60) === false)
     {
         alert("You do not have enough whiffles for " + item_type);
     }
     else
     {
-        var result = window.confirm("Would you like to purchase " + item_type + " for 300 Whiffle?");
+        var result = window.confirm("Would you like to purchase " + item_type + " for 60 Whiffles?");
         if(result){
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.inventory.add_item(item_type);
-            this.hero.update_whiffles(-300);
+            this.hero.update_whiffles(-60);
         }
     }
 }
