@@ -208,6 +208,12 @@ Map.prototype.update = function()
         }
     }
 
+    // Message needs to come before checking for (and removing) chests.
+    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+
+    //check for treasure chests
+    this.check_chests();
+
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
@@ -215,11 +221,7 @@ Map.prototype.update = function()
     document.getElementById("location").value  = this.hero.display_location();
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
-    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
     localStorage.setItem('map', JSON.stringify(game_map) );
-
-    //check for treasure chests
-    this.check_chests();
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
