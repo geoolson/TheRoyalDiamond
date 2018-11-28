@@ -38,7 +38,7 @@ function Inventory(inventory)
         //go through the array of arrays.  At each subarray, add that subarray[0] to the html, and add "x" and add the subarray's size.
         for(var i = 1; i < this.list.length; i++)
         {
-            inventory_to_html += ("<p>" + this.list[i][0] + " x" + this.list[i].length + " ---- Cost: $300 ea.</p>");
+            inventory_to_html += ("<p>" + this.list[i][0] + " x" + this.list[i].length + " ---- Cost: $60 ea.</p>");
         }
         inventory_to_html += '<button type="button" onclick="close_inventory()">CLOSE</button>';
         return inventory_to_html;
