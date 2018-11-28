@@ -1,8 +1,13 @@
 //This class will hold all of the player's inventory data.
-function Inventory()
+function Inventory(inventory)
 {
-    //Data Members:
-    this.list = [[""]];
+    if (inventory === undefined) {
+        //Data Members:
+        this.list = [[""]];
+    } else {
+        // Restore from JSON
+        this.list = inventory.list;
+    }
 
     //Member Functions:
     this.add_item = function(new_item)

@@ -29,7 +29,10 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     //copy constructor
     if(height === undefined ){
         var state = width;
-        this.hero = new Hero(state.hero.x, state.hero.y, state.hero.energy, state.hero.whiffles, state.hero.binoculars);
+        this.hero = new Hero(state.hero.x, state.hero.y, 
+                             state.hero.energy, state.hero.whiffles, 
+                             state.hero.binoculars, 
+                             state.hero.inventory);
         this.width = state.width;
         this.height = state.height;
         this.diamond_x = state.diamond_x;
