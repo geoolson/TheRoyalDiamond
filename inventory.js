@@ -1,8 +1,13 @@
 //This class will hold all of the player's inventory data.
-function Inventory()
+function Inventory(inventory)
 {
-    //Data Members:
-    this.list = [[""]];
+    if (inventory === undefined) {
+        //Data Members:
+        this.list = [[""]];
+    } else {
+        // Restore from JSON
+        this.list = inventory.list;
+    }
 
     //Member Functions:
     this.add_item = function(new_item)
@@ -33,7 +38,28 @@ function Inventory()
         //go through the array of arrays.  At each subarray, add that subarray[0] to the html, and add "x" and add the subarray's size.
         for(var i = 1; i < this.list.length; i++)
         {
-            inventory_to_html += ("<p>" + this.list[i][0] + " x" + this.list[i].length + " ---- Cost: $300 ea.</p>");
+            var cost = 0;
+            if(this.list[i][0] == "Rock")
+                cost = 1;
+            else if(this.list[i][0] == "Shears")
+                cost = 35;
+            else if(this.list[i][0] == "Axe")
+                cost = 30;
+            else if(this.list[i][0] == "Hatchet")
+                cost = 15;
+            else if(this.list[i][0] == "Chainsaw")
+                cost = 60;
+            else if(this.list[i][0] == "Chisel")
+                cost = 5;
+            else if(this.list[i][0] == "Sledge")
+                cost = 25;
+            else if(this.list[i][0] == "Jackhammer")
+                cost = 100;
+            else if(this.list[i][0] == "Machete")
+                cost = 25;
+            else
+                cost = 1;
+            inventory_to_html += ("<p>" + this.list[i][0] + " x" + this.list[i].length + " ---- Cost: $" + cost + " ea.</p>");
         }
         inventory_to_html += '<button type="button" onclick="close_inventory()">CLOSE</button>';
         return inventory_to_html;

@@ -29,7 +29,10 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     //copy constructor
     if(height === undefined ){
         var state = width;
-        this.hero = new Hero(state.hero.x, state.hero.y, state.hero.energy, state.hero.whiffles, state.hero.binoculars);
+        this.hero = new Hero(state.hero.x, state.hero.y, 
+                             state.hero.energy, state.hero.whiffles, 
+                             state.hero.binoculars, 
+                             state.hero.inventory);
         this.width = state.width;
         this.height = state.height;
         this.diamond_x = state.diamond_x;
@@ -112,13 +115,31 @@ Map.prototype.move = function(x,y)
     }
     // Check for tool
     if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
-        this.purchase_item("Axe");
+        this.purchase_item("Axe", 30);
     }
     if(this.cells[this.hero.x][this.hero.y].object === "Shears") {
-        this.purchase_item("Shears");
+        this.purchase_item("Shears", 35);
     }
     if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
-        this.purchase_item("Rock");
+        this.purchase_item("Rock", 1);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Machete") {
+        this.purchase_item("Machete", 25);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Hatchet") {
+        this.purchase_item("Hatchet", 15);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Chainsaw") {
+        this.purchase_item("Chainsaw", 60);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Chisel") {
+        this.purchase_item("Chisel", 5);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Sledge") {
+        this.purchase_item("Sledge", 25);
+    }
+    if(this.cells[this.hero.x][this.hero.y].object === "Jackhammer") {
+        this.purchase_item("Jackhammer", 100);
     }
 
     // Compare hero's current cell terrain with bog value
@@ -189,8 +210,6 @@ Map.prototype.player_lost = function()
 //  It will also update the map's visibility.
 Map.prototype.update = function()
 {
-    //check for treasure chests
-    this.check_chests();
     var view_distance = 1;
     if(this.hero.binoculars) {
         view_distance = 2;
@@ -210,6 +229,12 @@ Map.prototype.update = function()
         }
     }
 
+    // Message needs to come before checking for (and removing) chests.
+    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+
+    //check for treasure chests
+    this.check_chests();
+
     //Update the map displayed on the page:
     document.getElementById("map_box").innerHTML = this.map_string();
 
@@ -217,9 +242,8 @@ Map.prototype.update = function()
     document.getElementById("location").value  = this.hero.display_location();
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
-    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
-    localStorage.setItem('map', JSON.stringify(game_map) );
-
+    document.getElementById("inventory").innerHTML = this.hero.inventory.display_inventory();
+        localStorage.setItem('map', JSON.stringify(game_map) );
 
     //check diamonds
     if ((this.hero.x === this.diamond_x) && (this.hero.y === this.diamond_y))
@@ -262,15 +286,15 @@ Map.prototype.map_string = function() {
                 switch(cell.object) {
                     case "Tree":
                         // Tree
-                        result += "T";
+                        result += "<span style=\"color:red;\">T</span>";
                         break;
                     case "Boulder":
                         // Rock
-                        result += "R";
+                        result += "<span style=\"color:red;\">R</span>";
                         break;
                     case "BlackberryBushes":
                         // Bushes
-                        result += "B";
+                        result += "<span style=\"color:red;\">B</span>";
                         break;
                     case "Binoculars":
                         // Binoculars = "Field Glasses"
@@ -290,7 +314,7 @@ Map.prototype.map_string = function() {
                         break;
                     case "PowerBar":
                         // Power Bar
-                        result += "P";
+                        result += "<span style=\"color:purple;\">P</span>";
                         break;
                     case "Axe":
                         //Axe
@@ -303,6 +327,30 @@ Map.prototype.map_string = function() {
                     case "Rock":
                         //Rock
                         result += "<span style=\"color:green;\">R</span>";
+                        break;
+                    case "Machete":
+                        //Machete
+                        result += "<span style=\"color:green;\">M</span>";
+                        break;
+                    case "Chainsaw":
+                        //Chainsaw
+                        result += "<span style=\"color:green;\">X</span>";
+                        break;
+                    case "Jackhammer":
+                        //Jackhammer
+                        result += "<span style=\"color:green;\">J</span>";
+                        break;
+                    case "Chisel":
+                        //Chisel
+                        result += "<span style=\"color:green;\">H</span>";
+                        break;
+                    case "Sledge":
+                        //Sledge
+                        result += "<span style=\"color:green;\">L</span>";
+                        break;
+                    case "Hatchet":
+                        //Hatchet
+                        result += "<span style=\"color:green;\">T</span>";
                         break;
                     case "None":
                         switch(cell.terrain) {
@@ -324,11 +372,11 @@ Map.prototype.map_string = function() {
                                 break;
                             case 4:
                                 // Bog
-                                result += ",";
+                                result += "%";
                                 break;
                             case 5:
                                 // Swamp
-                                result += "%";
+                                result += ",";
                                 break;
 
                             default:
@@ -380,6 +428,7 @@ Map.prototype.binoculars = function ()
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.binoculars = true;
             this.hero.update_whiffles(-50);
+            this.hero.inventory.add_item("Binoculars");
         }
     }
 }
@@ -398,18 +447,18 @@ Map.prototype.check_chests = function () {
 }
 
 
-Map.prototype.purchase_item = function(item_type) {
-    if(this.hero.check_balance(300) === false)
+Map.prototype.purchase_item = function(item_type, item_cost) {
+    if(this.hero.check_balance(item_cost) === false)
     {
         alert("You do not have enough whiffles for " + item_type);
     }
     else
     {
-        var result = window.confirm("Would you like to purchase " + item_type + " for 300 Whiffle?");
+        var result = window.confirm("Would you like to purchase " + item_type + " for " + item_cost + " Whiffles?");
         if(result){
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.inventory.add_item(item_type);
-            this.hero.update_whiffles(-300);
+            this.hero.update_whiffles(-item_cost);
         }
     }
 }

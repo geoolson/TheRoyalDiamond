@@ -52,7 +52,7 @@
             var starting_y = form.starting_y.value;
             var starting_whiffles = form.starting_whiffles.value;
             var starting_energy = form.elements.starting_energy.value;
-            text = 'Sample Frugal Game Map' + size + ' ##################### ' + starting_x + ',' + starting_y + ' ' + starting_energy + ' ' + starting_whiffles + 'Axe Axe Sheers Rock ##################### 12,12,1,1, None 13,12,0,1, Tree 14,12,0,2, None';
+            text = 'Sample Frugal Game Map' + size + ' ##################### ' + starting_x + ',' + starting_y + ' ' + starting_energy + ' ' + starting_whiffles + 'Axe Axe Sheers Rock ##################### 12,12,0,0, None 13,12,0,0, Tree 14,12,0,2, None';
             dimensions();
             localStorage.setItem('map', JSON.stringify(game_map));
         }
@@ -61,6 +61,9 @@
 </head>
 <body>
     <h1>Frupal Config</h1>
+    <form action="index.html" method="post">
+        <button type="submit">Back to Home Page</button>
+    </form>
     <h2>Enter Preferences:</h2>
     <form id="preferences" method="post" action="game.html">
         <p>Map Height (all maps are square): <input type="text" name="size" id="size" value="25"></p>
