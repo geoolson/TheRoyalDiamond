@@ -57,6 +57,8 @@ function Inventory(inventory)
                 cost = 100;
             else if(this.list[i][0] == "Machete")
                 cost = 25;
+            else if(this.list[i][0] == "Binoculars")
+                cost = 50;
             else
                 cost = 1;
             inventory_to_html += ("<p>" + this.list[i][0] + " x" + this.list[i].length + " ---- Cost: $" + cost + " ea.</p>");
