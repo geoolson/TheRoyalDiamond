@@ -105,6 +105,10 @@ Map.prototype.move = function(x,y)
         this.hero.x = nextx;
         this.hero.y = nexty;
     }
+
+    // Message needs to come before checking for (and removing) chests.
+    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
+
     //update balances if hero PURCHASES a POWER BAR
     if(this.cells[this.hero.x][this.hero.y].object === "PowerBar") {
         this.powerBar();
@@ -229,8 +233,6 @@ Map.prototype.update = function()
         }
     }
 
-    // Message needs to come before checking for (and removing) chests.
-    document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 
     //check for treasure chests
     this.check_chests();
