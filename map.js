@@ -278,125 +278,66 @@ Map.prototype.place_chests = function(){
 
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
-    result = "";
-    for (var j = this.height-1; j >= 0; --j) {
-        for (var i = 0; i < this.width; ++i) {
-            var cell = this.cells[i][j];
-            if (j === this.hero.y && i === this.hero.x) {
-                result += "<b>@</b>";
-            } else if(cell.isVisible) {
-                switch(cell.object) {
-                    case "Tree":
-                        // Tree
-                        result += "<span style=\"color:red;\">T</span>";
-                        break;
-                    case "Boulder":
-                        // Rock
-                        result += "<span style=\"color:red;\">R</span>";
-                        break;
-                    case "BlackberryBushes":
-                        // Bushes
-                        result += "<span style=\"color:red;\">B</span>";
-                        break;
-                    case "Binoculars":
-                        // Binoculars = "Field Glasses"
-                        result += "F";
-                        break;
-                    case "Royal Diamonds":
-                        // Diamonds
-                        result += "<span style=\"color:blue;\">D</span>";
-                        break;
-                    case "Chest 1":
-                        //chest type 1
-                        result += "<span style=\"color:orange;\">C</span>";
-                        break;
-                    case "Chest 2":
-                        //chest type 2 looks the same as 1
-                        result += "<span style=\"color:orange;\">C</span>";
-                        break;
-                    case "PowerBar":
-                        // Power Bar
-                        result += "<span style=\"color:purple;\">P</span>";
-                        break;
-                    case "Axe":
-                        //Axe
-                        result += "<span style=\"color:green;\">A</span>";
-                        break;
-                    case "Shears":
-                        //Sheers
-                        result += "<span style=\"color:green;\">S</span>";
-                        break;
-                    case "Rock":
-                        //Rock
-                        result += "<span style=\"color:green;\">R</span>";
-                        break;
-                    case "Machete":
-                        //Machete
-                        result += "<span style=\"color:green;\">M</span>";
-                        break;
-                    case "Chainsaw":
-                        //Chainsaw
-                        result += "<span style=\"color:green;\">X</span>";
-                        break;
-                    case "Jackhammer":
-                        //Jackhammer
-                        result += "<span style=\"color:green;\">J</span>";
-                        break;
-                    case "Chisel":
-                        //Chisel
-                        result += "<span style=\"color:green;\">H</span>";
-                        break;
-                    case "Sledge":
-                        //Sledge
-                        result += "<span style=\"color:green;\">L</span>";
-                        break;
-                    case "Hatchet":
-                        //Hatchet
-                        result += "<span style=\"color:green;\">T</span>";
-                        break;
-                    case "None":
-                        switch(cell.terrain) {
-                            case 0:
-                                // Meadow
-                                result += "-";
-                                break;
-                            case 1:
-                                // Forest
-                                result += ";";
-                                break;
-                            case 2:
-                                // Water
-                                result += "~";
-                                break;
-                            case 3:
-                                // Wall
-                                result += "#";
-                                break;
-                            case 4:
-                                // Bog
-                                result += "%";
-                                break;
-                            case 5:
-                                // Swamp
-                                result += ",";
-                                break;
-
-                            default:
-                                result += "?";
-                                break;
-                        }
-                        break;
-                    default:
-                        result += "?";
-                        break;
-                }
-            } else {
-                result += " ";
-            }
+  let result = "";
+  function genElement(cellObject, terrain)
+  {
+    let cells = {
+      "Tree": { color: "red", character: "T"},
+      "Boulder": { color: "red", character: "R"},
+      "BlackberryBushes": { color: "red", character: "B"},
+      "Binoculars": { color: "black", character: "F"},
+      "Royal Diamonds": { color: "blue", character: "D"},
+      "Chest 1": { color: "orange", character: "C"},
+      "Chest 2": { color: "orange", character: "C"},
+      "PowerBar": { color: "purple", character: "P"},
+      "Axe": { color: "green", character: "A"},
+      "Shears": { color: "green", character: "S"},
+      "Rock": { color: "green", character: "R"},
+      "Machete": { color: "green", character: "M"},
+      "Chainsaw": { color: "green", character: "X"},
+      "Jackhammer": { color: "green", character: "J"},
+      "Chisel": { color: "green", character: "H"},
+      "Sledge": { color: "green", character: "L"},
+      "Hatchet": { color: "green", character: "T"},
+      "None": function(terrain)
+      {
+        let charArray = ["-", ";", "~", "#", "%", ","];
+        try{
+          return charArray[terrain];
         }
-        result += "<br>";
+        catch(err){
+          return "?";
+        }
+      }
+    };
+    if(cellObject === "None")
+      return cells.None(terrain);
+    else
+    {
+      let cellColor = cells[cellObject].color;
+      let cellCharacter = cells[cellObject].character;
+      return `<span style="color:${cellColor};">${cellCharacter}</span>`;
     }
-    return result;
+  }
+
+  for (let j = this.height-1; j >= 0; --j)
+  {
+    for (let i = 0; i < this.width; ++i)
+    {
+      let cell = this.cells[i][j];
+      if (j === this.hero.y && i === this.hero.x) {
+        result += "<b>@</b>";
+      } 
+      else if(cell.isVisible) 
+      {
+        result += genElement(cell.object, cell.terrain);
+      } 
+      else 
+        result += " ";
+    }
+    result += "<br>";
+  }
+  return result;
 }
 
 
