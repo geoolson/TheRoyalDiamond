@@ -320,18 +320,15 @@ Map.prototype.map_string = function() {
     }
   }
 
-  for (let j = this.height-1; j >= 0; --j)
+  for (let y = this.height-1; y >= 0; --y)
   {
-    for (let i = 0; i < this.width; ++i)
+    for (let x = 0; x < this.width; ++x)
     {
-      let cell = this.cells[i][j];
-      if (j === this.hero.y && i === this.hero.x) {
+      let cell = this.cells[x][y];
+      if (y === this.hero.y && x === this.hero.x)
         result += "<b>@</b>";
-      } 
       else if(cell.isVisible) 
-      {
         result += genElement(cell.object, cell.terrain);
-      } 
       else 
         result += " ";
     }
