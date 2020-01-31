@@ -301,9 +301,9 @@ Map.prototype.map_string = function() {
       "Hatchet": { color: "green", character: "T"},
       "None": function(terrain)
       {
-        let charArray = ["-", ";", "~", "#", "%", ","];
+        let terrainCells = ["-", ";", "~", "#", "%", ","];
         try{
-          return charArray[terrain];
+          return terrainCells[terrain];
         }
         catch(err){
           return "?";
