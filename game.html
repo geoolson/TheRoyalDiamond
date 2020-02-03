@@ -177,6 +177,8 @@
     <script>
         game_map.update();
         document.onkeydown = function (e) {
+          if (game_map.hero.display_energy() >= 0)
+          {
             switch (e.keyCode) {
                 case 37: // left
                     e.preventDefault();
@@ -195,6 +197,7 @@
                     game_map.move_south();
                     break;
             }
+          }
         }
     </script>
   </body>
