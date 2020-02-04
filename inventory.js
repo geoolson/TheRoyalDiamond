@@ -1,13 +1,7 @@
 //This class will hold all of the player's inventory data.
-function Inventory(inventory)
+function Inventory(inventory={"list": [[""]]})
 {
-    if (inventory === undefined) {
-        //Data Members:
-        this.list = [[""]];
-    } else {
-        // Restore from JSON
-        this.list = inventory.list;
-    }
+    this.list = inventory.list;
 
     //Member Functions:
     this.add_item = function(new_item)
@@ -26,10 +20,7 @@ function Inventory(inventory)
         }
         //If the item doesn't exist anywhere in the list, we should push a new array onto the list.
         if(!already_exists)
-        {
-            //alert("This item did not exist in your inventory, so we will add it.");
             this.list.push([new_item]);
-        }
     }
     this.display_inventory = function()
     {
