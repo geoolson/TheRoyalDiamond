@@ -95,6 +95,9 @@ Map.prototype.move_west = function()
 
 Map.prototype.move = function(x,y)
 {
+    // exit function early if hero has no energy
+    if(this.hero.energy <= 0)
+      return;
     nextx = (this.hero.x + x) % this.width;
     nexty = (this.hero.y + y) % this.height;
     if(nextx < 0)
