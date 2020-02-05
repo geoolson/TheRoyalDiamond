@@ -1,6 +1,8 @@
 //This class will hold all of the player's inventory data.
 function Inventory(inventory={})
 {
+    // this.inventory stores key value pairs of the hero's inventory
+    // where the key is the item and the value is the quantity
     this.inventory = inventory;
 
     this.add_item = function(item){
@@ -27,6 +29,8 @@ function Inventory(inventory={})
     {
         let inventory_to_html = "<h3>Inventory</h3>";
         for (let [item, count] of Object.entries(this.inventory)) {
+            // example of templated string appended to inventory_to_html:
+            //   <p>Axe x2 ---- Cost: $30 ea.</p>
             inventory_to_html += `<p>${item} x${count} ---- Cost: \$${this.costs[item]} ea.</p>`;
         }
         inventory_to_html += '<button type="button" onclick="close_inventory()">CLOSE</button>';
