@@ -28,10 +28,14 @@ function Inventory(inventory={})
     this.display_inventory = function()
     {
         let inventory_to_html = "<h3>Inventory</h3>";
-        for (let [item, count] of Object.entries(this.inventory)) {
+        Object.keys(this.inventory).forEach( item => {
             // example of templated string appended to inventory_to_html:
             //   <p>Axe x2 ---- Cost: $30 ea.</p>
-            inventory_to_html += `<p>${item} x${count} ---- Cost: \$${this.costs[item]} ea.</p>`;
+            let cost = this.costs[item];
+            let count = this.inventory[item];
+            inventory_to_html += `<p>${item} x${count} ---- Cost: \$${cost} ea.</p>`;
+        });
+        for (let [item, count] of Object.entries(this.inventory)) {
         }
         inventory_to_html += '<button type="button" onclick="close_inventory()">CLOSE</button>';
         return inventory_to_html;
