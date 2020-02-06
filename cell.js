@@ -9,7 +9,7 @@ function mapCell(x, y, isVisible, terrain, object) {
         this.x = 0;
         this.y = 0;
         this.isVisible = 0;
-        this.terrain = 0;
+        this.terrain = MEADOW;
         this.object = "None";
         return;
     }
