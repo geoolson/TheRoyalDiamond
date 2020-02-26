@@ -1,3 +1,11 @@
+// These constants are the different terrain types
+const MEADOW = 0;
+const FOREST = 1;
+const WATER = 2;
+const WALL = 3;
+const BOG = 4;
+const SWAMP = 5;
+
 //This class will hold all of the player's inventory data.
 function Inventory(inventory={})
 {

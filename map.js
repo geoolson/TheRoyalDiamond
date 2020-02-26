@@ -121,7 +121,7 @@ Map.prototype.move = function(x,y)
 
     // Compare hero's current cell terrain with bog value
     // and calls update hero stats tp deduct energy by 2
-    if(this.cells[this.hero.x][this.hero.y].terrain === 4) {
+    if(this.cells[this.hero.x][this.hero.y].terrain === BOG) {
         this.hero.update_energy(-2);
     }
     else{
@@ -137,7 +137,7 @@ Map.prototype.move = function(x,y)
 // checking if the cell contains water
 Map.prototype.isWater = function(x,y)
 {
-    return this.cells[x][y].terrain === 2;
+    return this.cells[x][y].terrain === WATER;
 };
 
 //checking for obstacle then removing said obstacle and decrementing hero's energy

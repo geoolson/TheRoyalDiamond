@@ -8,8 +8,8 @@ function mapCell(x, y, isVisible, terrain, object) {
     if (x === undefined) {
         this.x = 0;
         this.y = 0;
-        this.isVisible = 0;
-        this.terrain = 0;
+        this.isVisible = false;
+        this.terrain = MEADOW;
         this.object = "None";
         return;
     }
