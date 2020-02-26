@@ -61,8 +61,6 @@ function Map(width, height, starting_x, starting_y, starting_energy, starting_wh
     }
 }
 
-
-
 //Member Functions:
 
 //These functions move the hero.  They call the hero's move functions, and they
@@ -92,7 +90,6 @@ Map.prototype.move_west = function()
     this.move(-1,0);
 };
 
-
 Map.prototype.move = function(x,y)
 {
     // exit function early if hero has no energy
@@ -110,44 +107,17 @@ Map.prototype.move = function(x,y)
     }
 
     // Message needs to come before checking for (and removing) chests.
+    // Check for binoculars
     document.getElementById("message").value  = message(this.hero, this.cells[this.hero.x][this.hero.y]);
 
+    let item = this.cells[this.hero.x][this.hero.y].object;
     //update balances if hero PURCHASES a POWER BAR
-    if(this.cells[this.hero.x][this.hero.y].object === "PowerBar") {
+    if(item === "PowerBar")
         this.powerBar();
-    }
-    // Check for binoculars
-    if(this.cells[this.hero.x][this.hero.y].object === "Binoculars") {
+    else if(item === "Binoculars")
         this.binoculars();
-    }
-    // Check for tool
-    if(this.cells[this.hero.x][this.hero.y].object === "Axe") {
-        this.purchase_item("Axe", 30);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Shears") {
-        this.purchase_item("Shears", 35);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Rock") {
-        this.purchase_item("Rock", 1);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Machete") {
-        this.purchase_item("Machete", 25);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Hatchet") {
-        this.purchase_item("Hatchet", 15);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Chainsaw") {
-        this.purchase_item("Chainsaw", 60);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Chisel") {
-        this.purchase_item("Chisel", 5);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Sledge") {
-        this.purchase_item("Sledge", 25);
-    }
-    if(this.cells[this.hero.x][this.hero.y].object === "Jackhammer") {
-        this.purchase_item("Jackhammer", 100);
-    }
+    else if(item in this.hero.inventory.costs)
+        this.purchase_item(item, this.hero.inventory.costs[item]);
 
     // Compare hero's current cell terrain with bog value
     // and calls update hero stats tp deduct energy by 2
@@ -169,7 +139,6 @@ Map.prototype.isWater = function(x,y)
 {
     return this.cells[x][y].terrain === 2;
 };
-
 
 //checking for obstacle then removing said obstacle and decrementing hero's energy
 Map.prototype.isObstacle = function()
@@ -202,7 +171,6 @@ Map.prototype.player_won = function()
     localStorage.clear();
 };
 
-
 //This function will be called when the player has lost the game.  It
 // will do an end-game sequence.
 Map.prototype.player_lost = function()
@@ -210,8 +178,6 @@ Map.prototype.player_lost = function()
     window.location.replace("lose.html");
     localStorage.clear();
 };
-
-
 
 //  update the web page's information with the current information about the hero.
 //  It will also update the map's visibility.
@@ -277,7 +243,7 @@ Map.prototype.place_chests = function(){
           this.cells[x][y].object = "Chest 2";
         }
     }
-}
+};
 
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
@@ -338,8 +304,7 @@ Map.prototype.map_string = function() {
     result += "<br>";
   }
   return result;
-}
-
+};
 
 Map.prototype.powerBar = function ()
 {
@@ -356,7 +321,7 @@ Map.prototype.powerBar = function ()
             this.hero.update_whiffles(-1);
         }
     }
-}
+};
 
 Map.prototype.binoculars = function ()
 {
@@ -374,7 +339,7 @@ Map.prototype.binoculars = function ()
             this.hero.inventory.add_item("Binoculars");
         }
     }
-}
+};
 
 Map.prototype.check_chests = function () {
     //check chests
@@ -387,8 +352,7 @@ Map.prototype.check_chests = function () {
         this.hero.whiffles = 0;
         this.cells[this.hero.x][this.hero.y].object = "None";
     }
-}
-
+};
 
 Map.prototype.purchase_item = function(item_type, item_cost) {
     if(this.hero.check_balance(item_cost) === false)
@@ -404,4 +368,5 @@ Map.prototype.purchase_item = function(item_type, item_cost) {
             this.hero.update_whiffles(-item_cost);
         }
     }
-}
+};
+
