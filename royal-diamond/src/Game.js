@@ -27,6 +27,14 @@ function Game(props) {
       </table>
       <br/>
       <br/>
+      <form>
+        <br/>
+        <br/>
+        Current Location: <input id="location" type="text" value="(X, Y)"></input><br/>
+        Energy:           <input id="energy" type="text" value="0"></input><br/>
+        Whiffles:         <input id="whiffles" type="text" value="0"></input><br/>
+        Message:          <input id="message" type="text" value="Welcome to the island ..."></input>
+      </form>
     </div>
   );
 }
