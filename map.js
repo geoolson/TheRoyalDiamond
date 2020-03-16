@@ -116,8 +116,8 @@ Map.prototype.move = function(x,y)
         this.powerBar();
     else if(item === "Binoculars")
         this.binoculars();
-    else if(item in this.hero.inventory.costs)
-        this.purchase_item(item, this.hero.inventory.costs[item]);
+    else if(item in this.hero.costs)
+        this.purchase_item(item, this.hero.costs[item]);
 
     // Compare hero's current cell terrain with bog value
     // and calls update hero stats tp deduct energy by 2
@@ -213,7 +213,7 @@ Map.prototype.update = function()
     document.getElementById("location").value  = this.hero.display_location();
     document.getElementById("energy").value  = this.hero.display_energy();
     document.getElementById("whiffles").value  = this.hero.display_whiffles();
-    document.getElementById("inventory").innerHTML = this.hero.inventory.display_inventory();
+    this.hero.display_inventory();
         localStorage.setItem('map', JSON.stringify(game_map) );
 
     //check diamonds
@@ -268,15 +268,12 @@ Map.prototype.map_string = function() {
       "Chisel": { color: "green", character: "H"},
       "Sledge": { color: "green", character: "L"},
       "Hatchet": { color: "green", character: "T"},
-      "None": function(terrain)
+      "None": terrain =>
       {
         let terrainCells = ["-", ";", "~", "#", "%", ","];
-        try{
+        if(terrainCells[terrain])
           return terrainCells[terrain];
-        }
-        catch(err){
-          return "?";
-        }
+        return "?";
       }
     };
     if(cellObject === "None")
@@ -336,7 +333,7 @@ Map.prototype.binoculars = function ()
             this.cells[this.hero.x][this.hero.y].object = "None";
             this.hero.binoculars = true;
             this.hero.update_whiffles(-50);
-            this.hero.inventory.add_item("Binoculars");
+            this.hero.add_item("Binoculars");
         }
     }
 };

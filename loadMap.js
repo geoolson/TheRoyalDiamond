@@ -5,9 +5,19 @@ var openFile = function(event){
 
     var reader = new FileReader();
     reader.onload = function(){
-        text = reader.result;
-        dimensions(text);
-        game_map.update();
+      map = JSON.parse(reader.result);
+      console.log(map);
+      let dim = map.width;
+      let energy = map.hero.energy;
+      let whiffles = map.hero.whiffles;
+      let x = map.hero.x;
+      let y = map.hero.y;
+      game_map = new Map(dim, dim, x, y, energy, whiffles);
+      map.cells.forEach( cell => {
+        game_map.cells[cell.x][cell.y] = new mapCell(cell.x, cell.y, cell.isVisible, cell.terrainType, cell.object);
+      });
+      game_map.hero.inventory = map.hero.inventory;
+      game_map.update();
     };
     reader.readAsText(input.files[0]);
 };
@@ -59,7 +69,7 @@ function areDimensionsValid(dim, x, y){
 function parseInventory(game_map){
     //Get First Inventory Item from the file:
     var result = parseNextString();
-    game_map.hero.inventory.add_item(result);
+    game_map.hero.add_item(result);
     //if delimiter is reached begin parsing the game Cells.
     if(text[2] === '#')
         parseCell();
