@@ -6,7 +6,6 @@ var openFile = function(event){
     var reader = new FileReader();
     reader.onload = function(){
       map = JSON.parse(reader.result);
-      console.log(map);
       let dim = map.width;
       let energy = map.hero.energy;
       let whiffles = map.hero.whiffles;
@@ -14,7 +13,7 @@ var openFile = function(event){
       let y = map.hero.y;
       game_map = new Map(dim, dim, x, y, energy, whiffles);
       map.cells.forEach( cell => {
-        game_map.cells[cell.x][cell.y] = new mapCell(cell.x, cell.y, cell.isVisible, cell.terrainType, cell.object);
+        game_map.cells[cell.x][cell.y] = new mapCell(cell.x, cell.y, cell.isVisible, cell.terrain, cell.object);
       });
       game_map.hero.inventory = map.hero.inventory;
       game_map.update();
