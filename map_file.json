@@ -1,8 +1,10 @@
 {
   "mapName": "Sample Frugal Game Map",
-  "dimensions": 20,
-  "player": {
-    "origin": [12,13],
+  "width": 20,
+  "height": 20,
+  "hero": {
+    "x": 12,
+    "y": 13,
     "energy": 100,
     "whiffles": 1000,
     "inventory": {
@@ -11,20 +13,20 @@
       "Rock": 1
     }
   },
-  "mapCells": [
-    {"x":1, "y":13, "isVisible": false, "terrainType": 0, "object": "Boulder"},
-    {"x":1, "y":6, "isVisible": false, "terrainType": 0, "object": "Boulder"},
-    {"x":1, "y":8, "isVisible": false, "terrainType": 0, "object": "PowerBar"},
-    {"x":3, "y":12, "isVisible": false, "terrainType": 0, "object": "Tree"},
-    {"x":3, "y":5, "isVisible": false, "terrainType": 0, "object": "Boulder"},
-    {"x":5, "y":15, "isVisible": false, "terrainType": 0, "object": "Shears"},
-    {"x":5, "y":17, "isVisible": false, "terrainType": 0, "object": "Shears"},
-    {"x":5, "y":5, "isVisible": false, "terrainType": 4, "object": "Tree"},
-    {"x":5, "y":6, "isVisible": false, "terrainType": 4, "object": "None"},
-    {"x":5, "y":7, "isVisible": false, "terrainType": 4, "object": "None"},
-    {"x":5, "y":8, "isVisible": false, "terrainType": 4, "object": "Binoculars"},
-    {"x":5, "y":9, "isVisible": false, "terrainType": 4, "object": "None"},
-    {"x":5, "y":10, "isVisible": false, "terrainType": 4, "object": "None"},
-    {"x":6, "y":2, "isVisible": false, "terrainType": 0, "object": "PowerBar"}
+  "cells": [
+    {"x":1, "y":13, "isVisible": false, "terrain": 0, "object": "Boulder"},
+    {"x":1, "y":6, "isVisible": false, "terrain": 0, "object": "Boulder"},
+    {"x":1, "y":8, "isVisible": false, "terrain": 0, "object": "PowerBar"},
+    {"x":3, "y":12, "isVisible": false, "terrain": 0, "object": "Tree"},
+    {"x":3, "y":5, "isVisible": false, "terrain": 0, "object": "Boulder"},
+    {"x":5, "y":15, "isVisible": false, "terrain": 0, "object": "Shears"},
+    {"x":5, "y":17, "isVisible": false, "terrain": 0, "object": "Shears"},
+    {"x":5, "y":5, "isVisible": false, "terrain": 4, "object": "Tree"},
+    {"x":5, "y":6, "isVisible": false, "terrain": 4, "object": "None"},
+    {"x":5, "y":7, "isVisible": false, "terrain": 4, "object": "None"},
+    {"x":5, "y":8, "isVisible": false, "terrain": 4, "object": "Binoculars"},
+    {"x":5, "y":9, "isVisible": false, "terrain": 4, "object": "None"},
+    {"x":5, "y":10, "isVisible": false, "terrain": 4, "object": "None"},
+    {"x":6, "y":2, "isVisible": false, "terrain": 0, "object": "PowerBar"}
   ]
 }
