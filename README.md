@@ -1,38 +1,12 @@
-# cs300 Team B
+# The Royal Diamond
+[screenshot]: https://github.com/geoolson/TheRoyalDiamond/edit/master/screenshot.png "The Royal Diamond"
 
-[Trello](https://trello.com/b/CwbQSw9w/frupal)
-[Discord Chat Server](https://discord.gg/kvqNDBd)
+The Royal Diamond is an in-browser adventure game where you're searching for the royal diamond. It's a 2d top-down game. As you search for the diamond you will run into obstacles and items you can pick up
 
-# git Instructions
+## Custom Maps
 
-* ssh into a Linux server
-* Download/clone the repo if you haven't already :
+The Royal Diamond supports custom maps. Maps are stored into a json format. Look at [map_file.json](map_file.json) for a working example.
 
-    `git clone https://github.com/seal402/cs300.git`
+## Current development
 
-* Every time, before working on the project, please do the following to sync your local repo with github :
-    
-    `git pull`
-
-## Uploading Your Code
-
-in the working directory of the project you're working on, do the following
-*  Add the changes you've made.
-
-    `git add .`
-
-*  Make a commit. This will bring up a text editor. Provide a brief description of the changes/additions made then save and quit
-
-    `git commit`
-    
-    * Or commit without the text editor
-
-    `git commit -m "Enter Updates Message here"`
-    
-    -m "Message here"
-
-
-*  Upload your commit to Github.
-
-    `git push origin master`
-
+Currently working on migrating the game to a single page application. This will simplify the code and improve navigation. Check out our issues for other features and bugs we're working on.
