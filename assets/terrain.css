@@ -1,0 +1,62 @@
+.meadow {
+  background-color: green;
+  background-image: url("sprites/grasse32x32transparent.png");
+}
+.water{
+  background-color: green;
+  background-size: 32px;
+}
+.water.top{
+  background-image: url("sprites/rivertop64x64transparentanimated.gif");
+}
+.water.bottom{
+  background-image: url("sprites/riverbottom64x64transparentanimatednotbright.gif");
+}
+.water.top-left{
+  background-image: url("sprites/rivertopleft64x64transparent.gif");
+}
+.water.bottom-left{
+  background-image: url("sprites/riverbottomleft64x64.gif");
+}
+.water.bottom-right{
+  background-image: url("sprites/riverbottomleft64x64.gif");
+  display: inline-block;
+  -webkit-transform: scaleX(-1);
+}
+.water.top-right{
+  background-image: url("sprites/rivertopleft64x64transparent.gif");
+  display: inline-block;
+  -webkit-transform: scaleX(-1);
+}
+.water.left{
+  background-image: url("sprites/waterleft64x64.gif");
+}
+.water.right{
+  background-image: url("sprites/waterright64x64.gif");
+}
+.water.full{
+  background-color: rgb(185,157,189);
+}
+.wall {
+  background-color: green;
+  background-image: url("sprites/fence32x32transparent.png");
+}
+.bog {
+  background-color: #8B4513;
+}
+.swamp {
+  background-color: #728700;
+}
+.forest{
+  background-color: green;
+  background-image: url("sprites/bush32x32transparentanimated.gif");
+}
+#map_box{
+  font-size: 20px;
+  border-spacing: 0px;
+  letter-spacing: 0px;
+  letter-spacing: 12px;
+  font-family: "Courier-New",monospace;
+  border-style: solid;
+  display: inline-block;
+}

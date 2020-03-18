@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Frupal</title>
+    <link rel="stylesheet" href="assets/terrain.css">
 	</head>
     <script src="inventory.js"></script>
     <script src="hero.js"></script>
@@ -42,6 +43,22 @@
                 {"x":5, "y":8, "isVisible": false, "terrain": 4, "object": "Binoculars"},
                 {"x":5, "y":9, "isVisible": false, "terrain": 4, "object": "None"},
                 {"x":5, "y":10, "isVisible": false, "terrain": 4, "object": "None"},
+                {"x":6, "y":10, "isVisible": false, "terrain": 3, "object": "None"},
+                {"x":7, "y":10, "isVisible": false, "terrain": 3, "object": "None"},
+                {"x":8, "y":10, "isVisible": false, "terrain": 3, "object": "None"},
+                {"x":9, "y":10, "isVisible": false, "terrain": 3, "object": "None"},
+                {"x":12, "y":4, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":13, "y":4, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":12, "y":3, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":13, "y":3, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":14, "y":3, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":14, "y":4, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":12, "y":5, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":13, "y":5, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":14, "y":5, "isVisible": false, "terrain": 2, "object": "None"},
+                {"x":13, "y":10, "isVisible": false, "terrain": 1, "object": "None"},
+                {"x":13, "y":11, "isVisible": false, "terrain": 1, "object": "None"},
+                {"x":13, "y":12, "isVisible": false, "terrain": 1, "object": "None"},
                 {"x":6, "y":2, "isVisible": false, "terrain": 0, "object": "PowerBar"}
               ]
             };
@@ -106,7 +123,7 @@
     <br>
     <table>
         <td>
-    <pre style='line-height: 14px; letter-spacing: 4px; font-family: "Courier-New",monospace; border-style: solid; display: inline-block;' id="map_box"></pre>
+    <pre id="map_box"></pre>
         </td>
         <td id="inventory">
             <button type='button' onclick='open_inventory()'>OPEN INVENTORY</button>
