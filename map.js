@@ -248,8 +248,9 @@ Map.prototype.place_chests = function(){
 // Formats the map array as the contents of an HTML table.
 Map.prototype.map_string = function() {
   let result = "";
-  function genElement(cellObject, terrain)
+  const genElement = (cellObject, terrain, x, y) =>
   {
+    let terrainCells = ["meadow", "forest", "water", "wall", "bog", "swamp"];
     let cells = {
       "Tree": { color: "red", character: "T"},
       "Boulder": { color: "red", character: "R"},
@@ -268,21 +269,44 @@ Map.prototype.map_string = function() {
       "Chisel": { color: "green", character: "H"},
       "Sledge": { color: "green", character: "L"},
       "Hatchet": { color: "green", character: "T"},
-      "None": terrain =>
-      {
-        let terrainCells = ["-", ";", "~", "#", "%", ","];
-        if(terrainCells[terrain])
-          return terrainCells[terrain];
-        return "?";
-      }
+      "Hero": { color: "black", character: "<b>@<b>"},
     };
+    let terrainCell = terrainCells[terrain];
+    if(terrainCell === "water"){
+      let above = this.cells[x][y+1].terrain
+      let below = this.cells[x][y-1].terrain;
+      let left = this.cells[x-1][y].terrain;
+      let right = this.cells[x+1][y].terrain;
+      if(above !== WATER){
+        terrainCell += " top";
+        if(left !== WATER)
+          terrainCell += "-left";
+        else if(right !== WATER)
+          terrainCell += "-right";
+      }
+      else if(below !== WATER){
+        terrainCell += " bottom";
+        if(left !== WATER)
+          terrainCell += "-left";
+        else if(right !== WATER)
+          terrainCell += "-right";
+      }
+      else if(left !== WATER){
+          terrainCell += " left";
+      }
+      else if(right !== WATER){
+          terrainCell += " right";
+      }
+      else
+          terrainCell += " full";
+    }
     if(cellObject === "None")
-      return cells.None(terrain);
+      return `<span class="${terrainCell}"> </span>`;
     else
     {
-      let cellColor = cells[cellObject].color;
       let cellCharacter = cells[cellObject].character;
-      return `<span style="color:${cellColor};">${cellCharacter}</span>`;
+      let cellColor = cells[cellObject].color;
+      return `<span class="${terrainCell}" style="color:${cellColor};">${cellCharacter}</span>`;
     }
   }
 
@@ -292,9 +316,9 @@ Map.prototype.map_string = function() {
     {
       let cell = this.cells[x][y];
       if (y === this.hero.y && x === this.hero.x)
-        result += "<b>@</b>";
+        result += genElement("Hero", cell.terrain);
       else if(cell.isVisible) 
-        result += genElement(cell.object, cell.terrain);
+        result += genElement(cell.object, cell.terrain, x, y);
       else 
         result += " ";
     }
