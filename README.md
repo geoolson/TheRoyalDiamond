@@ -9,3 +9,7 @@ The Royal Diamond supports custom maps. Maps are stored into a json format. Look
 ## Current development
 
 Currently working on migrating the game to a single page application. This will simplify the code and improve navigation. Check out our issues for other features and bugs we're working on.
+
+## Running App
+
+You can download the repo and open the index.html file inside your browser.
