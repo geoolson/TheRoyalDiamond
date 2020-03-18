@@ -1,5 +1,5 @@
 # The Royal Diamond
-[screenshot]: https://raw.githubusercontent.com/geoolson/TheRoyalDiamond/master/screenshot.png "The Royal Diamond"
+![screenshot](https://raw.githubusercontent.com/geoolson/TheRoyalDiamond/master/screenshot.png "The Royal Diamond")
 
 The Royal Diamond is an in-browser adventure game where you're searching for the royal diamond. It's a 2d top-down game. As you search for the diamond you will run into obstacles and items you can pick up
 
