@@ -7,7 +7,7 @@ const BOG = 4;
 const SWAMP = 5;
 
 //This class will hold all of the player's inventory data.
-function Inventory(inventory={})
+export function Inventory(inventory={})
 {
     // this.inventory stores key value pairs of the hero's inventory
     // where the key is the item and the value is the quantity
